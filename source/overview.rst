@@ -64,7 +64,7 @@ The Conceptual Framework of Ada
 
 Ada descends from Pascal, and yet uses many concepts already familiar to C or
 C++ programmers.  As a long time C++ programmer, I find Ada leverages the concepts
-I'm used to in more formal, and often compiler-checked ways.
+I'm used to in more formal, and often compiler-check ways.
 
 For example:
 - Instead of an header file providing an informal spec and an associated source
