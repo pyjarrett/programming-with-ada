@@ -10,8 +10,8 @@ Welcome to programming-with-ada's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   overview
-   comparison
+   000-overview
+   900-comparison
 
 Indices and tables
 ==================

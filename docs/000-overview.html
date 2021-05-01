@@ -38,7 +38,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Comparing Ada to Other Languages" href="comparison.html" />
+    <link rel="next" title="Comparing Ada to Other Languages" href="900-comparison.html" />
     <link rel="prev" title="Welcome to programming-with-ada’s documentation!" href="index.html" /> 
 </head>
 
@@ -89,15 +89,15 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Goals</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#note-on-terminology">Note on Terminology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#high-level-language-features">High-level Language Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#building-blocks-of-ada">Building Blocks of Ada</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="#packages-the-building-blocks-of-ada">Packages, the Building Blocks of Ada</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#types-and-ada-the-elephant-in-the-room">Types and Ada, The Elephant in the Room</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#introduction-to-subprograms-functions-and-procedures">Introduction to Subprograms (functions and procedures)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#subprograms-functions-and-procedures">Subprograms (functions and procedures)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#packages">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-core-tenet-of-ada">The Core Tenet of Ada</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="comparison.html">Comparing Ada to Other Languages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="comparison.html#terminology">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="900-comparison.html">Comparing Ada to Other Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="900-comparison.html#terminology">Terminology</a></li>
 </ul>
 
             
@@ -152,7 +152,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/overview.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/000-overview.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -167,20 +167,20 @@
             
   <div class="section" id="goals">
 <h1>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">¶</a></h1>
-<p>This series intends to be multiple parts for different audiences:</p>
+<p>This intends to provide a high-level overview of Ada for programmers.  It is
+not a tutorial.</p>
 <ul class="simple">
 <li><p>A Brief Overview Introducing Ada</p></li>
 <li><p><a class="reference external" href="comparison.html">Table comparison of Ada Constructs to C++</a></p></li>
 </ul>
 <p>While my experience with Ada has been positive, this article aims to be as
 fact-driven and neutral as possible, attempting to give an objective
-overview of the language for those unfamiliar with it, as well as
-describing the tradeoffs of using the language.</p>
+overview of the language for those unfamiliar with it.</p>
 <p>I am a Windows/Linux developer who primarily works in C++, but
 has worked in many other languages in descending level of familiarity: Python,
 C, Objective-C, Ruby, Rust, Haskell, Clojure, Perl, some Javascript, and PHP.
 I stopped writing Rust consistently right around the time that async/await was
-stabilized.  Time permitting I will attempt to write more detailed comparisons
+stabilized.  Time permitting I will attempt to write comparisons
 against Rust as well.</p>
 <p>I started reading about Ada because a developer I worked with several years
 ago had mentioned it, and I couldn’t find a single person who had worked in it.
@@ -223,7 +223,8 @@ cannot be assigned to each other without a cast (“derived types”).</p></li>
 <li><p>Deterministic construction and destruction of objects (RAII, a term from C++, “controlled types”)</p></li>
 <li><p>Design-by-contract (“precondition” and “postcondition” “aspects”).</p></li>
 <li><p>Lifetime checks (“accessibility” of “access types”, very similar to, but not as extensive as Rust).</p></li>
-<li><p>Task definition with defined synchronization and queueing strategies. (“rendevzous”, “entry”, “select”, “accept”, “abort”)</p></li>
+<li><p>Task definition with defined synchronization and queueing strategies.
+(“rendevzous”, “entry”, “select”, “accept”, “abort”, “Ravenscar”)</p></li>
 <li><p>Concurrency types (“protected”, which provides mutual exclusion, and “task”).</p></li>
 <li><p>Exceptions.</p></li>
 <li><p>Deterministic and configurable static initialization order (“preelaborate”,
@@ -245,8 +246,8 @@ lines of using <cite>extern “C”</cite>, except for “provable” parts of y
 <li><p>Mixed-mode arithmetic and the related implicit numerical casts.</p></li>
 </ul>
 </div>
-<div class="section" id="building-blocks-of-ada">
-<h1>Building Blocks of Ada<a class="headerlink" href="#building-blocks-of-ada" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="packages-the-building-blocks-of-ada">
+<h1>Packages, the Building Blocks of Ada<a class="headerlink" href="#packages-the-building-blocks-of-ada" title="Permalink to this headline">¶</a></h1>
 <p>Ada descends from Pascal, and yet uses many concepts already familiar to C or
 C++ programmers.  As a long time C++ programmer, I find Ada leverages the concepts
 I’m used to in more formal, and often compiler-checked ways.</p>
@@ -254,11 +255,11 @@ I’m used to in more formal, and often compiler-checked ways.</p>
 <h2>Types and Ada, The Elephant in the Room<a class="headerlink" href="#types-and-ada-the-elephant-in-the-room" title="Permalink to this headline">¶</a></h2>
 <p>Ada emphasizes types, but their consistent use despite their complexity
 means I can ignore them for now.  Nearly every other Ada overview and tutorial
-focuses on them, but it doesn’t give an understanding of what Ada looks like
-and what it can do.</p>
+focuses on them, but they’re an incredibly deep topic in Ada.  Rather than get
+bogged down there, let’s look at what Ada looks like and how programs are structured.</p>
 </div>
-<div class="section" id="introduction-to-subprograms-functions-and-procedures">
-<h2>Introduction to Subprograms (functions and procedures)<a class="headerlink" href="#introduction-to-subprograms-functions-and-procedures" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="subprograms-functions-and-procedures">
+<h2>Subprograms (functions and procedures)<a class="headerlink" href="#subprograms-functions-and-procedures" title="Permalink to this headline">¶</a></h2>
 <p>Ada draws a line between functions, which return values, and procedures which
 do not return a value.  Collectively referred to as “subprograms”, either of
 these may have input (<code class="docutils literal notranslate"><span class="pre">in</span></code>) and output (<code class="docutils literal notranslate"><span class="pre">out</span></code>) parameters, with parameters
@@ -269,7 +270,6 @@ optional for functions.  Note that parameters are separated by semicolons
 <span class="kr">begin</span>
     <span class="n">Area</span> <span class="p">:=</span> <span class="n">Width</span> <span class="o">*</span> <span class="n">Height</span><span class="p">;</span>
 <span class="kr">end</span> <span class="nf">Rectangle_Area</span><span class="p">;</span>
-
 
 <span class="kd">function</span> <span class="nf">Rectangle_Area</span><span class="p">(</span><span class="nv">Width</span> <span class="p">: </span><span class="nv">Float</span><span class="p">;</span> <span class="nv">Height</span> <span class="p">: </span><span class="nv">Float</span><span class="p">)</span> <span class="kr">return</span> <span class="kt">Float</span> <span class="kr">is</span>
 <span class="kr">begin</span>
@@ -552,7 +552,7 @@ These are referred to as “primitive operations.”</p>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="comparison.html" class="btn btn-neutral float-right" title="Comparing Ada to Other Languages" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="900-comparison.html" class="btn btn-neutral float-right" title="Comparing Ada to Other Languages" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="index.html" class="btn btn-neutral float-left" title="Welcome to programming-with-ada’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

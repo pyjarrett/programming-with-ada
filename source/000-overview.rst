@@ -1,21 +1,22 @@
 Goals
 ==============================================================================
 
-This series intends to be multiple parts for different audiences:
+This intends to provide a high-level overview of Ada for programmers.  It is
+not a tutorial.
 
 - A Brief Overview Introducing Ada
 - `Table comparison of Ada Constructs to C++ <comparison.html>`_
 
 While my experience with Ada has been positive, this article aims to be as 
 fact-driven and neutral as possible, attempting to give an objective
-overview of the language for those unfamiliar with it, as well as 
-describing the tradeoffs of using the language.
+overview of the language for those unfamiliar with it.
+
 
 I am a Windows/Linux developer who primarily works in C++, but
 has worked in many other languages in descending level of familiarity: Python,
 C, Objective-C, Ruby, Rust, Haskell, Clojure, Perl, some Javascript, and PHP.
 I stopped writing Rust consistently right around the time that async/await was
-stabilized.  Time permitting I will attempt to write more detailed comparisons
+stabilized.  Time permitting I will attempt to write comparisons
 against Rust as well.
 
 I started reading about Ada because a developer I worked with several years 
@@ -86,7 +87,7 @@ Ada is missing:
 - Async/Await (it has tasks instead)
 - Mixed-mode arithmetic and the related implicit numerical casts.
 
-Building Blocks of Ada
+Packages, the Building Blocks of Ada
 ==============================================================================
 
 Ada descends from Pascal, and yet uses many concepts already familiar to C or
@@ -98,10 +99,10 @@ Types and Ada, The Elephant in the Room
 
 Ada emphasizes types, but their consistent use despite their complexity
 means I can ignore them for now.  Nearly every other Ada overview and tutorial
-focuses on them, but it doesn't give an understanding of what Ada looks like
-and what it can do.
+focuses on them, but they're an incredibly deep topic in Ada.  Rather than get
+bogged down there, let's look at what Ada looks like and how programs are structured.
 
-Introduction to Subprograms (functions and procedures)
+Subprograms (functions and procedures)
 ------------------------------------------------------------------------------
 
 Ada draws a line between functions, which return values, and procedures which
@@ -117,7 +118,6 @@ optional for functions.  Note that parameters are separated by semicolons
     begin
         Area := Width * Height;
     end Rectangle_Area;
-
 
     function Rectangle_Area(Width : Float; Height : Float) return Float is
     begin

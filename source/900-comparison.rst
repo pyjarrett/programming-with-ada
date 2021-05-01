@@ -644,6 +644,10 @@ Terminology
     ABE
         "Access before elaboration"
 
+    access type
+        Similar to a pointer, a type which refers to the placement of another
+        object in memory.
+
     ATC
         "Asynchronous transfer of control
 
@@ -660,6 +664,9 @@ Terminology
         A type with an associated "tag", which specifies its type and allows
         for dynamic dispatch.
 
+    indefinite type
+        A type for which you cannot declare an object without supply bounds a
+        constraint or an initial value.
 
 
 +--------------------------+------------------------------------------------------------+------------------------------------------------------------------+---------------------------------------------------+--------------------------------------------------------------+
