@@ -38,7 +38,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Language Summary of Key Points" href="comparison.html" />
+    <link rel="next" title="Comparing Ada to Other Languages" href="comparison.html" />
     <link rel="prev" title="Welcome to programming-with-ada’s documentation!" href="index.html" /> 
 </head>
 
@@ -87,17 +87,17 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Goals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#note-on-terminology">Note on Terminology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#high-level-language-features">High-level Language Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#types-and-ada-the-elephant-in-the-room">Types and Ada, The Elephant in the Room</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#building-blocks-of-ada">Building Blocks of Ada</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#subprograms-functions-and-procedures">Subprograms (functions and procedures)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#types-and-ada-the-elephant-in-the-room">Types and Ada, The Elephant in the Room</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#introduction-to-subprograms-functions-and-procedures">Introduction to Subprograms (functions and procedures)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#packages">Packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-core-tenet-of-ada">The Core Tenet of Ada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#raii">RAII</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#raii">RAII</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#types">Types</a></li>
-<li class="toctree-l1"><a class="reference internal" href="comparison.html">Language Summary of Key Points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comparison.html">Comparing Ada to Other Languages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="comparison.html#terminology">Terminology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="comparison.html#ada-verbiage">Ada Verbiage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="comparison.html#ada-symbology">Ada Symbology</a></li>
@@ -187,34 +187,52 @@ stabilized.  Time permitting I will attempt to write more detailed comparisons
 against Rust as well.</p>
 <p>I started reading about Ada because a developer I worked with several years
 ago had mentioned it, and I couldn’t find a single person who had worked in it.
-My intention at the time had been to try it out over the weekend, and after
-finding a horribly broken bloated and bureaucratic language, never use it again.
-I’ve now been learning and writing Ada 2012 for about a month.</p>
+I’ve now been learning and writing Ada 2012 for a couple of months now.</p>
+<p>I have endeavoured to achieve terseness, clarity and technical accuracy for
+those who want a quick overview of the language.  Feel free to submit
+corrections or changes to aid in clarity.</p>
+</div>
+<div class="section" id="note-on-terminology">
+<h1>Note on Terminology<a class="headerlink" href="#note-on-terminology" title="Permalink to this headline">¶</a></h1>
+<p>Ada often uses different terminology than any of the languages I’ve used.  The
+goal is an overview without jargon, the only Ada-specific terms necessary
+for this overview are “subprogram”, which refers to functions and procedures, and
+“procedures” which in most C-like language would be a “function” which returns
+nothing (i.e. void).</p>
 </div>
 <div class="section" id="high-level-language-features">
 <h1>High-level Language Features<a class="headerlink" href="#high-level-language-features" title="Permalink to this headline">¶</a></h1>
-<p>&gt; Based on its feature set, I’d describe Ada as a mirror of C++ in the Pascal family,
-&gt; with many features of Rust.</p>
+<blockquote>
+<div><p>Based on its feature set, I’d describe Ada as a mirror of C++ in the Pascal family,
+with many features of Rust.</p>
+</div></blockquote>
+<p>Covering every Ada feature would be dilute the conceptual overview of Ada, so
+related Ada-specific terminology is quoted in parentheses for those wanting to
+do their own targeted research.</p>
 <p>Ada supports:</p>
 <ul class="simple">
-<li><p>Forced namespacing.</p></li>
-<li><p>Sum types (discriminants).</p></li>
-<li><p>Parameterized types.</p></li>
-<li><p>Static polymorphism (generics).</p></li>
-<li><p>Dynamic polymorphism (dynamic dispatch, “virtual” functions).</p></li>
-<li><p>Compiler and runtime checked constaints on ranges of numerical types.</p></li>
-<li><p>Runtime type invariant checking on assignment and usage as parameters.</p></li>
-<li><p>Semantic types, saying two things are the same backing type, but not the same type of “thing”, think of “Miles” vs “Kilometers” both stored as floats, which cannot be assigned to each other.</p></li>
-<li><p>RAII, deterministic construction and destruction of objects (controlled types).</p></li>
-<li><p>Design-by-contract (inline preconditions and post-conditions).</p></li>
-<li><p>Lifetime checks (“accessibility”, but not as extensive as Rust).</p></li>
-<li><p>Monitor types (protected types).</p></li>
-<li><p>Task definition with defined synchronization.</p></li>
-<li><p>Concurrency types (protected and task).</p></li>
-<li><p>Formal verification, by enabling <cite>Spark_Mode</cite> for parts of the program and
-writing in SPARK, a language which is an Ada subset.  Think of this along the lines of using <cite>extern “C”</cite>, except for “provable” parts of your code base.</p></li>
+<li><p>Forced namespacing (“packages”).</p></li>
+<li><p>Function overloading.</p></li>
+<li><p>Sum types (“variants”, “discriminants”).</p></li>
+<li><p>Static polymorphism (monomorphism, “generics”);</p></li>
+<li><p>Dynamic polymorphism (dynamic dispatch, virtual functions).</p></li>
+<li><p>Compiler and runtime checked constaints on ranges of numerical types (“ranges”, “constraints”).</p></li>
+<li><p>User-specified runtime type invariant checking on assignment and usage as parameters (“Type_Invariant”, “Static_Predicate”, “Dynamic_Predicate”).</p></li>
+<li><p>Semantic types, saying two things are the same backing type, but not the same
+type of “thing”, think of “Miles” vs “Kilometers” both stored as floats, which
+cannot be assigned to each other without a cast (“derived types”).</p></li>
+<li><p>Deterministic construction and destruction of objects (RAII, a term from C++, “controlled types”)</p></li>
+<li><p>Design-by-contract (“precondition” and “postcondition” “aspects”).</p></li>
+<li><p>Lifetime checks (“accessibility” of “access types”, very similar to, but not as extensive as Rust).</p></li>
+<li><p>Task definition with defined synchronization and queueing strategies. (“rendevzous”, “entry”, “select”, “accept”, “abort”)</p></li>
+<li><p>Concurrency types (“protected”, which provides mutual exclusion, and “task”).</p></li>
 <li><p>Exceptions.</p></li>
-<li><p>Deterministic and configurable static initialization order.</p></li>
+<li><p>Deterministic and configurable static initialization order (“preelaborate”,
+“elaborate”, “elaborate_body”, “elaborate_all”)</p></li>
+<li><p>ML-style signatures (“packages”, “generics”)</p></li>
+<li><p>Formal verification, by enabling <cite>Spark_Mode</cite> for parts of the program and
+writing in SPARK, a language which is an Ada subset.  Think of this along the
+lines of using <cite>extern “C”</cite>, except for “provable” parts of your code base.</p></li>
 </ul>
 <p>Ada is missing:</p>
 <ul class="simple">
@@ -225,29 +243,63 @@ writing in SPARK, a language which is an Ada subset.  Think of this along the li
 <li><p>Variadic functions.</p></li>
 <li><p>Variadic templates.</p></li>
 <li><p>Async/Await (it has tasks instead)</p></li>
+<li><p>Mixed-mode arithmetic and the related implicit numerical casts.</p></li>
 </ul>
-</div>
-<div class="section" id="types-and-ada-the-elephant-in-the-room">
-<h1>Types and Ada, The Elephant in the Room<a class="headerlink" href="#types-and-ada-the-elephant-in-the-room" title="Permalink to this headline">¶</a></h1>
-<p>Ada emphasizes types, but their consistent use despite their complexity
-means I can ignore them for now.  Nearly other Ada overview and tutorial
-focuses on them, but it doesn’t give an understanding of what Ada looks like
-and what it can do.</p>
 </div>
 <div class="section" id="building-blocks-of-ada">
 <h1>Building Blocks of Ada<a class="headerlink" href="#building-blocks-of-ada" title="Permalink to this headline">¶</a></h1>
 <p>Ada descends from Pascal, and yet uses many concepts already familiar to C or
 C++ programmers.  As a long time C++ programmer, I find Ada leverages the concepts
 I’m used to in more formal, and often compiler-checked ways.</p>
-<div class="section" id="subprograms-functions-and-procedures">
-<h2>Subprograms (functions and procedures)<a class="headerlink" href="#subprograms-functions-and-procedures" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="types-and-ada-the-elephant-in-the-room">
+<h2>Types and Ada, The Elephant in the Room<a class="headerlink" href="#types-and-ada-the-elephant-in-the-room" title="Permalink to this headline">¶</a></h2>
+<p>Ada emphasizes types, but their consistent use despite their complexity
+means I can ignore them for now.  Nearly every other Ada overview and tutorial
+focuses on them, but it doesn’t give an understanding of what Ada looks like
+and what it can do.</p>
+</div>
+<div class="section" id="introduction-to-subprograms-functions-and-procedures">
+<h2>Introduction to Subprograms (functions and procedures)<a class="headerlink" href="#introduction-to-subprograms-functions-and-procedures" title="Permalink to this headline">¶</a></h2>
 <p>Ada draws a line between functions, which return values, and procedures which
 do not return a value.  Collectively referred to as “subprograms”, either of
-these may have input (“in”) and output (“out”) parameters, with parameters
-being allowed to also be both an input and output (“in out”).  Note that
-parameters are separated by semicolons (“;”), not by commas (“,”).</p>
-<p>Short functions may be written as expressions bounded by parentheses.  <cite>in</cite> is
+these may have input (<code class="docutils literal notranslate"><span class="pre">in</span></code>) and output (<code class="docutils literal notranslate"><span class="pre">out</span></code>) parameters, with parameters
+being allowed to also be both an input and output (<code class="docutils literal notranslate"><span class="pre">in</span> <span class="pre">out</span></code>).   <code class="docutils literal notranslate"><span class="pre">in</span></code> is
+optional for functions.  Note that parameters are separated by semicolons
+(<code class="docutils literal notranslate"><span class="pre">;</span></code>), not by commas (<code class="docutils literal notranslate"><span class="pre">,</span></code>).</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">procedure</span> <span class="nf">Rectangle_Area</span><span class="p">(</span><span class="nv">Width</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">Float</span><span class="p">;</span> <span class="nv">Height</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">Float</span><span class="p">;</span> <span class="nv">Area</span> <span class="p">: </span><span class="nv">out</span> <span class="nv">Float</span><span class="p">)</span> <span class="kr">is</span>
+<span class="kr">begin</span>
+    <span class="n">Area</span> <span class="p">:=</span> <span class="n">Width</span> <span class="o">*</span> <span class="n">Height</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nf">Rectangle_Area</span><span class="p">;</span>
+
+
+<span class="kd">function</span> <span class="nf">Rectangle_Area</span><span class="p">(</span><span class="nv">Width</span> <span class="p">: </span><span class="nv">Float</span><span class="p">;</span> <span class="nv">Height</span> <span class="p">: </span><span class="nv">Float</span><span class="p">)</span> <span class="kr">return</span> <span class="kt">Float</span> <span class="kr">is</span>
+<span class="kr">begin</span>
+    <span class="kr">return</span> <span class="n">Width</span> <span class="o">*</span> <span class="n">Height</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nf">Rectangle_Area</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Short functions may be written as expressions bounded by parentheses.  <code class="docutils literal notranslate"><span class="pre">in</span></code> is
 also optional for functions, and parameters with the same type can be grouped.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">Add</span> <span class="p">(</span><span class="nv">L</span><span class="p">,</span> <span class="nv">R</span> <span class="p">: </span><span class="nv">Float2</span><span class="p">)</span> <span class="kr">return</span> <span class="n">Float2</span> <span class="kr">is</span> <span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">X</span> <span class="o">+</span> <span class="n">R</span><span class="p">.</span><span class="n">X</span><span class="p">,</span> <span class="n">L</span><span class="p">.</span><span class="n">Y</span> <span class="o">+</span> <span class="n">R</span><span class="p">.</span><span class="n">Y</span><span class="p">);</span>
+    <span class="c1">-- Add two-dimensional vectors.</span>
+</pre></div>
+</div>
+<p>Multiple subprograms can exist with the same name, so the one used is determined
+by the types of the parameters and also the returned type.  There are no implicit
+conversions between floating point and integer types, which maximize clarity.</p>
+<blockquote>
+<div><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">Area</span> <span class="p">(</span><span class="nv">Width</span><span class="p">,</span> <span class="nv">Height</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">Float</span><span class="p">)</span> <span class="kr">return</span> <span class="kt">Float</span> <span class="kr">is</span> <span class="p">(</span><span class="n">Width</span> <span class="o">*</span> <span class="n">Height</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nf">Area</span> <span class="p">(</span><span class="nv">Width</span><span class="p">,</span> <span class="nv">Height</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">Integer</span><span class="p">)</span> <span class="kr">return</span> <span class="kt">Integer</span> <span class="kr">is</span> <span class="p">(</span><span class="n">Width</span> <span class="o">*</span> <span class="n">Height</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>The basic operators can be overloaded as well.  Assignment (<code class="docutils literal notranslate"><span class="pre">:=</span></code>) is
+not considered an operator, and therefore cannot be overloaded.</p>
+<blockquote>
+<div><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">&quot;+&quot;</span><span class="p">(</span><span class="nv">L</span><span class="p">,</span> <span class="nv">R</span> <span class="p">: </span><span class="nv">Float2</span><span class="p">)</span> <span class="kr">return</span> <span class="n">Float2</span> <span class="kr">is</span> <span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">X</span> <span class="o">+</span> <span class="n">R</span><span class="p">.</span><span class="n">X</span><span class="p">,</span> <span class="n">L</span><span class="p">.</span><span class="n">Y</span> <span class="o">+</span> <span class="n">R</span><span class="p">.</span><span class="n">Y</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
 </div>
 <div class="section" id="packages">
 <h2>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h2>
@@ -259,24 +311,122 @@ are not part of the logical interface of the program, such as
 size details for structs and classes.</p>
 <p>Instead of a header files providing an informal spec and an associated source
 file being the translation unit, in Ada a package is roughly analogous to a
-“header file,” and that package’s body is the “source file”, except assume
+“header file,” and that package’s body is the “source file”, except as if
 everything in each file is in a namespace given by the file name.</p>
 <p>Top-level package specifications, appear in <cite>*.ads</cite> (Ada specification) files,
 with their implementations (“bodies”) in <cite>*.adb</cite> (Ada body) files, and only
 one top-level package specification or package body per file.</p>
 <p>Ada packages can also be nested and support visiblity rules for sharing details
-with child packages.  Child packages are given by dotted names, such as <cite>A.B</cite>
+with child packages.  Child packages are given by dotted names; <cite>A.B</cite>
 is a child of package <cite>A</cite>.</p>
 <p>Packages can also contain initialization code for the package to run at program
 startup prior to entering the main procedure, with the ability to describe
 dependencies in package start up order. This solves a specific C++ issue in
 which static initialization order is not known, while also offering the ability
 to avoid deferred first-time usage costs, such as with singletons.</p>
-<p>Ada uses “aspects” to denote additional attributes of packages,  (functions/procedures), and
+<p>Ada uses “aspects” to denote additional properites of packages,  subprograms, and
 types.  Along with aspects, compiler pragmas allows description of initialization
 dependencies, as well as providing high level checks, such as <cite>pragma Preelaborate</cite>
 to ensure a package has no initialization, or the <cite>with Pure</cite> aspect to ensure
 that a package has no state and subprograms cannot have side effects.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 44%" />
+<col style="width: 56%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="c1">---------------------------------------------------------</span>
+<span class="c1">-- Example.ads</span>
+<span class="c1">--</span>
+<span class="c1">-- Package specification</span>
+<span class="kd">package</span> <span class="nc">Example</span> <span class="kr">is</span>
+    <span class="c1">-- interface</span>
+
+    <span class="c1">-- Analogous to a struct.</span>
+    <span class="kd">type</span> <span class="kt">Scorpio</span> <span class="kr">is</span> <span class="kr">record</span><span class="p">;</span>
+        <span class="n">Sample</span> <span class="p">:</span> <span class="kt">Integer</span><span class="p">;</span>
+    <span class="kr">end record</span><span class="p">;</span>
+
+    <span class="c1">-- &quot;Class declaration&quot;</span>
+    <span class="kd">type</span> <span class="kt">Capricorn</span> <span class="kr">is</span> <span class="kd">private</span><span class="p">;</span>
+
+<span class="kd">private</span>
+    <span class="c1">-- physical interface</span>
+
+    <span class="c1">-- &quot;Class definition&quot;</span>
+    <span class="kd">type</span> <span class="kt">Capricorn</span> <span class="kr">is</span> <span class="kr">record</span>
+        <span class="n">Age</span> <span class="p">:</span> <span class="kt">Integer</span><span class="p">;</span>
+    <span class="kr">end record</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nf">Example</span><span class="p">;</span>
+
+
+
+
+<span class="c1">---------------------------------------------------------</span>
+<span class="c1">-- in Example.adb</span>
+<span class="c1">--</span>
+<span class="c1">-- Package body</span>
+<span class="kd">package</span> <span class="kd">body</span> <span class="nc">Example</span> <span class="kr">is</span>
+    <span class="c1">-- implementation details</span>
+
+    <span class="c1">-- Function used only in implementation</span>
+    <span class="kd">procedure</span> <span class="nf">Foo</span> <span class="kr">is</span>
+    <span class="kr">begin</span>
+        <span class="kc">null</span><span class="p">;</span>
+    <span class="kr">end</span> <span class="nf">Foo</span><span class="p">;</span>
+
+<span class="kr">begin</span> <span class="c1">-- (optional)</span>
+    <span class="c1">-- Initialization code to run at startup (optional)</span>
+<span class="kr">end</span> <span class="nf">Example</span><span class="p">;</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//////////////////////////////////////////////////////////////////////////</span>
+<span class="c1">// Sample.h</span>
+<span class="cp">#pragma once</span>
+<span class="k">namespace</span> <span class="n">Example</span> <span class="p">{</span>
+
+<span class="k">struct</span> <span class="nc">Scorpio</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">sample</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Public interface</span>
+<span class="k">class</span> <span class="nc">Capricorn</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Capricorn</span><span class="p">();</span>
+
+<span class="k">private</span><span class="o">:</span>
+    <span class="c1">// Part of the physical interface, since compilers need to know the</span>
+    <span class="c1">//  size of the struct when passed by value or used on the stack.</span>
+    <span class="c1">//</span>
+    <span class="c1">// Physical interface, visible due to technical limitations of the</span>
+    <span class="c1">// compilation model, since compilers need to know the size of the</span>
+    <span class="c1">// struct when passed by value or used on the stack.</span>
+    <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="p">}</span> <span class="c1">// namespace Example</span>
+
+
+<span class="c1">//////////////////////////////////////////////////////////////////////////</span>
+<span class="c1">// Sample.cpp</span>
+<span class="c1">// Implementation details.</span>
+<span class="k">namespace</span> <span class="n">Example</span> <span class="p">{</span>
+
+<span class="k">namespace</span> <span class="p">{</span>
+<span class="c1">// Function used only in implementation.</span>
+<span class="kt">void</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{}</span>
+<span class="p">}</span> <span class="c1">// namespace</span>
+
+<span class="n">Capricorn</span><span class="o">::</span><span class="n">Capricorn</span> <span class="p">{}</span>
+
+<span class="p">}</span> <span class="c1">// namespace Example</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="the-core-tenet-of-ada">
 <h2>The Core Tenet of Ada<a class="headerlink" href="#the-core-tenet-of-ada" title="Permalink to this headline">¶</a></h2>
@@ -286,18 +436,88 @@ declarations of things to exist and executable statements which use those things
 <p>The simplicity backing this is the ability to make any declaration, including
 types, variables, functions/procedures, and packages in any declaration block.  This means
 the basic rule of “declare, then use” repeats itself throughout the language,
-in <cite>package/package body</cite>, <cite>task/task body</cite>, subprograms
-(functions/procedures), and executable blocks of code can have a
-<cite>declare … begin … end</cite> block.</p>
-<p>This nesting of declarations very verbose.  It does makes it easy to refactor
-out behavior while you’re working on a subprogram and then you can extract
+in <code class="docutils literal notranslate"><span class="pre">package/package</span> <span class="pre">body</span></code>, <code class="docutils literal notranslate"><span class="pre">task/task</span> <span class="pre">body</span></code>, subprograms, and executable blocks of code can have a
+<code class="docutils literal notranslate"><span class="pre">declare</span> <span class="pre">...</span> <span class="pre">begin</span> <span class="pre">...</span> <span class="pre">end</span></code> block.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">package</span> <span class="nc">P</span> <span class="kr">is</span>
+    <span class="c1">-- Not declaring Foo here is like making the function `static` in C or C++ or</span>
+    <span class="c1">-- putting it into an anonymous namespace.</span>
+    <span class="kd">procedure</span> <span class="nf">Foo</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nf">P</span><span class="p">;</span>
+
+<span class="kd">package</span> <span class="kd">body</span> <span class="nc">P</span> <span class="kr">is</span>
+    <span class="c1">-- Declarations for the body of P go here.</span>
+
+    <span class="kd">procedure</span> <span class="nf">Foo</span> <span class="kr">is</span>
+        <span class="c1">-- Declarations for Foo can go here.</span>
+
+        <span class="c1">-- Declare a function, only visible to Foo, to be used to implement Foo.</span>
+        <span class="kd">procedure</span> <span class="nf">Bar</span> <span class="kr">is</span>
+        <span class="kr">begin</span>
+            <span class="kc">null</span><span class="p">;</span> <span class="c1">-- &quot;null statement&quot; here since this function actually does nothing.</span>
+                <span class="c1">-- and one statement is required.</span>
+        <span class="kr">end</span> <span class="nf">Bar</span><span class="p">;</span>
+    <span class="kr">begin</span>
+        <span class="c1">-- Executable statements go here.</span>
+        <span class="n">Ada</span><span class="p">.</span><span class="n">Text_IO</span><span class="p">.</span><span class="n">Put_Line</span><span class="p">(</span><span class="s">&quot;Hello, World!&quot;</span><span class="p">);</span>
+
+        <span class="kr">declare</span>
+            <span class="c1">-- Declare a package here, inside the function, to show that you can.</span>
+            <span class="kd">package</span> <span class="nc">Wat</span> <span class="kr">is</span>
+                <span class="c1">-- Declare a new type, which has the same set of possible values</span>
+                <span class="c1">-- as a Float, but is different than a Float.</span>
+                <span class="kd">type</span> <span class="kt">Capricorn</span> <span class="kr">is</span> <span class="kr">new</span> <span class="kt">Float</span><span class="p">;</span>
+            <span class="kr">end</span> <span class="nf">Wat</span><span class="p">;</span>
+
+            <span class="c1">-- A constant created using the package defined inside of Foo.</span>
+            <span class="c1">-- Temporary variables can be declared here too.</span>
+            <span class="no">Temp</span><span class="p">:</span> <span class="kr">constant</span> <span class="n">Wat</span><span class="p">.</span><span class="n">Capricorn</span> <span class="p">:=</span> <span class="mf">0.0</span><span class="p">;</span>
+        <span class="kr">begin</span>
+            <span class="c1">-- Print &quot;0.0&quot;.</span>
+            <span class="c1">-- &quot;Image&quot; is the Ada idiomatic equivalent of toString().</span>
+            <span class="c1">-- &#39; is &quot;tick&quot; and is used to access compiler-defined properties of types.</span>
+            <span class="n">Ada</span><span class="p">.</span><span class="n">Text_IO</span><span class="p">.</span><span class="n">Put_Line</span><span class="p">(</span><span class="n">Wat</span><span class="p">.</span><span class="n">Capricorn</span><span class="p">&#39;</span><span class="na">Image</span><span class="p">(</span><span class="n">Temp</span><span class="p">));</span>
+
+            <span class="c1">-- Call the helper procedure defined in Foo.</span>
+            <span class="c1">-- Procedures and functions without parameters are called</span>
+            <span class="c1">-- without parentheses.</span>
+            <span class="n">Bar</span><span class="p">;</span>
+        <span class="kr">end</span><span class="p">;</span>
+    <span class="kr">end</span> <span class="nf">Foo</span><span class="p">;</span>
+<span class="kr">begin</span>
+    <span class="c1">-- Static initialization body of P.</span>
+<span class="kr">end</span> <span class="nf">P</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This nesting of declarations very verbose.  It does however makes it straightforward to
+refactor out behavior while you’re working on a subprogram and then you can extract
 the newly created components into more appropriate places when you’re done.
 The inability to use statements in declarations causes me to sometimes rewrite
-my declarations in sequential order of constant processing, and makes the
+my declarations in sequential order of constant processing, and overall makes the
 declarations feel like a Haskell <cite>where</cite> clause.</p>
+<div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">Normalize</span><span class="p">(</span><span class="nv">F</span> <span class="p">: </span><span class="nv">Float2</span><span class="p">)</span> <span class="kr">return</span> <span class="n">Float2</span> <span class="kr">is</span>
+    <span class="no">L</span> <span class="p">:</span> <span class="kr">constant</span> <span class="n">F32</span> <span class="p">:=</span> <span class="n">Length</span><span class="p">(</span><span class="n">F</span><span class="p">);</span>
+<span class="kr">begin</span>
+    <span class="kr">return</span> <span class="n">F</span> <span class="o">/</span> <span class="n">L</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nf">Normalize</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">Evaluate</span>
+    <span class="p">(</span><span class="nv">Ctx</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">out</span> <span class="nv">Context</span><span class="p">;</span> <span class="nv">Line</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">Ada</span><span class="p">.</span><span class="nv">Strings</span><span class="p">.</span><span class="nv">Unbounded</span><span class="p">.</span><span class="nv">Unbounded_String</span><span class="p">)</span>
+      <span class="kr">return</span> <span class="n">Evaluate_Result</span> <span class="kr">is</span>
+    <span class="kn">use</span> <span class="nn">Ada.Containers</span><span class="p">;</span>
+    <span class="kn">use</span> <span class="nn">type</span> <span class="n">Ada</span><span class="p">.</span><span class="n">Strings</span><span class="p">.</span><span class="n">Unbounded</span><span class="p">.</span><span class="n">Unbounded_String</span><span class="p">;</span>
+    <span class="no">Whitespace</span>     <span class="p">:</span> <span class="kr">constant</span> <span class="n">Ada</span><span class="p">.</span><span class="n">Strings</span><span class="p">.</span><span class="n">Maps</span><span class="p">.</span><span class="n">Character_Set</span> <span class="p">:=</span> <span class="n">Ada</span><span class="p">.</span><span class="n">Strings</span><span class="p">.</span><span class="n">Maps</span><span class="p">.</span><span class="n">To_Set</span> <span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
+    <span class="no">Sanitized_Line</span> <span class="p">:</span> <span class="kr">constant</span> <span class="n">Ada</span><span class="p">.</span><span class="n">Strings</span><span class="p">.</span><span class="n">Unbounded</span><span class="p">.</span><span class="n">Unbounded_String</span> <span class="p">:=</span>
+                       <span class="n">Ada</span><span class="p">.</span><span class="n">Strings</span><span class="p">.</span><span class="n">Unbounded</span><span class="p">.</span><span class="n">Trim</span> <span class="p">(</span><span class="n">Line</span><span class="p">,</span> <span class="n">Whitespace</span><span class="p">,</span> <span class="n">Whitespace</span><span class="p">);</span>
+    <span class="n">Words</span>          <span class="p">:</span> <span class="n">String_Vectors</span><span class="p">.</span><span class="n">Vector</span> <span class="p">:=</span> <span class="n">Split</span> <span class="p">(</span><span class="n">Sanitized_Line</span><span class="p">);</span>
+    <span class="no">Command</span>        <span class="p">:</span> <span class="kr">constant</span> <span class="n">Ada</span><span class="p">.</span><span class="n">Strings</span><span class="p">.</span><span class="n">Unbounded</span><span class="p">.</span><span class="n">Unbounded_String</span> <span class="p">:=</span> <span class="p">(</span><span class="kr">if</span> <span class="n">Words</span><span class="p">.</span><span class="n">Length</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="kr">then</span> <span class="n">Words</span><span class="p">.</span><span class="n">First_Element</span> <span class="kr">else</span> <span class="n">Ada</span><span class="p">.</span><span class="n">Strings</span><span class="p">.</span><span class="n">Unbounded</span><span class="p">.</span><span class="n">Null_Unbounded_String</span><span class="p">);</span>
+<span class="kr">begin</span>
+    <span class="c1">-- ...</span>
+</pre></div>
+</div>
 <p>Ada does not provide separate syntactical units for classes, structs and
-namespaces.  Instead, packages contain types, constants and related subprograms
-(functions and procedures).  A lot of specialized syntax goes away due to
+namespaces.  Instead, packages contain types, constants and related subprograms.
+A lot of specialized syntax goes away due to
 this, for example there are no “member functions” and “class functions” and
 hence no specialized syntax for things like member function pointers or class
 function pointers exist.  Namespacing and overloading on parameters and/or the returned type determine
@@ -309,29 +529,106 @@ which are immutable.  “non-<cite>const</cite> member functions (methods)” pa
 Rust’s notation wherein it reflects C++-like <cite>const</cite> behavior of member
 functions with <cite>self</cite>, <cite>&amp;self</cite>, and <cite>&amp;mut self</cite> as a first parameter.
 These are referred to as “primitive operations.”</p>
+<div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Box &quot;non-const function&quot;</span>
+    <span class="kd">procedure</span> <span class="nf">Move</span><span class="p">(</span><span class="nv">Box</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">out</span> <span class="nv">AABB2</span><span class="p">;</span> <span class="nv">Direction</span> <span class="p">: </span><span class="nv">Float2</span><span class="p">)</span> <span class="kr">is</span>
+    <span class="kr">begin</span>
+            <span class="n">Box</span><span class="p">.</span><span class="n">Min</span> <span class="p">:=</span> <span class="n">Box</span><span class="p">.</span><span class="n">Min</span> <span class="o">+</span> <span class="n">Direction</span><span class="p">;</span>
+            <span class="n">Box</span><span class="p">.</span><span class="n">Max</span> <span class="p">:=</span> <span class="n">Box</span><span class="p">.</span><span class="n">Max</span> <span class="o">+</span> <span class="n">Direction</span><span class="p">;</span>
+    <span class="kr">end</span> <span class="nf">Scale</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Box &quot;const function&quot;</span>
+    <span class="kd">function</span> <span class="nf">Midpoint</span><span class="p">(</span><span class="nv">Box</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">AABB2</span><span class="p">)</span> <span class="kr">return</span> <span class="kt">Float</span> <span class="kr">is</span>
+    <span class="kr">begin</span>
+            <span class="kr">return</span> <span class="p">(</span><span class="n">Box</span><span class="p">.</span><span class="n">Min</span> <span class="o">+</span> <span class="n">Box</span><span class="p">.</span><span class="n">Max</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">;</span>
+    <span class="kr">end</span> <span class="nf">Scale</span><span class="p">;</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="raii">
-<h1>RAII<a class="headerlink" href="#raii" title="Permalink to this headline">¶</a></h1>
-<p>Ada supports [RAII](<a class="reference external" href="https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization">https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization</a>)
+<h2>RAII<a class="headerlink" href="#raii" title="Permalink to this headline">¶</a></h2>
+<p>Ada supports <a class="reference external" href="https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization">RAII</a>
 by extending the <cite>Controlled</cite> type.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 59%" />
+<col style="width: 41%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="kn">with</span> <span class="nn">Ada.Finalization</span><span class="p">;</span>  <span class="kn">use</span> <span class="nn">Ada.Finalization</span><span class="p">;</span>
+<span class="kd">package</span> <span class="nc">Sample</span> <span class="kr">is</span>
+    <span class="c1">-- &quot;Controlled&quot; types exhibit RAII behavior:</span>
+    <span class="kd">type</span> <span class="kt">Capricorn</span> <span class="kr">is</span> <span class="kr">new</span> <span class="kt">Controlled</span> <span class="kr">with</span>
+    <span class="kr">record</span>
+        <span class="n">Dummy</span> <span class="p">:</span> <span class="kt">Integer</span><span class="p">;</span>
+    <span class="kr">end record</span><span class="p">;</span>
+
+    <span class="kr">overriding</span> <span class="kd">procedure</span> <span class="nf">Initialize</span><span class="p">(</span><span class="nv">C</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">out</span> <span class="nv">Capricorn</span><span class="p">);</span>
+        <span class="c1">-- Initialization after creation.</span>
+
+    <span class="kr">overriding</span> <span class="kd">procedure</span> <span class="nf">Adjust</span><span class="p">(</span><span class="nv">C</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">out</span> <span class="nv">Capricorn</span><span class="p">);</span>
+        <span class="c1">-- Adjustment after assignment.</span>
+
+    <span class="kr">overriding</span> <span class="kd">procedure</span> <span class="nf">Finalize</span><span class="p">(</span><span class="nv">C</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">out</span> <span class="nv">Capricorn</span><span class="p">);</span>
+        <span class="c1">-- Different than Java&#39;s Finalize, in that it&#39;s deterministic and more</span>
+        <span class="c1">-- analogous to a C++ destructor.</span>
+
+    <span class="c1">-- If you don&#39;t want one of these do to anything, you can avoid writing a</span>
+    <span class="c1">-- definition in the package body and define the function as &quot;do nothing&quot;</span>
+    <span class="c1">-- by writing:</span>
+    <span class="c1">--</span>
+    <span class="c1">-- overriding procedure Finalize(C : in out Capricorn) is null;</span>
+<span class="kr">end</span> <span class="nf">Sample</span><span class="p">;</span>
+
+<span class="kd">package</span> <span class="kd">body</span> <span class="nc">Sample</span> <span class="kr">is</span>
+    <span class="kd">procedure</span> <span class="nf">Initialize</span><span class="p">(</span><span class="nv">C</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">out</span> <span class="nv">Capricorn</span><span class="p">)</span> <span class="kr">is</span>
+    <span class="kr">begin</span>
+        <span class="c1">-- Do something on initialize.</span>
+    <span class="kr">end</span> <span class="nf">Initialize</span><span class="p">;</span>
+
+    <span class="kd">procedure</span> <span class="nf">Adjust</span><span class="p">(</span><span class="nv">C</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">out</span> <span class="nv">Capricorn</span><span class="p">)</span> <span class="kr">is</span>
+    <span class="kr">begin</span>
+        <span class="c1">-- Adjustment after assignment.</span>
+        <span class="c1">--</span>
+        <span class="c1">-- If you want Adjust to do the same as Initialize and use the same object</span>
+        <span class="c1">-- code without generating a separate function, you can just do</span>
+        <span class="c1">-- procedure Adjust(C: in out Capricorn) renames Initialize;</span>
+    <span class="kr">end</span> <span class="nf">Adjust</span><span class="p">;</span>
+
+    <span class="kr">overriding</span> <span class="kd">procedure</span> <span class="nf">Finalize</span><span class="p">(</span><span class="nv">C</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">out</span> <span class="nv">Capricorn</span><span class="p">);</span>
+        <span class="c1">-- Different than Java&#39;s Finalize, in that it&#39;s deterministic and more</span>
+        <span class="c1">-- analogous to a C++ destructor.</span>
+<span class="kr">end</span> <span class="nf">Sample</span><span class="p">;</span>
+</pre></div>
 </div>
-<div class="section" id="types">
-<h1>Types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h1>
-<p>They’re so powerful I can ignore them for now,
-and then you can come back and reread this to understand that types can be
-dropped into the system.</p>
-<p>Types are important in Ada, so I’m going to do the most bizarre thing and
-ignore them for now.  There are incredible number of rules, but the
-crucial thing to understand is that most types can just be dropped into
-the system interchangably.  Types are important, but the other structures
-in which types are used are what makes Ada so powerful and expressive.</p>
-<p>Ada turns the tables on types.  They do a lot of things within the language,
-but the language isn’t about types.  Types are consistent, there’s not some
-weird distinction between objects and “primitives”.</p>
-<p>Ada types do a lot more than “put the square peg in the square hole, the round
-peg in the round hole” of some other languages.  They define sets of data and
-are used like tokens for deciding which functions or procedures to call.</p>
+</td>
+<td><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Capricorn</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="c1">// Similar for all constructors.</span>
+<span class="n">Capricorn</span> <span class="p">()</span> <span class="p">{}</span>
+
+<span class="c1">// Copy constructor.</span>
+<span class="n">Capricorn</span><span class="p">(</span><span class="k">const</span> <span class="n">Capricorn</span><span class="o">&amp;</span><span class="p">)</span> <span class="p">{}</span>
+
+<span class="c1">// Move constructor.</span>
+<span class="n">Capricorn</span><span class="p">(</span><span class="n">Capricorn</span><span class="o">&amp;&amp;</span><span class="p">)</span> <span class="p">{}</span>
+
+<span class="c1">// Copy assignment.</span>
+<span class="n">Capricorn</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">Capricorn</span><span class="o">&amp;</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="c1">// Move assignment.</span>
+<span class="n">Capricorn</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">Capricorn</span><span class="o">&amp;&amp;</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="c1">// Destructor.</span>
+<span class="o">~</span><span class="n">Capricorn</span> <span class="p">()</span> <span class="p">{}</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 
 
@@ -340,7 +637,7 @@ are used like tokens for deciding which functions or procedures to call.</p>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="comparison.html" class="btn btn-neutral float-right" title="Language Summary of Key Points" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="comparison.html" class="btn btn-neutral float-right" title="Comparing Ada to Other Languages" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="index.html" class="btn btn-neutral float-left" title="Welcome to programming-with-ada’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

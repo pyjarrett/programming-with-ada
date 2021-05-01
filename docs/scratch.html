@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>&lt;no title&gt; &mdash; Programming with Ada  documentation</title>
+  <title>Types &mdash; Programming with Ada  documentation</title>
   
 
   
@@ -85,12 +85,10 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Goals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overview.html#note-on-terminology">Note on Terminology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="overview.html#high-level-language-features">High-level Language Features</a></li>
-<li class="toctree-l1"><a class="reference internal" href="overview.html#types-and-ada-the-elephant-in-the-room">Types and Ada, The Elephant in the Room</a></li>
 <li class="toctree-l1"><a class="reference internal" href="overview.html#building-blocks-of-ada">Building Blocks of Ada</a></li>
-<li class="toctree-l1"><a class="reference internal" href="overview.html#raii">RAII</a></li>
-<li class="toctree-l1"><a class="reference internal" href="overview.html#types">Types</a></li>
-<li class="toctree-l1"><a class="reference internal" href="comparison.html">Language Summary of Key Points</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comparison.html">Comparing Ada to Other Languages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="comparison.html#terminology">Terminology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="comparison.html#ada-verbiage">Ada Verbiage</a></li>
 <li class="toctree-l1"><a class="reference internal" href="comparison.html#ada-symbology">Ada Symbology</a></li>
@@ -142,7 +140,7 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>&lt;no title&gt;</li>
+      <li>Types</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -175,6 +173,69 @@ as well as specifying the unit of compilation.</p>
 which “private” details must be given in the public interface</p>
 <p>I won’t describe it in detail here, but many of your normal tricks for reducing
 compilation time via the structure of your header and source files apply.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 49%" />
+<col style="width: 51%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="types">
+<h1>Types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h1>
+<p>They’re so powerful I can ignore them for now,
+and then you can come back and reread this to understand that types can be
+dropped into the system.</p>
+<p>Types are important in Ada, so I’m going to do the most bizarre thing and
+ignore them for now.  There are incredible number of rules, but the
+crucial thing to understand is that most types can just be dropped into
+the system interchangably.  Types are important, but the other structures
+in which types are used are what makes Ada so powerful and expressive.</p>
+<p>Ada turns the tables on types.  They do a lot of things within the language,
+but the language isn’t about types.  Types are consistent, there’s not some
+weird distinction between objects and “primitives”.</p>
+<p>Ada types do a lot more than “put the square peg in the square hole, the round
+peg in the round hole” of some other languages.  They define sets of data and
+are used like tokens for deciding which functions or procedures to call.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 23%" />
+<col style="width: 25%" />
+<col style="width: 19%" />
+<col style="width: 23%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td></td>
+<td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
 
 
            </div>

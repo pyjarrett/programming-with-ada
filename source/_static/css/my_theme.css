@@ -1,9 +1,8 @@
 @import url("theme.css");
 
 .wy-nav-content {
-    max-width: 90%;
+    max-width: 75%;
 }
-
 
 .wy-table-responsive table td, .wy-table-responsive table th {
     /* !important prevents the common CSS stylesheets from

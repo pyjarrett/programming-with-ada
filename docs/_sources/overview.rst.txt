@@ -20,36 +20,56 @@ against Rust as well.
 
 I started reading about Ada because a developer I worked with several years 
 ago had mentioned it, and I couldn't find a single person who had worked in it.
-My intention at the time had been to try it out over the weekend, and after
-finding a horribly broken bloated and bureaucratic language, never use it again.
-I've now been learning and writing Ada 2012 for about a month.
+I've now been learning and writing Ada 2012 for a couple of months now.
+
+I have endeavoured to achieve terseness, clarity and technical accuracy for
+those who want a quick overview of the language.  Feel free to submit
+corrections or changes to aid in clarity.
+
+Note on Terminology
+==============================================================================
+
+Ada often uses different terminology than any of the languages I've used.  The
+goal is an overview without jargon, the only Ada-specific terms necessary
+for this overview are "subprogram", which refers to functions and procedures, and
+"procedures" which in most C-like language would be a "function" which returns
+nothing (i.e. void).
+
 
 High-level Language Features
 ==============================================================================
 
-> Based on its feature set, I'd describe Ada as a mirror of C++ in the Pascal family,
-> with many features of Rust.
+    Based on its feature set, I'd describe Ada as a mirror of C++ in the Pascal family,
+    with many features of Rust.
+
+Covering every Ada feature would be dilute the conceptual overview of Ada, so
+related Ada-specific terminology is quoted in parentheses for those wanting to
+do their own targeted research.
 
 Ada supports:
 
-- Forced namespacing.
-- Sum types (discriminants).
-- Parameterized types.
-- Static polymorphism (generics).
-- Dynamic polymorphism (dynamic dispatch, "virtual" functions).
-- Compiler and runtime checked constaints on ranges of numerical types.
-- Runtime type invariant checking on assignment and usage as parameters.
-- Semantic types, saying two things are the same backing type, but not the same type of "thing", think of "Miles" vs "Kilometers" both stored as floats, which cannot be assigned to each other.
-- RAII, deterministic construction and destruction of objects (controlled types).
-- Design-by-contract (inline preconditions and post-conditions).
-- Lifetime checks ("accessibility", but not as extensive as Rust).
-- Monitor types (protected types).
-- Task definition with defined synchronization.
-- Concurrency types (protected and task).
-- Formal verification, by enabling `Spark_Mode` for parts of the program and
-  writing in SPARK, a language which is an Ada subset.  Think of this along the lines of using `extern "C"`, except for "provable" parts of your code base.
+- Forced namespacing ("packages").
+- Function overloading.
+- Sum types ("variants", "discriminants").
+- Static polymorphism (monomorphism, "generics");
+- Dynamic polymorphism (dynamic dispatch, virtual functions).
+- Compiler and runtime checked constaints on ranges of numerical types ("ranges", "constraints").
+- User-specified runtime type invariant checking on assignment and usage as parameters ("Type_Invariant", "Static_Predicate", "Dynamic_Predicate").
+- Semantic types, saying two things are the same backing type, but not the same
+  type of "thing", think of "Miles" vs "Kilometers" both stored as floats, which
+  cannot be assigned to each other without a cast ("derived types").
+- Deterministic construction and destruction of objects (RAII, a term from C++, "controlled types")
+- Design-by-contract ("precondition" and "postcondition" "aspects").
+- Lifetime checks ("accessibility" of "access types", very similar to, but not as extensive as Rust).
+- Task definition with defined synchronization and queueing strategies. ("rendevzous", "entry", "select", "accept", "abort")
+- Concurrency types ("protected", which provides mutual exclusion, and "task").
 - Exceptions.
-- Deterministic and configurable static initialization order.
+- Deterministic and configurable static initialization order ("preelaborate",
+  "elaborate", "elaborate_body", "elaborate_all")
+- ML-style signatures ("packages", "generics")
+- Formal verification, by enabling `Spark_Mode` for parts of the program and
+  writing in SPARK, a language which is an Ada subset.  Think of this along the
+  lines of using `extern "C"`, except for "provable" parts of your code base.
 
 Ada is missing:
 
@@ -60,14 +80,7 @@ Ada is missing:
 - Variadic functions.
 - Variadic templates.
 - Async/Await (it has tasks instead)
-
-Types and Ada, The Elephant in the Room
-==============================================================================
-
-Ada emphasizes types, but their consistent use despite their complexity
-means I can ignore them for now.  Nearly other Ada overview and tutorial
-focuses on them, but it doesn't give an understanding of what Ada looks like
-and what it can do.
+- Mixed-mode arithmetic and the related implicit numerical casts.
 
 Building Blocks of Ada
 ==============================================================================
@@ -76,16 +89,25 @@ Ada descends from Pascal, and yet uses many concepts already familiar to C or
 C++ programmers.  As a long time C++ programmer, I find Ada leverages the concepts
 I'm used to in more formal, and often compiler-checked ways.
 
-Subprograms (functions and procedures)
+Types and Ada, The Elephant in the Room
+------------------------------------------------------------------------------
+
+Ada emphasizes types, but their consistent use despite their complexity
+means I can ignore them for now.  Nearly every other Ada overview and tutorial
+focuses on them, but it doesn't give an understanding of what Ada looks like
+and what it can do.
+
+Introduction to Subprograms (functions and procedures)
 ------------------------------------------------------------------------------
 
 Ada draws a line between functions, which return values, and procedures which
 do not return a value.  Collectively referred to as "subprograms", either of
-these may have input ("in") and output ("out") parameters, with parameters
-being allowed to also be both an input and output ("in out").  Note that 
-parameters are separated by semicolons (";"), not by commas (",").
+these may have input (``in``) and output (``out``) parameters, with parameters
+being allowed to also be both an input and output (``in out``).   ``in`` is
+optional for functions.  Note that parameters are separated by semicolons
+(``;``), not by commas (``,``).
 
-.. code-block: Ada
+.. code-block:: Ada
 
     procedure Rectangle_Area(Width : in Float; Height : in Float; Area : out Float) is
     begin
@@ -96,15 +118,31 @@ parameters are separated by semicolons (";"), not by commas (",").
     function Rectangle_Area(Width : Float; Height : Float) return Float is
     begin
         return Width * Height;
-    end Rectangle_Area;
+    end Rectangle_Area;    
 
-
-Short functions may be written as expressions bounded by parentheses.  `in` is
+Short functions may be written as expressions bounded by parentheses.  ``in`` is
 also optional for functions, and parameters with the same type can be grouped.
 
-.. code-block: Ada
+.. code-block:: Ada
 
-    function Rectangle_Area(Width, Height : Float) return Float is (Width * Height);
+    function Add (L, R : Float2) return Float2 is (L.X + R.X, L.Y + R.Y);
+        -- Add two-dimensional vectors.
+
+Multiple subprograms can exist with the same name, so the one used is determined
+by the types of the parameters and also the returned type.  There are no implicit
+conversions between floating point and integer types, which maximize clarity.
+
+    .. code-block:: Ada
+
+        function Area (Width, Height : in Float) return Float is (Width * Height);
+        function Area (Width, Height : in Integer) return Integer is (Width * Height);
+
+The basic operators can be overloaded as well.  Assignment (``:=``) is
+not considered an operator, and therefore cannot be overloaded.
+
+    .. code-block:: Ada
+
+        function "+"(L, R : Float2) return Float2 is (L.X + R.X, L.Y + R.Y);
 
 
 Packages
@@ -119,15 +157,15 @@ size details for structs and classes.
 
 Instead of a header files providing an informal spec and an associated source
 file being the translation unit, in Ada a package is roughly analogous to a
-"header file," and that package's body is the "source file", except assume
-everything in each file is in a namespace given by the file name. 
+"header file," and that package's body is the "source file", except as if
+everything in each file is in a namespace given by the file name.
 
 Top-level package specifications, appear in `*.ads` (Ada specification) files,
 with their implementations ("bodies") in `*.adb` (Ada body) files, and only
 one top-level package specification or package body per file.
 
 Ada packages can also be nested and support visiblity rules for sharing details
-with child packages.  Child packages are given by dotted names, such as `A.B`
+with child packages.  Child packages are given by dotted names; `A.B`
 is a child of package `A`.
 
 Packages can also contain initialization code for the package to run at program
@@ -136,97 +174,60 @@ dependencies in package start up order. This solves a specific C++ issue in
 which static initialization order is not known, while also offering the ability
 to avoid deferred first-time usage costs, such as with singletons.
 
-Ada uses "aspects" to denote additional attributes of packages,  (functions/procedures), and
+Ada uses "aspects" to denote additional properites of packages,  subprograms, and
 types.  Along with aspects, compiler pragmas allows description of initialization
 dependencies, as well as providing high level checks, such as `pragma Preelaborate`
 to ensure a package has no initialization, or the `with Pure` aspect to ensure
 that a package has no state and subprograms cannot have side effects.
 
-.. code-block: Ada
 
-    ------------------------------------------------------------------------------
-    -- Example.ads
-    --
-    -- Package specification
-    package Example is
-        -- interface
-
-        -- Analogous to a struct.
-        type Scorpio is record;
-            Sample : Integer;
-        end record;
-
-        -- "Class declaration"
-        type Capricorn is private;
-
-    private
-        -- physical interface
-
-        -- "Class definition"
-        type Capricorn is record
-            Age : Integer;
-        end record;
-    end Example;
-
-    ------------------------------------------------------------------------------
-    -- in Example.adb
-    --
-    -- Package body
-    package body Example is
-        -- implementation details
-
-        -- Function used only in implementation
-        procedure Foo is
-        begin
-            null;
-        end Foo;
-
-    begin -- (optional)
-        -- Initialization code to run at startup (optional)
-    end Example;
-
-
-.. code-block: c++
-
-    //////////////////////////////////////////////////////////////////////////////
-    // Sample.h
-    #pragma once
-    namespace Example {
-
-    struct Scorpio {
-        int sample;
-    };
-
-    // Public interface
-    class Capricorn {
-    public:
-        Capricorn();
-
-    private:
-        // Part of the physical interface, since compilers need to know the size of the
-        // struct when passed by value or used on the stack.
-        //
-        // Physical interface, visible due to technical limitations of the
-        // compilation model, since compilers need to know the size of the
-        // struct when passed by value or used on the stack.
-        int age;
-    };
-
-    } // namespace Example
-
-    //////////////////////////////////////////////////////////////////////////////
-    // Sample.cpp
-    // Implementation details.
-    namespace Example {
-
-    namespace {
-    // Function used only in implementation.
-    void foo() {}
-    } // namespace
-
-    Capricorn::Capricorn {}
-
-    } // namespace Example
++---------------------------------------------------------------+---------------------------------------------------------------------------------+
+| .. code-block:: ada                                           | .. code-block:: c++                                                             |
+|                                                               |                                                                                 |
+|     --------------------------------------------------------- |     //////////////////////////////////////////////////////////////////////////  |
+|     -- Example.ads                                            |     // Sample.h                                                                 |
+|     --                                                        |     #pragma once                                                                |
+|     -- Package specification                                  |     namespace Example {                                                         |
+|     package Example is                                        |                                                                                 |
+|         -- interface                                          |     struct Scorpio {                                                            |
+|                                                               |         int sample;                                                             |
+|         -- Analogous to a struct.                             |     };                                                                          |
+|         type Scorpio is record;                               |                                                                                 |
+|             Sample : Integer;                                 |     // Public interface                                                         |
+|         end record;                                           |     class Capricorn {                                                           |
+|                                                               |     public:                                                                     |
+|         -- "Class declaration"                                |         Capricorn();                                                            |
+|         type Capricorn is private;                            |                                                                                 |
+|                                                               |     private:                                                                    |
+|     private                                                   |         // Part of the physical interface, since compilers need to know the     |
+|         -- physical interface                                 |         //  size of the struct when passed by value or used on the stack.       |
+|                                                               |         //                                                                      |
+|         -- "Class definition"                                 |         // Physical interface, visible due to technical limitations of the      |
+|         type Capricorn is record                              |         // compilation model, since compilers need to know the size of the      |
+|             Age : Integer;                                    |         // struct when passed by value or used on the stack.                    |
+|         end record;                                           |         int age;                                                                |
+|     end Example;                                              |     };                                                                          |
+|                                                               |                                                                                 |
+|                                                               |     } // namespace Example                                                      |
+|                                                               |                                                                                 |
+|                                                               |                                                                                 |
+|     --------------------------------------------------------- |     //////////////////////////////////////////////////////////////////////////  |
+|     -- in Example.adb                                         |     // Sample.cpp                                                               |
+|     --                                                        |     // Implementation details.                                                  |
+|     -- Package body                                           |     namespace Example {                                                         |
+|     package body Example is                                   |                                                                                 |
+|         -- implementation details                             |     namespace {                                                                 |
+|                                                               |     // Function used only in implementation.                                    |
+|         -- Function used only in implementation               |     void foo() {}                                                               |
+|         procedure Foo is                                      |     } // namespace                                                              |
+|         begin                                                 |                                                                                 |
+|             null;                                             |     Capricorn::Capricorn {}                                                     |
+|         end Foo;                                              |                                                                                 |
+|                                                               |     } // namespace Example                                                      |
+|     begin -- (optional)                                       |                                                                                 |
+|         -- Initialization code to run at startup (optional)   |                                                                                 |
+|     end Example;                                              |                                                                                 |
++---------------------------------------------------------------+---------------------------------------------------------------------------------+
 
 
 The Core Tenet of Ada
@@ -239,11 +240,10 @@ declarations of things to exist and executable statements which use those things
 The simplicity backing this is the ability to make any declaration, including
 types, variables, functions/procedures, and packages in any declaration block.  This means
 the basic rule of "declare, then use" repeats itself throughout the language,
-in `package/package body`, `task/task body`, subprograms
-(functions/procedures), and executable blocks of code can have a
-`declare ... begin ... end` block.
+in ``package/package body``, ``task/task body``, subprograms, and executable blocks of code can have a
+``declare ... begin ... end`` block.
 
-.. code-block: Ada
+.. code-block:: Ada
 
     package P is
         -- Not declaring Foo here is like making the function `static` in C or C++ or
@@ -294,14 +294,23 @@ in `package/package body`, `task/task body`, subprograms
         -- Static initialization body of P.
     end P;
 
-This nesting of declarations very verbose.  It does makes it easy to refactor
-out behavior while you're working on a subprogram and then you can extract
+This nesting of declarations very verbose.  It does however makes it straightforward to
+refactor out behavior while you're working on a subprogram and then you can extract
 the newly created components into more appropriate places when you're done.
 The inability to use statements in declarations causes me to sometimes rewrite
-my declarations in sequential order of constant processing, and makes the
+my declarations in sequential order of constant processing, and overall makes the
 declarations feel like a Haskell `where` clause.
 
-.. code-block: ada
+.. code-block:: ada
+
+    function Normalize(F : Float2) return Float2 is
+        L : constant F32 := Length(F);
+    begin
+        return F / L;
+    end Normalize;
+
+
+.. code-block:: ada
 
     function Evaluate
         (Ctx : in out Context; Line : in Ada.Strings.Unbounded.Unbounded_String)
@@ -317,8 +326,8 @@ declarations feel like a Haskell `where` clause.
         -- ...
 
 Ada does not provide separate syntactical units for classes, structs and
-namespaces.  Instead, packages contain types, constants and related subprograms
-(functions and procedures).  A lot of specialized syntax goes away due to
+namespaces.  Instead, packages contain types, constants and related subprograms.  
+A lot of specialized syntax goes away due to
 this, for example there are no "member functions" and "class functions" and
 hence no specialized syntax for things like member function pointers or class
 function pointers exist.  Namespacing and overloading on parameters and/or the returned type determine
@@ -332,7 +341,7 @@ Rust's notation wherein it reflects C++-like `const` behavior of member
 functions with `self`, `&self`, and `&mut self` as a first parameter.
 These are referred to as "primitive operations."
 
-.. code-block: ada
+.. code-block:: ada
 
     -- Box "non-const function"
 	procedure Move(Box : in out AABB2; Direction : Float2) is
@@ -341,7 +350,7 @@ These are referred to as "primitive operations."
 		Box.Max := Box.Max + Direction;
 	end Scale;
     
-.. code-block: ada
+.. code-block:: ada
 
     -- Box "const function"
 	function Midpoint(Box : in AABB2) return Float is
@@ -351,100 +360,56 @@ These are referred to as "primitive operations."
     
 
 RAII
-==============================================================================
+------------------------------------------------------------------------------
 
-Ada supports [RAII](https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization)
+Ada supports `RAII <https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization>`_
 by extending the `Controlled` type.
 
-.. code-block: ada
-
-    with Ada.Finalization;  use Ada.Finalization;
-    package Sample is
-        -- "Controlled" types exhibit RAII behavior:
-        type Capricorn is new Controlled with
-        record
-            Dummy : Integer;
-        end record;
-
-        overriding procedure Initialize(C : in out Capricorn);
-            -- Initialization after creation.
-
-        overriding procedure Adjust(C : in out Capricorn);    
-            -- Adjustment after assignment.
-
-        overriding procedure Finalize(C : in out Capricorn);
-            -- Different than Java's Finalize, in that it's deterministic and more
-            -- analogous to a C++ destructor.
-            
-        -- If you don't want one of these do to anything, you can avoid writing a
-        -- definition in the package body and define the function as "do nothing"
-        -- by writing:
-        --
-        -- overriding procedure Finalize(C : in out Capricorn) is null;
-    end Sample;
-
-    package body Sample is
-        procedure Initialize(C : in out Capricorn) is
-        begin
-            -- Do something on initialize.
-        end Initialize;
-
-        procedure Adjust(C : in out Capricorn) is
-        begin
-            -- Adjustment after assignment.
-            -- 
-            -- If you want Adjust to do the same as Initialize and use the same object
-            -- code without generating a separate function, you can just do
-            -- procedure Adjust(C: in out Capricorn) renames Initialize;
-        end Adjust;
-
-        overriding procedure Finalize(C : in out Capricorn);
-            -- Different than Java's Finalize, in that it's deterministic and more
-            -- analogous to a C++ destructor.
-    end Sample;
-
-
-.. code-block: c++
-
-    class Capricorn {
-    public:
-        // Similar for all constructors.
-        Capricorn () {}
-
-        // Copy constructor.
-        Capricorn(const Capricorn&) {}
-
-        // Move constructor.
-        Capricorn(Capricorn&&) {}
-
-        // Copy assignment.
-        Capricorn& operator=(const Capricorn&) { return *this; }
-
-        // Move assignment.
-        Capricorn&& operator=(Capricorn&&) { return *this; }
-
-        // Destructor.
-        ~Capricorn () {}
-    };
-
-
-Types
-=====
-
-They're so powerful I can ignore them for now,
-and then you can come back and reread this to understand that types can be
-dropped into the system.
-
-Types are important in Ada, so I'm going to do the most bizarre thing and
-ignore them for now.  There are incredible number of rules, but the
-crucial thing to understand is that most types can just be dropped into
-the system interchangably.  Types are important, but the other structures
-in which types are used are what makes Ada so powerful and expressive.
-
-Ada turns the tables on types.  They do a lot of things within the language,
-but the language isn't about types.  Types are consistent, there's not some
-weird distinction between objects and "primitives".
-
-Ada types do a lot more than "put the square peg in the square hole, the round
-peg in the round hole" of some other languages.  They define sets of data and
-are used like tokens for deciding which functions or procedures to call.
++-------------------------------------------------------------------------------------------+--------------------------------------------------------------+
+| .. code-block:: ada                                                                       | .. code-block:: c++                                          |
+|                                                                                           |                                                              | 
+|     with Ada.Finalization;  use Ada.Finalization;                                         |    class Capricorn {                                         | 
+|     package Sample is                                                                     |    public:                                                   | 
+|         -- "Controlled" types exhibit RAII behavior:                                      |    // Similar for all constructors.                          | 
+|         type Capricorn is new Controlled with                                             |    Capricorn () {}                                           | 
+|         record                                                                            |                                                              | 
+|             Dummy : Integer;                                                              |    // Copy constructor.                                      | 
+|         end record;                                                                       |    Capricorn(const Capricorn&) {}                            | 
+|                                                                                           |                                                              | 
+|         overriding procedure Initialize(C : in out Capricorn);                            |    // Move constructor.                                      | 
+|             -- Initialization after creation.                                             |    Capricorn(Capricorn&&) {}                                 | 
+|                                                                                           |                                                              | 
+|         overriding procedure Adjust(C : in out Capricorn);                                |    // Copy assignment.                                       | 
+|             -- Adjustment after assignment.                                               |    Capricorn& operator=(const Capricorn&) { return *this; }  | 
+|                                                                                           |                                                              | 
+|         overriding procedure Finalize(C : in out Capricorn);                              |    // Move assignment.                                       | 
+|             -- Different than Java's Finalize, in that it's deterministic and more        |    Capricorn& operator=(Capricorn&&) { return *this; }       |
+|             -- analogous to a C++ destructor.                                             |                                                              | 
+|                                                                                           |    // Destructor.                                            | 
+|         -- If you don't want one of these do to anything, you can avoid writing a         |    ~Capricorn () {}                                          | 
+|         -- definition in the package body and define the function as "do nothing"         |    };                                                        | 
+|         -- by writing:                                                                    |                                                              | 
+|         --                                                                                |                                                              | 
+|         -- overriding procedure Finalize(C : in out Capricorn) is null;                   |                                                              | 
+|     end Sample;                                                                           |                                                              | 
+|                                                                                           |                                                              | 
+|     package body Sample is                                                                |                                                              | 
+|         procedure Initialize(C : in out Capricorn) is                                     |                                                              | 
+|         begin                                                                             |                                                              | 
+|             -- Do something on initialize.                                                |                                                              | 
+|         end Initialize;                                                                   |                                                              | 
+|                                                                                           |                                                              | 
+|         procedure Adjust(C : in out Capricorn) is                                         |                                                              | 
+|         begin                                                                             |                                                              | 
+|             -- Adjustment after assignment.                                               |                                                              | 
+|             --                                                                            |                                                              | 
+|             -- If you want Adjust to do the same as Initialize and use the same object    |                                                              | 
+|             -- code without generating a separate function, you can just do               |                                                              | 
+|             -- procedure Adjust(C: in out Capricorn) renames Initialize;                  |                                                              | 
+|         end Adjust;                                                                       |                                                              | 
+|                                                                                           |                                                              | 
+|         overriding procedure Finalize(C : in out Capricorn);                              |                                                              | 
+|             -- Different than Java's Finalize, in that it's deterministic and more        |                                                              | 
+|             -- analogous to a C++ destructor.                                             |                                                              | 
+|     end Sample;                                                                           |                                                              | 
++-------------------------------------------------------------------------------------------+--------------------------------------------------------------+ 
