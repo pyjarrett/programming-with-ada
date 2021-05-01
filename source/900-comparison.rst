@@ -8,7 +8,7 @@ language has no equivalent.
 This table is incomplete and may be inaccurate.  If you notice a discrepancy or
 a way to improve it, please submit a pull request.
 
-Types used in Examples
+Names used in Examples
 ------------------------------------------------------------------------------
 
 +--------------------------+------------------------------------------------------------+------------------------------------------------------------------+---------------------------------------------------+--------------------------------------------------------------+
