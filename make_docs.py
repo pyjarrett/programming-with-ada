@@ -3,8 +3,8 @@ import pathlib
 import shutil
 
 src = 'build/html'
-dest = 'doc'
-no_jekyll_filename = os.path.join('doc', '.nojekyll')
+dest = 'docs'
+no_jekyll_filename = os.path.join(dest, '.nojekyll')
 
 print(f'Copying generated html from {src} to {dest}')
 
