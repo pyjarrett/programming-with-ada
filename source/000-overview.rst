@@ -26,8 +26,8 @@ AdaCore provides `GNAT Community edition <https://www.adacore.com/download>`_,
 an all-in-one download for multiple platforms.  This includes a cross-platform IDE
 with a `code formatter <https://gcc.gnu.org/onlinedocs/gcc-11.1.0/gnat_ugn/Pretty-Printers-for-the-GNAT-runtime.html>`_,
 `build system <https://github.com/AdaCore/gprbuild>`_,
-documentation generator, integrated source control, and visual diff
-tool.  In addition to the Ada standard library, also
+documentation generator, integrated source control, auto-completion,
+and a visual diff tool.  In addition to the Ada standard library, also
 included is the `GNAT Components Collection (GNATColl) <https://github.com/AdaCore/gnatcoll-core>`_ 
 which includes facilities such as JSON parsing,
 `Ada Web Server <https://github.com/AdaCore/aws>`_ for providing browser
