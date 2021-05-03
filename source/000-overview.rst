@@ -59,7 +59,3 @@ or throughout the program.
 
 The focus on readability and correctness, along with an already existing
 ecosystem, makes Ada 2012 an attactive language to develop in.
-
-- 
-- 
-- 
