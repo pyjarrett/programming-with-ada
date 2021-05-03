@@ -11,7 +11,10 @@ Welcome to programming-with-ada's documentation!
    :caption: Contents:
 
    000-overview
+   050-feature-overview
+   100-packages
    900-comparison
+   999-about
 
 Indices and tables
 ==================

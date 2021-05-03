@@ -1,0 +1,524 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Note on Terminology &mdash; Programming with Ada  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Comparing Ada to Other Languages" href="900-comparison.html" />
+    <link rel="prev" title="High-level Language Features" href="000-overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Programming with Ada
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="000-overview.html">High-level Language Features</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Note on Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#packages-the-building-blocks-of-ada">Packages, the Building Blocks of Ada</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#types-and-ada-the-elephant-in-the-room">Types and Ada, The Elephant in the Room</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#subprograms-functions-and-procedures">Subprograms (functions and procedures)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#packages">Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-core-tenet-of-ada">The Core Tenet of Ada</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="900-comparison.html">Comparing Ada to Other Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="900-comparison.html#terminology">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="999-about.html">About</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Programming with Ada</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Note on Terminology</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/100-packages.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="note-on-terminology">
+<h1>Note on Terminology<a class="headerlink" href="#note-on-terminology" title="Permalink to this headline">¶</a></h1>
+<p>Ada often uses different terminology than any of the languages I’ve used.  The
+goal is an overview without jargon, the only Ada-specific terms necessary
+for this overview are “subprogram”, which refers to functions and procedures, and
+“procedures” which in most C-like language would be a “function” which returns
+nothing (i.e. void).</p>
+</div>
+<div class="section" id="packages-the-building-blocks-of-ada">
+<h1>Packages, the Building Blocks of Ada<a class="headerlink" href="#packages-the-building-blocks-of-ada" title="Permalink to this headline">¶</a></h1>
+<p>Ada descends from Pascal, and yet uses many concepts already familiar to C or
+C++ programmers.  As a long time C++ programmer, I find Ada leverages the concepts
+I’m used to in more formal, and often compiler-checked ways.</p>
+<div class="section" id="types-and-ada-the-elephant-in-the-room">
+<h2>Types and Ada, The Elephant in the Room<a class="headerlink" href="#types-and-ada-the-elephant-in-the-room" title="Permalink to this headline">¶</a></h2>
+<p>Ada emphasizes types, but their consistent use despite their complexity
+means I can ignore them for now.  Nearly every other Ada overview and tutorial
+focuses on them, but they’re an incredibly deep topic in Ada.  Rather than get
+bogged down there, let’s look at what Ada looks like and how programs are structured.</p>
+</div>
+<div class="section" id="subprograms-functions-and-procedures">
+<h2>Subprograms (functions and procedures)<a class="headerlink" href="#subprograms-functions-and-procedures" title="Permalink to this headline">¶</a></h2>
+<p>Ada draws a line between functions, which return values, and procedures which
+do not return a value.  Collectively referred to as “subprograms”, either of
+these may have input (<code class="docutils literal notranslate"><span class="pre">in</span></code>) and output (<code class="docutils literal notranslate"><span class="pre">out</span></code>) parameters, with parameters
+being allowed to also be both an input and output (<code class="docutils literal notranslate"><span class="pre">in</span> <span class="pre">out</span></code>).   <code class="docutils literal notranslate"><span class="pre">in</span></code> is
+optional for functions.  Note that parameters are separated by semicolons
+(<code class="docutils literal notranslate"><span class="pre">;</span></code>), not by commas (<code class="docutils literal notranslate"><span class="pre">,</span></code>).</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">procedure</span> <span class="nf">Rectangle_Area</span><span class="p">(</span><span class="nv">Width</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">Float</span><span class="p">;</span> <span class="nv">Height</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">Float</span><span class="p">;</span> <span class="nv">Area</span> <span class="p">: </span><span class="nv">out</span> <span class="nv">Float</span><span class="p">)</span> <span class="kr">is</span>
+<span class="kr">begin</span>
+    <span class="n">Area</span> <span class="p">:=</span> <span class="n">Width</span> <span class="o">*</span> <span class="n">Height</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nf">Rectangle_Area</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nf">Rectangle_Area</span><span class="p">(</span><span class="nv">Width</span> <span class="p">: </span><span class="nv">Float</span><span class="p">;</span> <span class="nv">Height</span> <span class="p">: </span><span class="nv">Float</span><span class="p">)</span> <span class="kr">return</span> <span class="kt">Float</span> <span class="kr">is</span>
+<span class="kr">begin</span>
+    <span class="kr">return</span> <span class="n">Width</span> <span class="o">*</span> <span class="n">Height</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nf">Rectangle_Area</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Short functions may be written as expressions bounded by parentheses.  <code class="docutils literal notranslate"><span class="pre">in</span></code> is
+also optional for functions, and parameters with the same type can be grouped.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">Add</span> <span class="p">(</span><span class="nv">L</span><span class="p">,</span> <span class="nv">R</span> <span class="p">: </span><span class="nv">Float2</span><span class="p">)</span> <span class="kr">return</span> <span class="n">Float2</span> <span class="kr">is</span> <span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">X</span> <span class="o">+</span> <span class="n">R</span><span class="p">.</span><span class="n">X</span><span class="p">,</span> <span class="n">L</span><span class="p">.</span><span class="n">Y</span> <span class="o">+</span> <span class="n">R</span><span class="p">.</span><span class="n">Y</span><span class="p">);</span>
+    <span class="c1">-- Add two-dimensional vectors.</span>
+</pre></div>
+</div>
+<p>Multiple subprograms can exist with the same name, so the one used is determined
+by the types of the parameters and also the returned type.  There are no implicit
+conversions between floating point and integer types, which maximize clarity.</p>
+<blockquote>
+<div><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">Area</span> <span class="p">(</span><span class="nv">Width</span><span class="p">,</span> <span class="nv">Height</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">Float</span><span class="p">)</span> <span class="kr">return</span> <span class="kt">Float</span> <span class="kr">is</span> <span class="p">(</span><span class="n">Width</span> <span class="o">*</span> <span class="n">Height</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nf">Area</span> <span class="p">(</span><span class="nv">Width</span><span class="p">,</span> <span class="nv">Height</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">Integer</span><span class="p">)</span> <span class="kr">return</span> <span class="kt">Integer</span> <span class="kr">is</span> <span class="p">(</span><span class="n">Width</span> <span class="o">*</span> <span class="n">Height</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>The basic operators can be overloaded as well.  Assignment (<code class="docutils literal notranslate"><span class="pre">:=</span></code>) is
+not considered an operator, and therefore cannot be overloaded.</p>
+<blockquote>
+<div><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">&quot;+&quot;</span><span class="p">(</span><span class="nv">L</span><span class="p">,</span> <span class="nv">R</span> <span class="p">: </span><span class="nv">Float2</span><span class="p">)</span> <span class="kr">return</span> <span class="n">Float2</span> <span class="kr">is</span> <span class="p">(</span><span class="n">L</span><span class="p">.</span><span class="n">X</span> <span class="o">+</span> <span class="n">R</span><span class="p">.</span><span class="n">X</span><span class="p">,</span> <span class="n">L</span><span class="p">.</span><span class="n">Y</span> <span class="o">+</span> <span class="n">R</span><span class="p">.</span><span class="n">Y</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="packages">
+<h2>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h2>
+<p>As the fundamental building block of Ada, “packages” compose Ada programs,
+namespaces which exhibit the logical and physical interfaces in a manner
+similar to C++ header and source files.  Most languages don’t have a concept
+of “physical interface”–it’s things the compiler needs to know, but
+are not part of the logical interface of the program, such as
+size details for structs and classes.</p>
+<p>Instead of a header files providing an informal spec and an associated source
+file being the translation unit, in Ada a package is roughly analogous to a
+“header file,” and that package’s body is the “source file”, except as if
+everything in each file is in a namespace given by the file name.</p>
+<p>Top-level package specifications, appear in <cite>*.ads</cite> (Ada specification) files,
+with their implementations (“bodies”) in <cite>*.adb</cite> (Ada body) files, and only
+one top-level package specification or package body per file.</p>
+<p>Ada packages can also be nested and support visiblity rules for sharing details
+with child packages.  Child packages are given by dotted names; <cite>A.B</cite>
+is a child of package <cite>A</cite>.</p>
+<p>Packages can also contain initialization code for the package to run at program
+startup prior to entering the main procedure, with the ability to describe
+dependencies in package start up order. This solves a specific C++ issue in
+which static initialization order is not known, while also offering the ability
+to avoid deferred first-time usage costs, such as with singletons.</p>
+<p>Ada uses “aspects” to denote additional properites of packages,  subprograms, and
+types.  Along with aspects, compiler pragmas allows description of initialization
+dependencies, as well as providing high level checks, such as <cite>pragma Preelaborate</cite>
+to ensure a package has no initialization, or the <cite>with Pure</cite> aspect to ensure
+that a package has no state and subprograms cannot have side effects.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 44%" />
+<col style="width: 56%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="c1">---------------------------------------------------------</span>
+<span class="c1">-- Example.ads</span>
+<span class="c1">--</span>
+<span class="c1">-- Package specification</span>
+<span class="kd">package</span> <span class="nc">Example</span> <span class="kr">is</span>
+    <span class="c1">-- interface</span>
+
+    <span class="c1">-- Analogous to a struct.</span>
+    <span class="kd">type</span> <span class="kt">Scorpio</span> <span class="kr">is</span> <span class="kr">record</span><span class="p">;</span>
+        <span class="n">Sample</span> <span class="p">:</span> <span class="kt">Integer</span><span class="p">;</span>
+    <span class="kr">end record</span><span class="p">;</span>
+
+    <span class="c1">-- &quot;Class declaration&quot;</span>
+    <span class="kd">type</span> <span class="kt">Capricorn</span> <span class="kr">is</span> <span class="kd">private</span><span class="p">;</span>
+
+<span class="kd">private</span>
+    <span class="c1">-- physical interface</span>
+
+    <span class="c1">-- &quot;Class definition&quot;</span>
+    <span class="kd">type</span> <span class="kt">Capricorn</span> <span class="kr">is</span> <span class="kr">record</span>
+        <span class="n">Age</span> <span class="p">:</span> <span class="kt">Integer</span><span class="p">;</span>
+    <span class="kr">end record</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nf">Example</span><span class="p">;</span>
+
+
+
+
+<span class="c1">---------------------------------------------------------</span>
+<span class="c1">-- in Example.adb</span>
+<span class="c1">--</span>
+<span class="c1">-- Package body</span>
+<span class="kd">package</span> <span class="kd">body</span> <span class="nc">Example</span> <span class="kr">is</span>
+    <span class="c1">-- implementation details</span>
+
+    <span class="c1">-- Function used only in implementation</span>
+    <span class="kd">procedure</span> <span class="nf">Foo</span> <span class="kr">is</span>
+    <span class="kr">begin</span>
+        <span class="kc">null</span><span class="p">;</span>
+    <span class="kr">end</span> <span class="nf">Foo</span><span class="p">;</span>
+
+<span class="kr">begin</span> <span class="c1">-- (optional)</span>
+    <span class="c1">-- Initialization code to run at startup (optional)</span>
+<span class="kr">end</span> <span class="nf">Example</span><span class="p">;</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">//////////////////////////////////////////////////////////////////////////</span>
+<span class="c1">// Sample.h</span>
+<span class="cp">#pragma once</span>
+<span class="k">namespace</span> <span class="n">Example</span> <span class="p">{</span>
+
+<span class="k">struct</span> <span class="nc">Scorpio</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">sample</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Public interface</span>
+<span class="k">class</span> <span class="nc">Capricorn</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Capricorn</span><span class="p">();</span>
+
+<span class="k">private</span><span class="o">:</span>
+    <span class="c1">// Part of the physical interface, since compilers need to know the</span>
+    <span class="c1">//  size of the struct when passed by value or used on the stack.</span>
+    <span class="c1">//</span>
+    <span class="c1">// Physical interface, visible due to technical limitations of the</span>
+    <span class="c1">// compilation model, since compilers need to know the size of the</span>
+    <span class="c1">// struct when passed by value or used on the stack.</span>
+    <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="p">}</span> <span class="c1">// namespace Example</span>
+
+
+<span class="c1">//////////////////////////////////////////////////////////////////////////</span>
+<span class="c1">// Sample.cpp</span>
+<span class="c1">// Implementation details.</span>
+<span class="k">namespace</span> <span class="n">Example</span> <span class="p">{</span>
+
+<span class="k">namespace</span> <span class="p">{</span>
+<span class="c1">// Function used only in implementation.</span>
+<span class="kt">void</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{}</span>
+<span class="p">}</span> <span class="c1">// namespace</span>
+
+<span class="n">Capricorn</span><span class="o">::</span><span class="n">Capricorn</span> <span class="p">{}</span>
+
+<span class="p">}</span> <span class="c1">// namespace Example</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="the-core-tenet-of-ada">
+<h2>The Core Tenet of Ada<a class="headerlink" href="#the-core-tenet-of-ada" title="Permalink to this headline">¶</a></h2>
+<p>Program text must be clear without having to read ahead, referred to as:
+<strong>“Linear elaboration of declarations”</strong>.  A clear demarcation exists between
+declarations of things to exist and executable statements which use those things.</p>
+<p>The simplicity backing this is the ability to make any declaration, including
+types, variables, functions/procedures, and packages in any declaration block.  This means
+the basic rule of “declare, then use” repeats itself throughout the language,
+in <code class="docutils literal notranslate"><span class="pre">package/package</span> <span class="pre">body</span></code>, <code class="docutils literal notranslate"><span class="pre">task/task</span> <span class="pre">body</span></code>, subprograms, and executable blocks of code can have a
+<code class="docutils literal notranslate"><span class="pre">declare</span> <span class="pre">...</span> <span class="pre">begin</span> <span class="pre">...</span> <span class="pre">end</span></code> block.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">package</span> <span class="nc">P</span> <span class="kr">is</span>
+    <span class="c1">-- Not declaring Foo here is like making the function `static` in C or C++ or</span>
+    <span class="c1">-- putting it into an anonymous namespace.</span>
+    <span class="kd">procedure</span> <span class="nf">Foo</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nf">P</span><span class="p">;</span>
+
+<span class="kd">package</span> <span class="kd">body</span> <span class="nc">P</span> <span class="kr">is</span>
+    <span class="c1">-- Declarations for the body of P go here.</span>
+
+    <span class="kd">procedure</span> <span class="nf">Foo</span> <span class="kr">is</span>
+        <span class="c1">-- Declarations for Foo can go here.</span>
+
+        <span class="c1">-- Declare a function, only visible to Foo, to be used to implement Foo.</span>
+        <span class="kd">procedure</span> <span class="nf">Bar</span> <span class="kr">is</span>
+        <span class="kr">begin</span>
+            <span class="kc">null</span><span class="p">;</span> <span class="c1">-- &quot;null statement&quot; here since this function actually does nothing.</span>
+                <span class="c1">-- and one statement is required.</span>
+        <span class="kr">end</span> <span class="nf">Bar</span><span class="p">;</span>
+    <span class="kr">begin</span>
+        <span class="c1">-- Executable statements go here.</span>
+        <span class="n">Ada</span><span class="p">.</span><span class="n">Text_IO</span><span class="p">.</span><span class="n">Put_Line</span><span class="p">(</span><span class="s">&quot;Hello, World!&quot;</span><span class="p">);</span>
+
+        <span class="kr">declare</span>
+            <span class="c1">-- Declare a package here, inside the function, to show that you can.</span>
+            <span class="kd">package</span> <span class="nc">Wat</span> <span class="kr">is</span>
+                <span class="c1">-- Declare a new type, which has the same set of possible values</span>
+                <span class="c1">-- as a Float, but is different than a Float.</span>
+                <span class="kd">type</span> <span class="kt">Capricorn</span> <span class="kr">is</span> <span class="kr">new</span> <span class="kt">Float</span><span class="p">;</span>
+            <span class="kr">end</span> <span class="nf">Wat</span><span class="p">;</span>
+
+            <span class="c1">-- A constant created using the package defined inside of Foo.</span>
+            <span class="c1">-- Temporary variables can be declared here too.</span>
+            <span class="no">Temp</span><span class="p">:</span> <span class="kr">constant</span> <span class="n">Wat</span><span class="p">.</span><span class="n">Capricorn</span> <span class="p">:=</span> <span class="mf">0.0</span><span class="p">;</span>
+        <span class="kr">begin</span>
+            <span class="c1">-- Print &quot;0.0&quot;.</span>
+            <span class="c1">-- &quot;Image&quot; is the Ada idiomatic equivalent of toString().</span>
+            <span class="c1">-- &#39; is &quot;tick&quot; and is used to access compiler-defined properties of types.</span>
+            <span class="n">Ada</span><span class="p">.</span><span class="n">Text_IO</span><span class="p">.</span><span class="n">Put_Line</span><span class="p">(</span><span class="n">Wat</span><span class="p">.</span><span class="n">Capricorn</span><span class="p">&#39;</span><span class="na">Image</span><span class="p">(</span><span class="n">Temp</span><span class="p">));</span>
+
+            <span class="c1">-- Call the helper procedure defined in Foo.</span>
+            <span class="c1">-- Procedures and functions without parameters are called</span>
+            <span class="c1">-- without parentheses.</span>
+            <span class="n">Bar</span><span class="p">;</span>
+        <span class="kr">end</span><span class="p">;</span>
+    <span class="kr">end</span> <span class="nf">Foo</span><span class="p">;</span>
+<span class="kr">begin</span>
+    <span class="c1">-- Static initialization body of P.</span>
+<span class="kr">end</span> <span class="nf">P</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This nesting of declarations very verbose.  It does however makes it straightforward to
+refactor out behavior while you’re working on a subprogram and then you can extract
+the newly created components into more appropriate places when you’re done.
+The inability to use statements in declarations causes me to sometimes rewrite
+my declarations in sequential order of constant processing, and overall makes the
+declarations feel like a Haskell <cite>where</cite> clause.</p>
+<div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">Normalize</span><span class="p">(</span><span class="nv">F</span> <span class="p">: </span><span class="nv">Float2</span><span class="p">)</span> <span class="kr">return</span> <span class="n">Float2</span> <span class="kr">is</span>
+    <span class="no">L</span> <span class="p">:</span> <span class="kr">constant</span> <span class="n">F32</span> <span class="p">:=</span> <span class="n">Length</span><span class="p">(</span><span class="n">F</span><span class="p">);</span>
+<span class="kr">begin</span>
+    <span class="kr">return</span> <span class="n">F</span> <span class="o">/</span> <span class="n">L</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nf">Normalize</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">Evaluate</span>
+    <span class="p">(</span><span class="nv">Ctx</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">out</span> <span class="nv">Context</span><span class="p">;</span> <span class="nv">Line</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">Ada</span><span class="p">.</span><span class="nv">Strings</span><span class="p">.</span><span class="nv">Unbounded</span><span class="p">.</span><span class="nv">Unbounded_String</span><span class="p">)</span>
+      <span class="kr">return</span> <span class="n">Evaluate_Result</span> <span class="kr">is</span>
+    <span class="kn">use</span> <span class="nn">Ada.Containers</span><span class="p">;</span>
+    <span class="kn">use</span> <span class="nn">type</span> <span class="n">Ada</span><span class="p">.</span><span class="n">Strings</span><span class="p">.</span><span class="n">Unbounded</span><span class="p">.</span><span class="n">Unbounded_String</span><span class="p">;</span>
+    <span class="no">Whitespace</span>     <span class="p">:</span> <span class="kr">constant</span> <span class="n">Ada</span><span class="p">.</span><span class="n">Strings</span><span class="p">.</span><span class="n">Maps</span><span class="p">.</span><span class="n">Character_Set</span> <span class="p">:=</span> <span class="n">Ada</span><span class="p">.</span><span class="n">Strings</span><span class="p">.</span><span class="n">Maps</span><span class="p">.</span><span class="n">To_Set</span> <span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">);</span>
+    <span class="no">Sanitized_Line</span> <span class="p">:</span> <span class="kr">constant</span> <span class="n">Ada</span><span class="p">.</span><span class="n">Strings</span><span class="p">.</span><span class="n">Unbounded</span><span class="p">.</span><span class="n">Unbounded_String</span> <span class="p">:=</span>
+                       <span class="n">Ada</span><span class="p">.</span><span class="n">Strings</span><span class="p">.</span><span class="n">Unbounded</span><span class="p">.</span><span class="n">Trim</span> <span class="p">(</span><span class="n">Line</span><span class="p">,</span> <span class="n">Whitespace</span><span class="p">,</span> <span class="n">Whitespace</span><span class="p">);</span>
+    <span class="n">Words</span>          <span class="p">:</span> <span class="n">String_Vectors</span><span class="p">.</span><span class="n">Vector</span> <span class="p">:=</span> <span class="n">Split</span> <span class="p">(</span><span class="n">Sanitized_Line</span><span class="p">);</span>
+    <span class="no">Command</span>        <span class="p">:</span> <span class="kr">constant</span> <span class="n">Ada</span><span class="p">.</span><span class="n">Strings</span><span class="p">.</span><span class="n">Unbounded</span><span class="p">.</span><span class="n">Unbounded_String</span> <span class="p">:=</span> <span class="p">(</span><span class="kr">if</span> <span class="n">Words</span><span class="p">.</span><span class="n">Length</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="kr">then</span> <span class="n">Words</span><span class="p">.</span><span class="n">First_Element</span> <span class="kr">else</span> <span class="n">Ada</span><span class="p">.</span><span class="n">Strings</span><span class="p">.</span><span class="n">Unbounded</span><span class="p">.</span><span class="n">Null_Unbounded_String</span><span class="p">);</span>
+<span class="kr">begin</span>
+    <span class="c1">-- ...</span>
+</pre></div>
+</div>
+<p>Ada does not provide separate syntactical units for classes, structs and
+namespaces.  Instead, packages contain types, constants and related subprograms.
+A lot of specialized syntax goes away due to
+this, for example there are no “member functions” and “class functions” and
+hence no specialized syntax for things like member function pointers or class
+function pointers exist.  Namespacing and overloading on parameters and/or the returned type determine
+the subprogram called.</p>
+<p>What would be “member functions” in C++ have the “controlling type(s)” as the
+first parameter(s).  “<cite>const</cite> member functions” pass in the type as an <cite>in</cite> parameter,
+which are immutable.  “non-<cite>const</cite> member functions (methods)” pass in the type as an
+<cite>in out</cite> parameter, allowing the parameter to be modified.  This mirrors
+Rust’s notation wherein it reflects C++-like <cite>const</cite> behavior of member
+functions with <cite>self</cite>, <cite>&amp;self</cite>, and <cite>&amp;mut self</cite> as a first parameter.
+These are referred to as “primitive operations.”</p>
+<div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Box &quot;non-const function&quot;</span>
+    <span class="kd">procedure</span> <span class="nf">Move</span><span class="p">(</span><span class="nv">Box</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">out</span> <span class="nv">AABB2</span><span class="p">;</span> <span class="nv">Direction</span> <span class="p">: </span><span class="nv">Float2</span><span class="p">)</span> <span class="kr">is</span>
+    <span class="kr">begin</span>
+            <span class="n">Box</span><span class="p">.</span><span class="n">Min</span> <span class="p">:=</span> <span class="n">Box</span><span class="p">.</span><span class="n">Min</span> <span class="o">+</span> <span class="n">Direction</span><span class="p">;</span>
+            <span class="n">Box</span><span class="p">.</span><span class="n">Max</span> <span class="p">:=</span> <span class="n">Box</span><span class="p">.</span><span class="n">Max</span> <span class="o">+</span> <span class="n">Direction</span><span class="p">;</span>
+    <span class="kr">end</span> <span class="nf">Scale</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Box &quot;const function&quot;</span>
+    <span class="kd">function</span> <span class="nf">Midpoint</span><span class="p">(</span><span class="nv">Box</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">AABB2</span><span class="p">)</span> <span class="kr">return</span> <span class="kt">Float</span> <span class="kr">is</span>
+    <span class="kr">begin</span>
+            <span class="kr">return</span> <span class="p">(</span><span class="n">Box</span><span class="p">.</span><span class="n">Min</span> <span class="o">+</span> <span class="n">Box</span><span class="p">.</span><span class="n">Max</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">;</span>
+    <span class="kr">end</span> <span class="nf">Scale</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="900-comparison.html" class="btn btn-neutral float-right" title="Comparing Ada to Other Languages" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="000-overview.html" class="btn btn-neutral float-left" title="High-level Language Features" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
