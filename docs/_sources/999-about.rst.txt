@@ -4,10 +4,6 @@ About
 This intends to provide a high-level overview of Ada for programmers.  It is
 not a tutorial.
 
-While my experience with Ada has been positive, this article aims to be as 
-fact-driven and neutral as possible, attempting to give an objective
-overview of the language for those unfamiliar with it.
-
 I am a Windows/Linux developer who primarily works in C++, but
 has worked in many other languages in descending level of familiarity: Python,
 C, Objective-C, Ruby, Rust, Haskell, Clojure, Perl, some Javascript, and PHP.

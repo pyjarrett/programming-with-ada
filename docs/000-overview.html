@@ -39,7 +39,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Feature Overview" href="050-feature-overview.html" />
-    <link rel="prev" title="Welcome to programming-with-ada’s documentation!" href="index.html" /> 
+    <link rel="prev" title="Programming with Ada" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -185,8 +185,8 @@ which provides functional specification and static verification.</p>
 an all-in-one download for multiple platforms.  This includes a cross-platform IDE
 with a <a class="reference external" href="https://gcc.gnu.org/onlinedocs/gcc-11.1.0/gnat_ugn/Pretty-Printers-for-the-GNAT-runtime.html">code formatter</a>,
 <a class="reference external" href="https://github.com/AdaCore/gprbuild">build system</a>,
-documentation generator, integrated source control, and visual diff
-tool.  In addition to the Ada standard library, also
+documentation generator, integrated source control, auto-completion,
+and a visual diff tool.  In addition to the Ada standard library, also
 included is the <a class="reference external" href="https://github.com/AdaCore/gnatcoll-core">GNAT Components Collection (GNATColl)</a>
 which includes facilities such as JSON parsing,
 <a class="reference external" href="https://github.com/AdaCore/aws">Ada Web Server</a> for providing browser
@@ -200,7 +200,7 @@ in development preventing them from being added to the program.</p>
 in the square hole”.  Ada prohibits implicit integer &lt;-&gt;
 float conversions, provides mechanisms to verify the range of values used
 for floating point and integer types, and compiler injection of invariant checks
-for user-defined types.  Lightweight semantic variations of existing types can
+for user-defined types.  Lightweight semantic variations of existing types can also
 be created which share the same underlying functions, but the compiler prevents
 mixing these types with different meanings unless explicit casts are used.  This
 adds meaning to even low level types like integers and floating point values,
@@ -210,15 +210,16 @@ meaning “meters”.</p>
 accessing unallocated memory, invalid array access) as well as logical errors
 (range checks, pre/post condition checks, and type invariant checks).  Though
 generally efficient and sometimes removable for checks which are known to never fail,
-runtime checks can also be suppressed in specific areas, such as performance critical,
-or throughout the program.</p>
-<p>The focus on readability and correctness, along with an already existing
-ecosystem, makes Ada 2012 an attactive language to develop in.</p>
-<ul class="simple">
-<li></li>
-<li></li>
-<li></li>
-</ul>
+runtime checks can also be suppressed in specific areas, such as performance
+critical areas, or throughout the program.</p>
+<p>Ada supports built-in concurrency types for creating and synchronizing tasks to
+take advantage of today’s multiprocessor systems.  Ada 2012 also incorporates the
+Ravenscar profile, a compiler pragma which restricts Ada to a subset for
+deterministic behavior of the system for real-time systems.</p>
+<p>Ada’s history in high-reliability systems shows its focus on readability and
+correctness.  As shown by its adoption by
+<a class="reference external" href="https://www.adacore.com/company/partners/nvidia">NVIDIA</a> for security-critical
+firmware, Ada 2012 remains an attractive option for future software development.</p>
 </div>
 
 
@@ -228,7 +229,7 @@ ecosystem, makes Ada 2012 an attactive language to develop in.</p>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="050-feature-overview.html" class="btn btn-neutral float-right" title="Feature Overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to programming-with-ada’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Programming with Ada" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
