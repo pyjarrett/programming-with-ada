@@ -43,7 +43,7 @@ The focus on correctness extends static typing past "put the square peg
 in the square hole".  Ada prohibits implicit integer <->
 float conversions, provides mechanisms to verify the range of values used
 for floating point and integer types, and compiler injection of invariant checks
-for user-defined types.  Lightweight semantic variations of existing types can
+for user-defined types.  Lightweight semantic variations of existing types can also
 be created which share the same underlying functions, but the compiler prevents
 mixing these types with different meanings unless explicit casts are used.  This
 adds meaning to even low level types like integers and floating point values,
@@ -54,8 +54,15 @@ Extensive runtime checks also help protect from memory safety errors (buffer ove
 accessing unallocated memory, invalid array access) as well as logical errors
 (range checks, pre/post condition checks, and type invariant checks).  Though
 generally efficient and sometimes removable for checks which are known to never fail,
-runtime checks can also be suppressed in specific areas, such as performance critical,
-or throughout the program.
+runtime checks can also be suppressed in specific areas, such as performance
+critical areas, or throughout the program.
 
-The focus on readability and correctness, along with an already existing
-ecosystem, makes Ada 2012 an attactive language to develop in.
+Ada supports built-in concurrency types for creating and synchronizing tasks to
+take advantage of today's multiprocessor systems.  Ada 2012 also incorporates the
+Ravenscar profile, a compiler pragma which restricts Ada to a subset for
+deterministic behavior of the system for real-time systems.
+
+Ada's history in high-reliability systems shows its focus on readability and
+correctness.  As shown by its adoption by
+`NVIDIA <https://www.adacore.com/company/partners/nvidia>`_ for security-critical
+firmware, Ada 2012 remains an attractive option for future software development.
