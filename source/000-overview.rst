@@ -29,12 +29,15 @@ with a `code formatter <https://gcc.gnu.org/onlinedocs/gcc-11.1.0/gnat_ugn/Prett
 documentation generator, integrated source control, auto-completion,
 and a visual diff tool.  In addition to the Ada standard library, also
 included is the `GNAT Components Collection (GNATColl) <https://github.com/AdaCore/gnatcoll-core>`_ 
-which includes facilities such as JSON parsing,
-`Ada Web Server <https://github.com/AdaCore/aws>`_ for providing browser
-integration for your applications,
+which includes facilities such as JSON parsing, the GNAT library (hashing, regex, sockets, etc.), 
+`Ada Web Server <https://github.com/AdaCore/aws>`_ for communicating with browsers
+or providing services with your applications,
 libgpr for manipulating GNAT project files, aunit for unit testing,
 and `libadalang <https://github.com/AdaCore/libadalang>`_ for parsing and
-semantic analysis of Ada code.
+semantic analysis of Ada code.  There's also a 
+`Visual Studio Code Plugin <https://marketplace.visualstudio.com/items?itemName=AdaCore.ada>`_
+or those who want to use their editor of choice can also use the
+`Ada language server <https://github.com/AdaCore/ada_language_server>`_.
 
 The emphasis on compile-time checks stops bugs at the earliest and cheapest point
 in development preventing them from being added to the program.
@@ -49,6 +52,12 @@ mixing these types with different meanings unless explicit casts are used.  This
 adds meaning to even low level types like integers and floating point values,
 preventing such mixing as accidentally adding a value meaning "joules" to one
 meaning "meters".
+
+Ada provides "access types", allowing the creation of "typed pointers",
+which integrates lifetime checks statically into the type system and providing
+separate customizable storage pools.  "Anonymous" access types provide flexibility
+outside of this system without lifetime annotations by pushing lifetime checks
+to runtime.
 
 Extensive runtime checks also help protect from memory safety errors (buffer overflows,
 accessing unallocated memory, invalid array access) as well as logical errors

@@ -1602,7 +1602,7 @@ user-defined type.</p></td>
 </pre></div>
 </div>
 </td>
-<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="k">operator</span><span class="p">[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nf">foo</span><span class="p">(</span><span class="n">i</span><span class="p">);</span> <span class="p">}</span>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="k">operator</span><span class="p">[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="nf">foo</span><span class="p">(</span><span class="n">i</span><span class="p">);</span> <span class="p">}</span>
 <span class="n">T</span><span class="o">&amp;</span> <span class="k">operator</span><span class="p">[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nf">bar</span><span class="p">(</span><span class="n">i</span><span class="p">);</span> <span class="p">}</span>
 </pre></div>
 </div>
@@ -1644,9 +1644,38 @@ handle’s contents.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td colspan="5"><p><strong>String Handling</strong></p></td>
+<tr class="row-odd"><td><p>Iterator for loops for
+user-defined types.</p></td>
+<td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="kt">My_Container</span>
+    <span class="kr">with</span>
+        <span class="n">Default_Iterator</span>  <span class="p">=&gt;</span> <span class="n">Iterate</span><span class="p">,</span>
+        <span class="n">Iterator_Element</span>  <span class="p">=&gt;</span> <span class="n">Element_Type</span><span class="p">;</span>
+
+<span class="kd">type</span> <span class="kt">Cursor</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nf">First</span> <span class="p">(</span><span class="nv">M</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">My_Container</span><span class="p">)</span> <span class="kr">return</span> <span class="kt">Cursor</span><span class="p">;</span>
+<span class="kd">procedure</span> <span class="nf">Next</span>  <span class="p">(</span><span class="nv">C</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">out</span> <span class="nv">Cursor</span><span class="p">);</span>
+<span class="kd">function</span> <span class="nf">Has_Element</span> <span class="p">(</span><span class="nv">C</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">Cursor</span><span class="p">)</span> <span class="kr">return</span> <span class="kt">Boolean</span><span class="p">;</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyContainer</span> <span class="p">{</span>
+    <span class="n">MyIterator</span> <span class="nf">begin</span><span class="p">();</span>
+    <span class="n">MyIterator</span> <span class="nf">end</span><span class="p">();</span>
+
+
+
+
+
+<span class="p">};</span>
+</pre></div>
+</div>
+</td>
+<td></td>
+<td></td>
 </tr>
-<tr class="row-even"><td><p>Concatenation</p></td>
+<tr class="row-even"><td colspan="5"><p><strong>String Handling</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Concatenation</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">&amp;</span> <span class="n">B</span>
 </pre></div>
 </div>
@@ -1658,9 +1687,9 @@ handle’s contents.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td colspan="5"><p><strong>Concurrency</strong></p></td>
+<tr class="row-even"><td colspan="5"><p><strong>Concurrency</strong></p></td>
 </tr>
-<tr class="row-even"><td></td>
+<tr class="row-odd"><td></td>
 <td></td>
 <td></td>
 <td></td>

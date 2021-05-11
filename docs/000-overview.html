@@ -188,12 +188,15 @@ with a <a class="reference external" href="https://gcc.gnu.org/onlinedocs/gcc-11
 documentation generator, integrated source control, auto-completion,
 and a visual diff tool.  In addition to the Ada standard library, also
 included is the <a class="reference external" href="https://github.com/AdaCore/gnatcoll-core">GNAT Components Collection (GNATColl)</a>
-which includes facilities such as JSON parsing,
-<a class="reference external" href="https://github.com/AdaCore/aws">Ada Web Server</a> for providing browser
-integration for your applications,
+which includes facilities such as JSON parsing, the GNAT library (hashing, regex, sockets, etc.),
+<a class="reference external" href="https://github.com/AdaCore/aws">Ada Web Server</a> for communicating with browsers
+or providing services with your applications,
 libgpr for manipulating GNAT project files, aunit for unit testing,
 and <a class="reference external" href="https://github.com/AdaCore/libadalang">libadalang</a> for parsing and
-semantic analysis of Ada code.</p>
+semantic analysis of Ada code.  There’s also a
+<a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=AdaCore.ada">Visual Studio Code Plugin</a>
+or those who want to use their editor of choice can also use the
+<a class="reference external" href="https://github.com/AdaCore/ada_language_server">Ada language server</a>.</p>
 <p>The emphasis on compile-time checks stops bugs at the earliest and cheapest point
 in development preventing them from being added to the program.</p>
 <p>The focus on correctness extends static typing past “put the square peg
@@ -206,6 +209,11 @@ mixing these types with different meanings unless explicit casts are used.  This
 adds meaning to even low level types like integers and floating point values,
 preventing such mixing as accidentally adding a value meaning “joules” to one
 meaning “meters”.</p>
+<p>Ada provides “access types”, allowing the creation of “typed pointers”,
+which integrates lifetime checks statically into the type system and providing
+separate customizable storage pools.  “Anonymous” access types provide flexibility
+outside of this system without lifetime annotations by pushing lifetime checks
+to runtime.</p>
 <p>Extensive runtime checks also help protect from memory safety errors (buffer overflows,
 accessing unallocated memory, invalid array access) as well as logical errors
 (range checks, pre/post condition checks, and type invariant checks).  Though

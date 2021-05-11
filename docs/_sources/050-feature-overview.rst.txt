@@ -44,3 +44,4 @@ Ada is missing:
 - Variadic templates.
 - Async/Await (it has tasks instead)
 - Mixed-mode arithmetic and the related implicit numerical casts.
+- An equivalent of template parameter pack

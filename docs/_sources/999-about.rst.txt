@@ -4,14 +4,6 @@ About
 This intends to provide a high-level overview of Ada for programmers.  It is
 not a tutorial.
 
-I am a Windows/Linux developer who primarily works in C++, but
-has worked in many other languages in descending level of familiarity: Python,
-C, Objective-C, Ruby, Rust, Haskell, Clojure, Perl, some Javascript, and PHP.
-
-I started reading about Ada because a developer I worked with several years 
-ago had mentioned it, and I couldn't find a single person who had worked in it.
-I've now been learning and writing Ada 2012 for a couple of months now.
-
 I have endeavoured to achieve terseness, clarity and technical accuracy for
 those who want a quick overview of the language.  Feel free to submit
 corrections or changes to aid in clarity.
