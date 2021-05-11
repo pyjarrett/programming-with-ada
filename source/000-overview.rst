@@ -54,7 +54,7 @@ preventing such mixing as accidentally adding a value meaning "joules" to one
 meaning "meters".
 
 Ada provides "access types", allowing the creation of "typed pointers",
-which integrates lifetime checks statically into the type system and providing
+which integrates lifetime ("accessibility") checks statically into the type system and providing
 separate customizable storage pools.  "Anonymous" access types provide flexibility
 outside of this system without lifetime annotations by pushing lifetime checks
 to runtime.
