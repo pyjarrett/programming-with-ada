@@ -706,7 +706,7 @@ Terminology
     limited type
         An uncopyable type.
 
-    pregenitor 
+    progenitor 
         Additional interfaces inherited.
 
     parent
