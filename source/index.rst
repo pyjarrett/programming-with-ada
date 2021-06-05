@@ -13,6 +13,7 @@ Programming with Ada
    000-overview
    050-feature-overview
    100-packages
+   700-advanced-techniques
    900-comparison
    999-about
 

@@ -13,7 +13,7 @@ if os.path.isdir ('venv/'):
     sys.exit(0)
 
 common.require_command('python -m venv venv'.split(), 'Could not create virtual environment')
-common.require_command(f'{python_exe} -m pip install --upgrade pip'.split(),
+common.require_command(f'{common.python_exe} -m pip install --upgrade pip'.split(),
     'Could not upgrade pip')
-common.require_command(f'{python_exe} -m pip install sphinx sphinx_rtd_theme'.split(),
+common.require_command(f'{common.python_exe} -m pip install sphinx sphinx_rtd_theme'.split(),
     'Could not install sphinx and RTD theme')

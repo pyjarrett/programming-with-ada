@@ -55,3 +55,50 @@ by extending the `Controlled` type.
 |             -- analogous to a C++ destructor.                                             |                                                              | 
 |     end Sample;                                                                           |                                                              | 
 +-------------------------------------------------------------------------------------------+--------------------------------------------------------------+ 
+
+
+Timing out on a Blocking Operation
+------------------------------------------------------------------------------
+
+Sometimes you want to continue if an operation blocks, or continue after a timeout
+
++-------------------------------------------------------------------------------------------+
+| .. code-block:: ada                                                                       |
+|                                                                                           |
+|    task body My_Task is                                                                   |
+|        Elem : A_Queue_Element;                                                            |
+|    begin                                                                                  |
+|        loop -- processing loop                                                            |
+|            select                                                                         |
+|                A_Queue.Blocking_Queue (Elem);                                             |
+|            or                                                                             |
+|                -- Stop processing after a 1 second timeout. Removing this delay causes    |
+|                -- immediate exit if a block occurs.                                       |
+|                delay 1.0;                                                                 |
+|                exit;                                                                      |
+|            end select;                                                                    |
+|                                                                                           |
+|            -- ... process Elem ...                                                        |
+|                                                                                           |
+|        end loop                                                                           |
+|    end My_Task;                                                                           |
++-------------------------------------------------------------------------------------------+
+
+
+Waiting for all Tasks to Complete
+------------------------------------------------------------------------------
+
+A list of statements doesn't exit until all tasks are complete, so by using
+`declare ... begin ... end` you can wait until all your tasks are done.
+
++-------------------------------------------------------------------------------------------+
+| .. code-block:: ada                                                                       |
+|                                                                                           |
+|    declare                                                                                |
+|        A_Task : My_Task;  -- task which needs to finish before more processing            |
+|    begin                                                                                  |
+|        null; -- Just wait until the task is done.                                         |
+|    end;                                                                                   |
+|                                                                                           |
+|    -- Continue other operations here.                                                     |
++-------------------------------------------------------------------------------------------+
