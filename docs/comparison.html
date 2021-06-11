@@ -537,7 +537,7 @@ arbitrary locations.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Constant pointer to
 constant</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">Ptr</span> <span class="pre">:</span> <span class="pre">const</span> <span class="pre">access</span> <span class="pre">constant</span> <span class="pre">T</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Ptr</span> <span class="pre">:</span> <span class="pre">constant</span> <span class="pre">access</span> <span class="pre">constant</span> <span class="pre">T</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">T*</span> <span class="pre">const</span> <span class="pre">ptr;</span></code></p></td>
 <td></td>
 <td></td>
@@ -660,7 +660,13 @@ optional.</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>do-while</p></td>
-<td></td>
+<td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kr">loop</span>
+    <span class="c1">-- statements</span>
+    <span class="kr">exit</span> <span class="kr">when</span> <span class="n">A</span><span class="p">;</span>
+<span class="kr">end</span> <span class="kr">loop</span><span class="p">;</span>
+</pre></div>
+</div>
+</td>
 <td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">do</span> <span class="p">{</span>
     <span class="n">statements</span><span class="p">;</span>
 <span class="p">}</span> <span class="k">while</span><span class="p">(</span><span class="n">A</span><span class="p">);</span>
