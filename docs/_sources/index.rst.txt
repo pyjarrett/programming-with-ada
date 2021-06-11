@@ -10,13 +10,13 @@ Programming with Ada
    :maxdepth: 2
    :caption: Contents:
 
-   000-overview
-   050-feature-overview
-   070-the-big-five-structural-elements
-   100-packages
-   700-advanced-techniques
-   900-comparison
-   999-about
+   overview
+   features
+   five-structural-elements
+   packages
+   advanced-techniques
+   comparison
+   about
 
 Indices and tables
 ==================
