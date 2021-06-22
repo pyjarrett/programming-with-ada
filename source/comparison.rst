@@ -706,7 +706,15 @@ Terminology
         object in memory.
 
     ATC
-        "Asynchronous transfer of control
+        "Asynchronous transfer of control"
+
+    definite type
+        A type for which which requires no explicit constraint or initial
+        value when declared.
+
+    indefinite type
+        A type for which you cannot declare an object without supply bounds a
+        constraint or an initial value.
 
     limited type
         An uncopyable type.
@@ -720,10 +728,6 @@ Terminology
     tagged type
         A type with an associated "tag", which specifies its type and allows
         for dynamic dispatch.
-
-    indefinite type
-        A type for which you cannot declare an object without supply bounds a
-        constraint or an initial value.
 
     subprogram
         Any function or procedure.
