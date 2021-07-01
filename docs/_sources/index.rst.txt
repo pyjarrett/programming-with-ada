@@ -17,6 +17,7 @@ Programming with Ada
    advanced-techniques
    comparison
    about
+   ray-tracing-in-one-weekend
 
 Indices and tables
 ==================
