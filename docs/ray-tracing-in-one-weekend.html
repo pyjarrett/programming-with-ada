@@ -99,10 +99,11 @@
 <li class="toctree-l1"><a class="reference internal" href="comparison.html#terminology">Terminology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Ray Tracing in One Weekend… in Ada</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#packages">Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#project-layout">Project Layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#main-adb-main-function"><cite>main.adb</cite> : Main Function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#expression-functions-help-knock-down-verboseness">Expression functions help knock down verboseness</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#semantic-for-types-derived-types-in-ada">Semantic for types (“derived types”) in Ada</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ada-lacks-perfect-forwarding">Ada lacks perfect forwarding</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#expression-functions-help-knock-down-verboseness">Expression functions help knock down verboseness</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#one-line-30-of-runtime-cpu">One line, 30% of runtime CPU</a></li>
 </ul>
 </li>
@@ -182,17 +183,104 @@ time in March, and then I bought
 for a more in-depth look.  A lot people don’t really know hardly anything about
 Ada, and I don’t really blame them.  Until recently, resources were very scarce
 and there’s not good comparison programs to see what Ada is like.</p>
-<p>I did as <a class="reference external" href="https://github.com/pyjarrett/ada-ray-tracer">faithful as possible Ada port</a>
-of <a class="reference external" href="https://raytracing.github.io/">Ray Tracing in One Weekend</a>
-from C++ to Ada. This comparison should help people understand more of what Ada
-is about to satisfy their own curiosity.</p>
+<p>I did a port of <a class="reference external" href="https://raytracing.github.io/">Ray Tracing in One Weekend</a>
+as <a class="reference external" href="https://github.com/pyjarrett/ada-ray-tracer">faithfully as possible from C++ into Ada</a>.
+This comparison should help people understand more of what Ada is about to
+satisfy their own curiosity.</p>
 <p>Overall, the port went very smoothly, due to the conceptual similarities
 between C++ and Ada.  There’s a few things to point out, and a few rough spots
 with Ada which were frustrating.</p>
-<div class="section" id="packages">
-<h2>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="project-layout">
+<h2>Project Layout<a class="headerlink" href="#project-layout" title="Permalink to this headline">¶</a></h2>
+<p>This is the directory structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>├── COPYING
+├── README.md
+├── obj
+├── ray_tracer.gpr
+└── src
+    ├── main.adb
+    ├── rt-bmp.adb
+    ├── rt-bmp.ads
+    ├── rt-cameras.adb
+    ├── rt-cameras.ads
+    ├── rt-debug.adb
+    ├── rt-debug.ads
+    ├── rt-hitables.adb
+    ├── rt-hitables.ads
+    ├── rt-image_planes.adb
+    ├── rt-image_planes.ads
+    ├── rt-materials.adb
+    ├── rt-materials.ads
+    ├── rt-pseudorandom.adb
+    ├── rt-pseudorandom.ads
+    ├── rt-rays.adb
+    ├── rt-rays.ads
+    ├── rt-vecs.adb
+    ├── rt-vecs.ads
+    └── rt.ads
+</pre></div>
+</div>
+<p>Many Ada projects use the GNAT ecosystem, which you can get from the Free
+Software Foundation or with GNAT Community Edition, released by AdaCore.
+<cite>ray_tracer.gpr</cite> is akin to a CMakeLists.txt, except for the GNAT Project
+Manager <a class="reference external" href="https://learn.adacore.com/courses/GNAT_Toolchain_Intro/chapters/gprbuild.html">gprbuild</a>
+Most of the Ada ecosystem assumes that tools will get run from the command line,
+and GPR files reference the appropriate options used by the related programs.
+This file is an Ada-derived domain-specific language (DSL).</p>
+<p>Projects might create multiple GPR files, and such as one for the main program, another
+for building and running tests, or for example programs in libraries.</p>
+</div>
+<div class="section" id="main-adb-main-function">
+<h2><cite>main.adb</cite> : Main Function<a class="headerlink" href="#main-adb-main-function" title="Permalink to this headline">¶</a></h2>
+<p>Files have three parts: a context clause, declarative parts, and executable parts.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="c1">-- context clause</span>
+<span class="kn">with</span> <span class="nn">GNATCOLL.Terminal</span><span class="p">;</span>
+
+<span class="c1">-- declarative part</span>
+
+<span class="c1">-- declare Main</span>
+<span class="kd">procedure</span> <span class="nf">Main</span> <span class="kr">is</span>
+    <span class="c1">-- declarative part for elements used by Main</span>
+    <span class="kn">use</span> <span class="nn">RT</span><span class="p">;</span>
+    <span class="n">Term_Info</span> <span class="p">:</span> <span class="n">GNATCOLL</span><span class="p">.</span><span class="n">Terminal</span><span class="p">.</span><span class="n">Terminal_Info</span><span class="p">;</span>
+
+<span class="kr">begin</span>
+    <span class="c1">-- executable statements start here</span>
+    <span class="n">GNATCOLL</span><span class="p">.</span><span class="n">Terminal</span><span class="p">.</span><span class="n">Init_For_Stdout</span> <span class="p">(</span><span class="n">Term_Info</span><span class="p">);</span>
+
+<span class="kr">exception</span>
+    <span class="c1">-- exception handle for the executable block</span>
+
+    <span class="c1">-- no empty blocks allowed, &quot;null;&quot; is the empty statement.</span>
+    <span class="kc">null</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nf">Main</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The context clause describes dependencies on library “packages”, the declarative part
+allows declaring and defining functions and variables, and the executable start is
+linearly executable code.</p>
 <p>Ada uses packages as proper modules instead of including files with a
-preprocessor.</p>
+preprocessor. Libraries are brought in using <code class="docutils literal notranslate"><span class="pre">with</span></code>, with the dots in the name
+describing the package path.  <code class="docutils literal notranslate"><span class="pre">Terminal</span></code> here is a child package of <code class="docutils literal notranslate"><span class="pre">GNATCOLL</span></code>.</p>
+<p>Unlike other languages, the entry procedure for an Ada program doesn’t need to named <code class="docutils literal notranslate"><span class="pre">main</span></code>.
+Files defining program entries define your main function, but all functionality
+must be brought in from libraries or in the declaration block of the main function.</p>
+<p>Library “packages” follow a similar, but slightly different format than main files.
+Packages get split between a public interface, described in a <code class="docutils literal notranslate"><span class="pre">.ads</span></code> file, while the package
+body is in an <code class="docutils literal notranslate"><span class="pre">.adb</span></code> file.  This is similar to the header/source separation in
+C or C++ libraries, except the compiler treats these as real entities.</p>
+<p>Packages operate like namespaces, but also modules.  Packages can even include a <code class="docutils literal notranslate"><span class="pre">begin</span></code>
+section of initialization code to run before starting the main function, and describe
+startup dependencies between packages.</p>
+</div>
+<div class="section" id="expression-functions-help-knock-down-verboseness">
+<h2>Expression functions help knock down verboseness<a class="headerlink" href="#expression-functions-help-knock-down-verboseness" title="Permalink to this headline">¶</a></h2>
+<p>Ada 2012 adds “expression functions” where instead of a full <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">begin</span> <span class="pre">...</span> <span class="pre">end</span></code>
+you can just wrap the expression describing the value to return in parentheses.
+This made the vector implementation surprisingly terse.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">Reflect</span> <span class="p">(</span><span class="nv">V</span><span class="p">,</span> <span class="nv">N</span><span class="p">: </span><span class="nv">Vec3</span><span class="p">)</span> <span class="kr">return</span> <span class="n">Vec3</span> <span class="kr">is</span> <span class="p">(</span><span class="n">V</span> <span class="o">-</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">Dot</span> <span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="p">);</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="semantic-for-types-derived-types-in-ada">
 <h2>Semantic for types (“derived types”) in Ada<a class="headerlink" href="#semantic-for-types-derived-types-in-ada" title="Permalink to this headline">¶</a></h2>
@@ -297,15 +385,6 @@ C++ (<code class="docutils literal notranslate"><span class="pre">unique_ptr</sp
     <span class="n">Ptr</span><span class="p">.</span><span class="n">Set</span> <span class="p">(</span><span class="n">Mat</span><span class="p">);</span>
     <span class="kr">return</span> <span class="n">Ptr</span><span class="p">;</span>
 <span class="kr">end</span> <span class="nf">Make_Material</span><span class="p">;</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="expression-functions-help-knock-down-verboseness">
-<h2>Expression functions help knock down verboseness<a class="headerlink" href="#expression-functions-help-knock-down-verboseness" title="Permalink to this headline">¶</a></h2>
-<p>Ada 2012 adds “expression functions” where instead of a full <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">begin</span> <span class="pre">...</span> <span class="pre">end</span></code>
-you can just wrap the expression describing the value to return in parentheses.
-This made the vector implementation surprisingly terse.</p>
-<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">Reflect</span> <span class="p">(</span><span class="nv">V</span><span class="p">,</span> <span class="nv">N</span><span class="p">: </span><span class="nv">Vec3</span><span class="p">)</span> <span class="kr">return</span> <span class="n">Vec3</span> <span class="kr">is</span> <span class="p">(</span><span class="n">V</span> <span class="o">-</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">Dot</span> <span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>

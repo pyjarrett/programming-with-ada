@@ -8,20 +8,117 @@ for a more in-depth look.  A lot people don't really know hardly anything about
 Ada, and I don't really blame them.  Until recently, resources were very scarce
 and there's not good comparison programs to see what Ada is like.
 
-I did as `faithful as possible Ada port <https://github.com/pyjarrett/ada-ray-tracer>`_
-of `Ray Tracing in One Weekend <https://raytracing.github.io/>`_
-from C++ to Ada. This comparison should help people understand more of what Ada
-is about to satisfy their own curiosity.
+I did a port of `Ray Tracing in One Weekend <https://raytracing.github.io/>`_
+as `faithfully as possible from C++ into Ada <https://github.com/pyjarrett/ada-ray-tracer>`_.
+This comparison should help people understand more of what Ada is about to
+satisfy their own curiosity.
 
 Overall, the port went very smoothly, due to the conceptual similarities
 between C++ and Ada.  There's a few things to point out, and a few rough spots
 with Ada which were frustrating.
 
-Packages
+Project Layout
 ------------------------------------------------------------------------------
 
+This is the directory structure::
+
+    ├── COPYING
+    ├── README.md
+    ├── obj
+    ├── ray_tracer.gpr
+    └── src
+        ├── main.adb
+        ├── rt-bmp.adb
+        ├── rt-bmp.ads
+        ├── rt-cameras.adb
+        ├── rt-cameras.ads
+        ├── rt-debug.adb
+        ├── rt-debug.ads
+        ├── rt-hitables.adb
+        ├── rt-hitables.ads
+        ├── rt-image_planes.adb
+        ├── rt-image_planes.ads
+        ├── rt-materials.adb
+        ├── rt-materials.ads
+        ├── rt-pseudorandom.adb
+        ├── rt-pseudorandom.ads
+        ├── rt-rays.adb
+        ├── rt-rays.ads
+        ├── rt-vecs.adb
+        ├── rt-vecs.ads
+        └── rt.ads
+
+Many Ada projects use the GNAT ecosystem, which you can get from the Free
+Software Foundation or with GNAT Community Edition, released by AdaCore.
+`ray_tracer.gpr` is akin to a CMakeLists.txt, except for the GNAT Project
+Manager `gprbuild <https://learn.adacore.com/courses/GNAT_Toolchain_Intro/chapters/gprbuild.html>`_
+Most of the Ada ecosystem assumes that tools will get run from the command line,
+and GPR files reference the appropriate options used by the related programs.
+This file is an Ada-derived domain-specific language (DSL).
+
+Projects might create multiple GPR files, and such as one for the main program, another
+for building and running tests, or for example programs in libraries.
+
+`main.adb` : Main Function
+------------------------------------------------------------------------------
+
+Files have three parts: a context clause, declarative parts, and executable parts.
+
+.. code-block :: Ada
+
+    -- context clause
+    with GNATCOLL.Terminal;
+
+    -- declarative part
+
+    -- declare Main
+    procedure Main is
+        -- declarative part for elements used by Main
+        use RT;
+        Term_Info : GNATCOLL.Terminal.Terminal_Info;
+
+    begin
+        -- executable statements start here
+        GNATCOLL.Terminal.Init_For_Stdout (Term_Info);
+
+    exception
+        -- exception handle for the executable block
+
+        -- no empty blocks allowed, "null;" is the empty statement.
+        null;
+    end Main;
+
+The context clause describes dependencies on library "packages", the declarative part
+allows declaring and defining functions and variables, and the executable start is
+linearly executable code.
+
 Ada uses packages as proper modules instead of including files with a
-preprocessor.
+preprocessor. Libraries are brought in using ``with``, with the dots in the name
+describing the package path.  ``Terminal`` here is a child package of ``GNATCOLL``.
+
+Unlike other languages, the entry procedure for an Ada program doesn't need to named ``main``.
+Files defining program entries define your main function, but all functionality
+must be brought in from libraries or in the declaration block of the main function.
+
+Library "packages" follow a similar, but slightly different format than main files.
+Packages get split between a public interface, described in a ``.ads`` file, while the package
+body is in an ``.adb`` file.  This is similar to the header/source separation in
+C or C++ libraries, except the compiler treats these as real entities.
+
+Packages operate like namespaces, but also modules.  Packages can even include a ``begin``
+section of initialization code to run before starting the main function, and describe
+startup dependencies between packages.
+
+Expression functions help knock down verboseness
+------------------------------------------------------------------------------
+
+Ada 2012 adds "expression functions" where instead of a full ``is begin ... end``
+you can just wrap the expression describing the value to return in parentheses.
+This made the vector implementation surprisingly terse.
+
+.. code-block:: Ada
+
+    function Reflect (V, N: Vec3) return Vec3 is (V - 2.0 * Dot (V, N) * N);
 
 Semantic for types ("derived types") in Ada
 ------------------------------------------------------------------------------
@@ -143,17 +240,6 @@ You see this lack of perfect forwarding and the copy required in ``RT.Materials`
         Ptr.Set (Mat);
         return Ptr;
     end Make_Material;
-
-Expression functions help knock down verboseness
-------------------------------------------------------------------------------
-
-Ada 2012 adds "expression functions" where instead of a full ``is begin ... end``
-you can just wrap the expression describing the value to return in parentheses.
-This made the vector implementation surprisingly terse.
-
-.. code-block:: Ada
-
-    function Reflect (V, N: Vec3) return Vec3 is (V - 2.0 * Dot (V, N) * N);
 
 One line, 30% of runtime CPU
 ------------------------------------------------------------------------------
