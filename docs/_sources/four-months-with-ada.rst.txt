@@ -47,9 +47,9 @@ Everything in a package is related, there's no syntactical split between "free f
         type Vec3 is record
             X, Y, Z : F32 := 0.0;
         end record;
-
+        
         function Length (V : Vec3) return F32;
-
+        
         -- Is this a free function, a class function or a member function (method)?
         -- It doesn't really matter, because it's declared the same.
         function Dot (A, B : Vec3) return F32;
@@ -74,7 +74,7 @@ Leading parameters determine if one would be considered a member function ("meth
         type Case_Sensitive_Match_Filter is new Filter with record
             Text : Unbounded_String;
         end record;
-
+        
         -- An overridden method of a base class.
         overriding function Matches_Line (F : Case_Sensitive_Match_Filter; Str : String) return Boolean;
 
@@ -172,7 +172,7 @@ Enumeration Types
 =================
 
 Enumeration types have first class support, with many automatically generated attributes.
-``'First`` and ``'Last`` get the bounds of the values and ``'Pred`` (predecessor) and ``'Succ`` move between individual values.
+``'First`` and ``'Last`` to get the bounds of the values and ``'Pred`` (predecessor) and ``'Succ`` for individual values.
 Iteration over all values and conversions to and from strings and integers get provided for free.
 Together, these attributes and iteration capability allow writing of generic code which operates on discrete types like integers, or enumerations.
 
@@ -188,7 +188,7 @@ Together, these attributes and iteration capability allow writing of generic cod
         Exclude => 3
     );
 
-    -- Allow conversion to get the values out
+    -- Allow conversion to get the values out    
     function Repr is new Ada.Unchecked_Conversion(Filter_Action, Integer);
 
     procedure Print_Actions is
@@ -198,7 +198,7 @@ Together, these attributes and iteration capability allow writing of generic cod
         pragma Assert(Exclude = Filter_Action'Val(1));
         pragma Assert(0 = Filter_Action'Pos(Keep));
         pragma Assert(1 = Filter_Action'Pos(Exclude));
-
+        
         -- Comparison operators
         pragma Assert(Keep /= Exclude);  -- /= is Ada's not equal (i.e. !=)
         pragma Assert(Keep < Exclude);
@@ -211,10 +211,11 @@ Together, these attributes and iteration capability allow writing of generic cod
         -- Parsing from string
         pragma Assert(Filter_Action'Value("KEEP") = Keep);
         pragma Assert(Filter_Action'Value("Exclude") = Exclude);
-
+        
         -- Getting underlying representation
         pragma Assert(2 = Repr(Keep));
         pragma Assert(3 = Repr(Exclude));
+
 
         for Action in Filter_Action loop
             Ada.Text_IO.Put_Line(Action'Image);  -- Prints KEEP and then EXCLUDE
@@ -228,7 +229,7 @@ Since arrays operate using a discrete type as an index, enumerations can be used
     type Test_Status is (Passed, Failed, Skipped);
     type Test_Report is array (Test_Status) of Natural;
 
-    procedure Foo is
+    procedure Foo is 
         Report : Test_Report;
     begin
         -- ...
