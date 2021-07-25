@@ -1,0 +1,596 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Four Months with Ada &mdash; Programming with Ada  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Ray Tracing in One Weekend… in Ada" href="ray-tracing-in-one-weekend.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Programming with Ada
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Feature Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="five-structural-elements.html">The Big Five Structural Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="packages.html">Note on Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="packages.html#packages-the-building-blocks-of-ada">Packages, the Building Blocks of Ada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-techniques.html">Advanced Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comparison.html">Comparing Ada to Other Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comparison.html#terminology">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ray-tracing-in-one-weekend.html">Ray Tracing in One Weekend… in Ada</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Four Months with Ada</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#a-free-function-focused-c-or-a-strongly-typed-c">A Free-Function Focused C++, or a Strongly Typed C</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#focus-on-intent">Focus on Intent</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#parameter-modes">Parameter Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#derived-types">Derived Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enumeration-types">Enumeration Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pre-and-post-conditions">Pre- and Post-Conditions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#discriminants">Discriminants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#protected-objects">Protected Objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tasks">Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#generics">Generics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#low-level-control">Low Level Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hurdles-to-adoption">Hurdles to Adoption</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#license-confusion">License Confusion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#alire">Alire</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cross-platform-behavior">Cross-Platform Behavior</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Programming with Ada</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Four Months with Ada</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/four-months-with-ada.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+           <div itemprop="articleBody">
+            
+  <div class="section" id="four-months-with-ada">
+<h1>Four Months with Ada<a class="headerlink" href="#four-months-with-ada" title="Permalink to this headline">¶</a></h1>
+<p>For the last four months I’ve been learning and writing Ada 2012.
+This is a more in-depth examination of the language.
+For those unfamiliar with Ada terms, I’ll using the vernacular common to C family languages.
+This will make Ada programmers cringe, but will be much more clear to the general reader.</p>
+<div class="section" id="a-free-function-focused-c-or-a-strongly-typed-c">
+<h2>A Free-Function Focused C++, or a Strongly Typed C<a class="headerlink" href="#a-free-function-focused-c-or-a-strongly-typed-c" title="Permalink to this headline">¶</a></h2>
+<p>Ada focuses on creating packages of code which contain types and functions.
+There’s no preprocessor, so instead of <code class="docutils literal notranslate"><span class="pre">#include</span></code>, you <code class="docutils literal notranslate"><span class="pre">with</span></code> packages which contain what you need.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kn">with</span> <span class="nn">RT.Vecs</span><span class="p">;</span> <span class="c1">-- depend on another package, RT.Vecs</span>
+
+<span class="kd">package</span> <span class="nc">RT.Rays</span> <span class="kr">is</span>
+    <span class="kn">use</span> <span class="nn">RT.Vecs</span><span class="p">;</span>  <span class="c1">-- use the names inside RT.Vecs</span>
+
+    <span class="kd">type</span> <span class="kt">Ray</span> <span class="kr">is</span> <span class="kr">record</span>
+        <span class="n">Origin</span>    <span class="p">:</span> <span class="n">Point3</span><span class="p">;</span>
+        <span class="n">Direction</span> <span class="p">:</span> <span class="n">Vec3</span><span class="p">;</span>
+    <span class="kr">end record</span><span class="p">;</span>
+
+    <span class="kd">function</span> <span class="nf">Point_At</span><span class="p">(</span><span class="nv">R</span> <span class="p">: </span><span class="nv">Ray</span><span class="p">;</span> <span class="nv">T</span><span class="p">: </span><span class="nv">F32</span><span class="p">)</span> <span class="kr">return</span> <span class="n">Point3</span><span class="p">;</span>
+
+<span class="kr">end</span> <span class="nf">RT.Rays</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Packages are namespaces for functions and types, unlike other languages where types can “contain” functions and types.
+Function overloading acts as a key design element, made clear by the lack of implicit casts.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Idiomatic versions of &quot;ToString&quot;</span>
+<span class="kd">function</span> <span class="nf">Image</span><span class="p">(</span><span class="nv">S</span> <span class="p">: </span><span class="nv">Some_Type</span><span class="p">)</span> <span class="kr">return</span> <span class="kt">String</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nf">Image</span><span class="p">(</span><span class="nv">A</span> <span class="p">: </span><span class="nv">Another_Type</span><span class="p">)</span> <span class="kr">return</span> <span class="kt">String</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Everything in a package is related, there’s no syntactical split between “free function”, “class function”, or “member function” (method).</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">package</span> <span class="nc">RT.Vecs</span> <span class="kr">is</span>
+    <span class="kd">type</span> <span class="kt">Vec3</span> <span class="kr">is</span> <span class="kr">record</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Z</span> <span class="p">:</span> <span class="n">F32</span> <span class="p">:=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="kr">end record</span><span class="p">;</span>
+
+    <span class="kd">function</span> <span class="nf">Length</span> <span class="p">(</span><span class="nv">V</span> <span class="p">: </span><span class="nv">Vec3</span><span class="p">)</span> <span class="kr">return</span> <span class="n">F32</span><span class="p">;</span>
+
+    <span class="c1">-- Is this a free function, a class function or a member function (method)?</span>
+    <span class="c1">-- It doesn&#39;t really matter, because it&#39;s declared the same.</span>
+    <span class="kd">function</span> <span class="nf">Dot</span> <span class="p">(</span><span class="nv">A</span><span class="p">,</span> <span class="nv">B</span> <span class="p">: </span><span class="nv">Vec3</span><span class="p">)</span> <span class="kr">return</span> <span class="n">F32</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nf">RT.Vecs</span>
+</pre></div>
+</div>
+<p>Functions all get declared similarly, only parameters and not syntax describes free functions vs instance functions.
+Leading parameters determine if one would be considered a member function (“methods”).</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">package</span> <span class="nc">SP.Filters</span> <span class="kr">is</span>
+    <span class="c1">-- An empty &quot;abstract class&quot;</span>
+    <span class="kd">type</span> <span class="kt">Filter</span> <span class="kr">is</span> <span class="kr">abstract</span> <span class="kr">tagged</span> <span class="kr">null record</span><span class="p">;</span>
+
+    <span class="c1">-- A &quot;pure virtual method&quot;</span>
+    <span class="kd">function</span> <span class="nf">Matches_Line</span> <span class="p">(</span><span class="nv">F</span> <span class="p">: </span><span class="nv">Filter</span><span class="p">;</span> <span class="nv">Str</span> <span class="p">: </span><span class="nv">String</span><span class="p">)</span> <span class="kr">return</span> <span class="kt">Boolean</span> <span class="kr">is</span> <span class="kr">abstract</span><span class="p">;</span>
+
+    <span class="c1">-- Accepts any derived class of Filter</span>
+    <span class="kd">function</span> <span class="nf">Matches_File</span> <span class="p">(</span><span class="nv">F</span> <span class="p">: </span><span class="nv">Filter</span><span class="p">&#39;</span><span class="na">Class</span><span class="p">;</span> <span class="nv">Lines</span> <span class="p">: </span><span class="nv">String_Vectors</span><span class="p">.</span><span class="nv">Vector</span><span class="p">)</span> <span class="kr">return</span> <span class="kt">Boolean</span><span class="p">;</span>
+
+    <span class="c1">-- A &quot;subclass&quot;</span>
+    <span class="kd">type</span> <span class="kt">Case_Sensitive_Match_Filter</span> <span class="kr">is</span> <span class="kr">new</span> <span class="n">Filter</span> <span class="kr">with</span> <span class="kr">record</span>
+        <span class="n">Text</span> <span class="p">:</span> <span class="n">Unbounded_String</span><span class="p">;</span>
+    <span class="kr">end record</span><span class="p">;</span>
+
+    <span class="c1">-- An overridden method of a base class.</span>
+    <span class="kr">overriding</span> <span class="kd">function</span> <span class="nf">Matches_Line</span> <span class="p">(</span><span class="nv">F</span> <span class="p">: </span><span class="nv">Case_Sensitive_Match_Filter</span><span class="p">;</span> <span class="nv">Str</span> <span class="p">: </span><span class="nv">String</span><span class="p">)</span> <span class="kr">return</span> <span class="kt">Boolean</span><span class="p">;</span>
+
+    <span class="c1">-- &quot;Free-function&quot; which is just part of the package.</span>
+    <span class="kd">function</span> <span class="nf">Is_Quoted</span> <span class="p">(</span><span class="nv">S</span> <span class="p">: </span><span class="nv">String</span><span class="p">)</span> <span class="kr">return</span> <span class="kt">Boolean</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nf">SP.Filters</span>
+</pre></div>
+</div>
+<p>Packages are split between a “specification” (.ads file) and a “body” (.adb file), akin to the “header” and “source” files you encounter in C/C++.
+However, this distinction is understood at the language level.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">package</span> <span class="kd">body</span> <span class="nc">RT.Rays</span> <span class="kr">is</span>
+    <span class="c1">-- Use all the operators of Vec3</span>
+    <span class="kn">use</span> <span class="nn">all</span> <span class="kd">type</span> <span class="kt">RT</span><span class="p">.</span><span class="n">Vecs</span><span class="p">.</span><span class="n">Vec3</span><span class="p">;</span>
+
+    <span class="kd">function</span> <span class="nf">Point_At</span><span class="p">(</span><span class="nv">R</span> <span class="p">: </span><span class="nv">Ray</span><span class="p">;</span> <span class="nv">T</span><span class="p">: </span><span class="nv">F32</span><span class="p">)</span> <span class="kr">return</span> <span class="n">Point3</span> <span class="kr">is</span> <span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="n">Origin</span> <span class="o">+</span> <span class="n">T</span> <span class="o">*</span> <span class="n">R</span><span class="p">.</span><span class="n">Direction</span><span class="p">);</span>
+<span class="kr">end</span> <span class="nf">RT.Rays</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Packages can contain startup code executed by the “environment task” prior to entering the main procedure for initialization.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">package</span> <span class="kd">body</span> <span class="nc">RT.Debug</span> <span class="kr">is</span>
+<span class="kr">begin</span>
+    <span class="n">Ada</span><span class="p">.</span><span class="n">Text_IO</span><span class="p">.</span><span class="n">Put_Line</span><span class="p">(</span><span class="s">&quot;Executed before the program enters the main function!&quot;</span><span class="p">);</span>
+<span class="kr">end</span> <span class="nf">RT.Debug</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="focus-on-intent">
+<h2>Focus on Intent<a class="headerlink" href="#focus-on-intent" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="parameter-modes">
+<h3>Parameter Modes<a class="headerlink" href="#parameter-modes" title="Permalink to this headline">¶</a></h3>
+<p>Ada source focuses on describing intent and modeling semantics.
+For example, function parameters can be either <code class="docutils literal notranslate"><span class="pre">in</span></code>, <code class="docutils literal notranslate"><span class="pre">out</span></code>, or both.
+<code class="docutils literal notranslate"><span class="pre">in</span></code> parameters are readonly, and while you can force passing by reference via specifics in the language, you often just ignore how this happens.
+You can omit <code class="docutils literal notranslate"><span class="pre">in</span></code> parameters.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">procedure</span> <span class="nf">Clear_Filters</span> <span class="p">(</span><span class="nv">Srch</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">out</span> <span class="nv">Search</span><span class="p">);</span>
+
+<span class="c1">-- Like a &quot;const&quot; member function in C++, which can&#39;t modify its argument</span>
+<span class="c1">-- Could also be declared like this:</span>
+<span class="c1">-- function Num_Files (Srch : Search) return Natural;</span>
+<span class="kd">function</span> <span class="nf">Num_Files</span> <span class="p">(</span><span class="nv">Srch</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">Search</span><span class="p">)</span> <span class="kr">return</span> <span class="kt">Natural</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="derived-types">
+<h3>Derived Types<a class="headerlink" href="#derived-types" title="Permalink to this headline">¶</a></h3>
+<p>Describing semantics goes all the way into primitive types, and the rules are consistent between primitive and user-defined types.
+Creating lightweight types with domain-specific meaning, prevents mishandling of semantics on primitive types due to no implicit casting.
+Interfaces rarely use <code class="docutils literal notranslate"><span class="pre">Integer</span></code> or <code class="docutils literal notranslate"><span class="pre">Float</span></code> directly, instead you’ll find semantic versions (“derived types”) created such as “Meters” or “Kilometers”.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="kt">Seconds</span> <span class="kr">is</span> <span class="kr">new</span> <span class="kt">Natural</span><span class="p">;</span>
+<span class="kd">type</span> <span class="kt">Milliseconds</span> <span class="kr">is</span> <span class="kr">new</span> <span class="kt">Natural</span><span class="p">;</span>
+
+<span class="n">S</span> <span class="p">:</span> <span class="n">Seconds</span> <span class="p">:=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">M</span> <span class="p">:</span> <span class="n">Milliseconds</span> <span class="p">:=</span> <span class="mi">50</span><span class="p">;</span>
+
+<span class="n">M</span> <span class="p">:=</span> <span class="n">S</span><span class="p">;</span>                       <span class="c1">-- Compile error!</span>
+<span class="n">M</span> <span class="p">:=</span> <span class="n">Milliseconds</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="n">S</span><span class="p">);</span> <span class="c1">-- Allowed because I told compiler it&#39;s ok</span>
+</pre></div>
+</div>
+<p>Function overloading checks parameters as well as return types, so creating functions and transforms of types is straightforward.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">procedure</span> <span class="nf">Update</span> <span class="p">(</span><span class="nv">S</span> <span class="p">: </span><span class="nv">Seconds</span><span class="p">);</span>
+<span class="kd">procedure</span> <span class="nf">Update</span> <span class="p">(</span><span class="nv">M</span> <span class="p">: </span><span class="nv">Milliseconds</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nf">Delta_Time</span> <span class="nf">return</span> <span class="nf">Seconds</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nf">Delta_Time</span> <span class="nf">return</span> <span class="nf">Milliseconds</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Compile and runtime checks provide bounds-checking and numerical types can have their bounds constrained to “known good” values.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Let&#39;s write this with our own defined range, only allowing less than 60 seconds.</span>
+<span class="c1">-- type Seconds is new Natural;</span>
+<span class="kd">type</span> <span class="kt">Seconds</span> <span class="kr">is</span> <span class="kr">new</span> <span class="kt">Integer</span> <span class="kr">range</span> <span class="mi">0</span> <span class="p">..</span> <span class="mi">59</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>You can also access the ranges of types with the <code class="docutils literal notranslate"><span class="pre">'First</span></code> and <code class="docutils literal notranslate"><span class="pre">'Last</span></code> attributes (read as “tick first” and “tick last”).</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kr">pragma</span> <span class="cp">Assert</span><span class="p">(</span><span class="n">Seconds</span><span class="p">&#39;</span><span class="na">First</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span>
+<span class="kr">pragma</span> <span class="cp">Assert</span><span class="p">(</span><span class="n">Seconds</span><span class="p">&#39;</span><span class="na">Last</span> <span class="o">=</span> <span class="mi">59</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="enumeration-types">
+<h3>Enumeration Types<a class="headerlink" href="#enumeration-types" title="Permalink to this headline">¶</a></h3>
+<p>Enumeration types have first class support, with many automatically generated attributes.
+<code class="docutils literal notranslate"><span class="pre">'First</span></code> and <code class="docutils literal notranslate"><span class="pre">'Last</span></code> get the bounds of the values and <code class="docutils literal notranslate"><span class="pre">'Pred</span></code> (predecessor) and <code class="docutils literal notranslate"><span class="pre">'Succ</span></code> move between individual values.
+Iteration over all values and conversions to and from strings and integers get provided for free.
+Together, these attributes and iteration capability allow writing of generic code which operates on discrete types like integers, or enumerations.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kn">with</span> <span class="nn">Ada.Unchecked_Conversion</span><span class="p">;</span>
+
+<span class="kd">type</span> <span class="kt">Filter_Action</span> <span class="kr">is</span> <span class="p">(</span><span class="nv">Keep</span><span class="p">,</span> <span class="nv">Exclude</span><span class="p">);</span>
+
+<span class="c1">-- Specify internal values for the enumeration (optional).</span>
+<span class="kr">for</span> <span class="n">Filter_Action</span> <span class="kn">use</span> <span class="p">(</span>
+    <span class="n">Keep</span> <span class="p">=&gt;</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">Exclude</span> <span class="p">=&gt;</span> <span class="mi">3</span>
+<span class="p">);</span>
+
+<span class="c1">-- Allow conversion to get the values out</span>
+<span class="kd">function</span> <span class="nf">Repr</span> <span class="kr">is</span> <span class="kr">new</span> <span class="n">Ada</span><span class="p">.</span><span class="n">Unchecked_Conversion</span><span class="p">(</span><span class="n">Filter_Action</span><span class="p">,</span> <span class="kt">Integer</span><span class="p">);</span>
+
+<span class="kd">procedure</span> <span class="nf">Print_Actions</span> <span class="kr">is</span>
+<span class="kr">begin</span>
+    <span class="c1">-- Which order are they in?</span>
+    <span class="kr">pragma</span> <span class="cp">Assert</span><span class="p">(</span><span class="n">Keep</span> <span class="o">=</span> <span class="n">Filter_Action</span><span class="p">&#39;</span><span class="na">Val</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+    <span class="kr">pragma</span> <span class="cp">Assert</span><span class="p">(</span><span class="n">Exclude</span> <span class="o">=</span> <span class="n">Filter_Action</span><span class="p">&#39;</span><span class="na">Val</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+    <span class="kr">pragma</span> <span class="cp">Assert</span><span class="p">(</span><span class="mi">0</span> <span class="o">=</span> <span class="n">Filter_Action</span><span class="p">&#39;</span><span class="na">Pos</span><span class="p">(</span><span class="n">Keep</span><span class="p">));</span>
+    <span class="kr">pragma</span> <span class="cp">Assert</span><span class="p">(</span><span class="mi">1</span> <span class="o">=</span> <span class="n">Filter_Action</span><span class="p">&#39;</span><span class="na">Pos</span><span class="p">(</span><span class="n">Exclude</span><span class="p">));</span>
+
+    <span class="c1">-- Comparison operators</span>
+    <span class="kr">pragma</span> <span class="cp">Assert</span><span class="p">(</span><span class="n">Keep</span> <span class="o">/=</span> <span class="n">Exclude</span><span class="p">);</span>  <span class="c1">-- /= is Ada&#39;s not equal (i.e. !=)</span>
+    <span class="kr">pragma</span> <span class="cp">Assert</span><span class="p">(</span><span class="n">Keep</span> <span class="o">&lt;</span> <span class="n">Exclude</span><span class="p">);</span>
+
+    <span class="kr">pragma</span> <span class="cp">Assert</span><span class="p">(</span><span class="n">Filter_Action</span><span class="p">&#39;</span><span class="na">First</span> <span class="o">=</span> <span class="n">Keep</span><span class="p">);</span>
+    <span class="kr">pragma</span> <span class="cp">Assert</span><span class="p">(</span><span class="n">Filter_Action</span><span class="p">&#39;</span><span class="na">Last</span> <span class="o">=</span> <span class="n">Exclude</span><span class="p">);</span>
+    <span class="kr">pragma</span> <span class="cp">Assert</span><span class="p">(</span><span class="n">Filter_Action</span><span class="p">&#39;</span><span class="na">Succ</span><span class="p">(</span><span class="n">Keep</span><span class="p">)</span> <span class="o">=</span> <span class="n">Exclude</span><span class="p">);</span>
+    <span class="kr">pragma</span> <span class="cp">Assert</span><span class="p">(</span><span class="n">Filter_Action</span><span class="p">&#39;</span><span class="na">Pred</span><span class="p">(</span><span class="n">Exclude</span><span class="p">)</span> <span class="o">=</span> <span class="n">Keep</span><span class="p">);</span>
+
+    <span class="c1">-- Parsing from string</span>
+    <span class="kr">pragma</span> <span class="cp">Assert</span><span class="p">(</span><span class="n">Filter_Action</span><span class="p">&#39;</span><span class="na">Value</span><span class="p">(</span><span class="s">&quot;KEEP&quot;</span><span class="p">)</span> <span class="o">=</span> <span class="n">Keep</span><span class="p">);</span>
+    <span class="kr">pragma</span> <span class="cp">Assert</span><span class="p">(</span><span class="n">Filter_Action</span><span class="p">&#39;</span><span class="na">Value</span><span class="p">(</span><span class="s">&quot;Exclude&quot;</span><span class="p">)</span> <span class="o">=</span> <span class="n">Exclude</span><span class="p">);</span>
+
+    <span class="c1">-- Getting underlying representation</span>
+    <span class="kr">pragma</span> <span class="cp">Assert</span><span class="p">(</span><span class="mi">2</span> <span class="o">=</span> <span class="n">Repr</span><span class="p">(</span><span class="n">Keep</span><span class="p">));</span>
+    <span class="kr">pragma</span> <span class="cp">Assert</span><span class="p">(</span><span class="mi">3</span> <span class="o">=</span> <span class="n">Repr</span><span class="p">(</span><span class="n">Exclude</span><span class="p">));</span>
+
+    <span class="kr">for</span> <span class="n">Action</span> <span class="ow">in</span> <span class="n">Filter_Action</span> <span class="kr">loop</span>
+        <span class="n">Ada</span><span class="p">.</span><span class="n">Text_IO</span><span class="p">.</span><span class="n">Put_Line</span><span class="p">(</span><span class="n">Action</span><span class="p">&#39;</span><span class="na">Image</span><span class="p">);</span>  <span class="c1">-- Prints KEEP and then EXCLUDE</span>
+    <span class="kr">end</span> <span class="kr">loop</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nf">Print_Actions</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Since arrays operate using a discrete type as an index, enumerations can be used as the type to index into an array.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="kt">Test_Status</span> <span class="kr">is</span> <span class="p">(</span><span class="nv">Passed</span><span class="p">,</span> <span class="nv">Failed</span><span class="p">,</span> <span class="nv">Skipped</span><span class="p">);</span>
+<span class="kd">type</span> <span class="kt">Test_Report</span> <span class="kr">is</span> <span class="kr">array</span> <span class="p">(</span><span class="n">Test_Status</span><span class="p">)</span> <span class="kr">of</span> <span class="kt">Natural</span><span class="p">;</span>
+
+<span class="kd">procedure</span> <span class="nf">Foo</span> <span class="kr">is</span>
+    <span class="n">Report</span> <span class="p">:</span> <span class="n">Test_Report</span><span class="p">;</span>
+<span class="kr">begin</span>
+    <span class="c1">-- ...</span>
+
+    <span class="c1">-- Increment number of passed tests.</span>
+    <span class="n">Report</span><span class="p">(</span><span class="n">Passed</span><span class="p">)</span> <span class="p">:=</span> <span class="n">Report</span><span class="p">(</span><span class="n">Passed</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="c1">-- ...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pre-and-post-conditions">
+<h3>Pre- and Post-Conditions<a class="headerlink" href="#pre-and-post-conditions" title="Permalink to this headline">¶</a></h3>
+<p>Ada adds built-in support for pre and post conditions, through the use of “aspects.”
+This is a “killer feature” of Ada 2012, on top of all of the other type checking and safety checking, pre and post conditions get provided as part of the specification of the function.
+Clients can see it as part of the interface and the compiler inserts runtime checks if enabled.
+A lot of languages have an assertion mechanism which often effectively gets used for these checks, but a built-in way of doing this which shows up in the interface is a major game changer.
+I found that adding pre and post condition checks during debugging to be a very effective tool.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">Merge</span> <span class="p">(</span><span class="nv">A</span><span class="p">,</span> <span class="nv">B</span> <span class="p">: </span><span class="nv">Context_Match</span><span class="p">)</span> <span class="kr">return</span> <span class="n">Context_Match</span> <span class="kn">with</span>
+    <span class="nn">Pre</span>  <span class="p">=&gt;</span> <span class="n">Is_Valid</span> <span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="ow">and then</span> <span class="n">Is_Valid</span> <span class="p">(</span><span class="n">B</span><span class="p">),</span>
+    <span class="n">Post</span> <span class="p">=&gt;</span> <span class="n">Is_Valid</span> <span class="p">(</span><span class="n">Merge</span><span class="p">&#39;</span><span class="na">Result</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Types which expose no private state can also have type invariants which are checked prior to usage as function arguments and after assignments.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="kt">Spinner</span> <span class="kr">is</span> <span class="kr">record</span>
+    <span class="n">Ticks_Per_Move</span> <span class="p">:</span> <span class="kt">Positive</span><span class="p">;</span>
+    <span class="n">Ticks</span>          <span class="p">:</span> <span class="kt">Natural</span><span class="p">;</span>
+    <span class="n">State</span>          <span class="p">:</span> <span class="n">Spinner_State</span><span class="p">;</span>
+    <span class="n">Style</span>          <span class="p">:</span> <span class="n">Spinner_Style</span><span class="p">;</span>
+<span class="kr">end record</span> <span class="kr">with</span>
+    <span class="n">Type_Invariant</span> <span class="p">=&gt;</span> <span class="n">Ticks</span> <span class="o">&lt;</span> <span class="n">Ticks_Per_Move</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="discriminants">
+<h3>Discriminants<a class="headerlink" href="#discriminants" title="Permalink to this headline">¶</a></h3>
+<p>Another strange concept which I hadn’t seen before, is that types can be “parameterized” at runtime using what is called a “discriminant.”
+It’s a sort of read-only constant field which is part of the record.</p>
+<p>This read only value becomes part of the type and whether explicitly described or not affects type checking.
+An extremely commonly used one is with the built-in String type in which the string’s length is given by the discriminant.</p>
+</div>
+<div class="section" id="protected-objects">
+<h3>Protected Objects<a class="headerlink" href="#protected-objects" title="Permalink to this headline">¶</a></h3>
+<p>Protected objects coordinate concurrent access to shared state.
+The control can also include arbitrarily complex conditionals as well, such as not allowing any writers when readers exist, or blocking any more readers when a writer is waiting.</p>
+</div>
+<div class="section" id="tasks">
+<h3>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h3>
+<p>Tasks provide concurrent execution.
+Additionally, they have special procedures called “entries” which can be “accepted” by a related task during its flow of execution to synchronize (rendezvous) with other tasks and share data at these points.</p>
+<p>Tasks run concurrently in the block in which they’re declared, and the block will not exit until the task finishes or terminates, unless it is allocated on the heap.</p>
+<p>Both single instance and instantiable versions of protected objects and tasks can be created.</p>
+</div>
+<div class="section" id="generics">
+<h3>Generics<a class="headerlink" href="#generics" title="Permalink to this headline">¶</a></h3>
+<p>Generic packages or functions must be explicitly instantiated for use.
+This eliminates the debate of angled brackes (&lt;&gt;) versus square brackets for generics ([]), but leads to additional names being created.
+The benefit of this is making their usage, and hence their cost, explicit, at the expense of verboseness.</p>
+</div>
+</div>
+<div class="section" id="low-level-control">
+<h2>Low Level Control<a class="headerlink" href="#low-level-control" title="Permalink to this headline">¶</a></h2>
+<p>Accessing C functions and compiler intrinsics is straightforward.
+You create a declaration of the subprogram and then describe where it comes from using aspects or the <code class="docutils literal notranslate"><span class="pre">Import</span></code> pragma.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kn">with</span> <span class="nn">Interfaces.C</span><span class="p">;</span>
+
+<span class="kd">type</span> <span class="kt">FD</span> <span class="kr">is</span> <span class="kr">new</span> <span class="n">Interfaces</span><span class="p">.</span><span class="n">C</span><span class="p">.</span><span class="n">int</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nf">isatty</span> <span class="p">(</span><span class="nv">File_Descriptor</span> <span class="p">: </span><span class="nv">FD</span><span class="p">)</span> <span class="kr">return</span> <span class="n">BOOL</span> <span class="kn">with</span>
+    <span class="nn">Import</span>     <span class="p">=&gt;</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">Convention</span> <span class="p">=&gt;</span> <span class="n">C</span><span class="p">;</span>
+
+<span class="c1">-- Bring in the stdout file pointer from C</span>
+<span class="kd">type</span> <span class="kt">FILE_Ptr</span> <span class="kr">is</span> <span class="kr">new</span> <span class="n">System</span><span class="p">.</span><span class="kt">Address</span><span class="p">;</span>
+<span class="n">stdout</span> <span class="p">:</span> <span class="kr">aliased</span> <span class="n">FILE_Ptr</span><span class="p">;</span>
+<span class="kr">pragma</span> <span class="cp">Import</span> <span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="n">stdout</span><span class="p">,</span> <span class="s">&quot;stdout&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Using representation clauses makes it trivial to match C struct layout or binary formats such as for files.
+Since the usage is the same as with an Ada function, imported functions can be replaced easily if needed.
+Inline assembler is also available, but due to the lack of a preprocessor, the build system (gpr) is leveraged to choose the appropriate definition (body) file to compile.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">File_Line</span> <span class="nf">return</span> <span class="nf">Natural</span><span class="p">;</span>
+<span class="kr">pragma</span> <span class="cp">Import</span> <span class="p">(</span><span class="n">Intrinsic</span><span class="p">,</span> <span class="n">File_Line</span><span class="p">,</span> <span class="s">&quot;__builtin_LINE&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="hurdles-to-adoption">
+<h2>Hurdles to Adoption<a class="headerlink" href="#hurdles-to-adoption" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="license-confusion">
+<h3>License Confusion<a class="headerlink" href="#license-confusion" title="Permalink to this headline">¶</a></h3>
+<p>The material and information provided on this site is for general information
+purposesly only.</p>
+<p>I am not a not a lawyer and I am not providing legal advice.
+The information here is for informational purposes only and not for the purpose of providing legal advice.
+You should contact a qualified You should consult with a qualified and licensed lawyer</p>
+</div>
+</div>
+<div class="section" id="alire">
+<h2>Alire<a class="headerlink" href="#alire" title="Permalink to this headline">¶</a></h2>
+<p>Alire simplifies Ada development significantly, by simplifying project generation,
+building, running, and dependency management.</p>
+<p>It borrows heavily from Cargo.
+If good arts borrow, and great artists steal, then Ada is on par with Michaelangelo.
+In its quest for modernizing, many concepts of Rust’s cargo are being built in to a similar tool for Ada called Alire.
+This tool only went to 1.0 since I’ve been working with Ada, but iot simplifies building and editing considerably.
+Getting dependencies and setting up projects also gets streamlined significantly.
+The toolchain itself will eventually be integrated into this tool, so it will become a sort of one-stop shop for downloading things for Ada.</p>
+<p>There’s a bit of jank to get a crate into the manager.
+Every package and version update requires manual approval for now.
+While this prevents name squatting and ensures existing libraries can get their appropriate names,
+it can be frustrating waiting for approval even though things usually get approved quickly.</p>
+<p>You can use local unpublished versions as a dependency, which helps when developing libraries,
+and keeps you moving if you’re waiting that day for approval.</p>
+<p>Overall, Alire makes it incredibly easy to split up your project into multiple libraries.</p>
+<div class="section" id="cross-platform-behavior">
+<h3>Cross-Platform Behavior<a class="headerlink" href="#cross-platform-behavior" title="Permalink to this headline">¶</a></h3>
+<p>Alire hooks into GPRbuild’s external variable system for cross-platform behavior.</p>
+<div class="highlight-TOML notranslate"><div class="highlight"><pre><span></span><span class="c1"># alire.toml</span>
+<span class="c1"># Platform selection by Alire on download.</span>
+<span class="k">[gpr-set-externals.&#39;case(os)&#39;]</span>
+<span class="n">windows</span> <span class="o">=</span> <span class="p">{</span> <span class="n">Trendy_Terminal_Platform</span> <span class="o">=</span> <span class="s">&quot;windows&quot;</span> <span class="p">}</span>
+<span class="n">linux</span> <span class="o">=</span> <span class="p">{</span> <span class="n">Trendy_Terminal_Platform</span> <span class="o">=</span> <span class="s">&quot;linux&quot;</span> <span class="p">}</span>
+<span class="n">macos</span> <span class="o">=</span> <span class="p">{</span> <span class="n">Trendy_Terminal_Platform</span> <span class="o">=</span> <span class="s">&quot;macos&quot;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="c1">-- my_project.gpr</span>
+<span class="kd">type</span> <span class="kt">Platform_Type</span> <span class="kr">is</span> <span class="p">(</span><span class="s">&quot;windows&quot;</span><span class="p">,</span> <span class="s">&quot;linux&quot;</span><span class="p">,</span> <span class="s">&quot;macos&quot;</span><span class="p">);</span>
+<span class="n">Platform</span> <span class="p">:</span> <span class="n">Platform_Type</span> <span class="p">:=</span> <span class="n">external</span> <span class="p">(</span><span class="s">&quot;Trendy_Terminal_Platform&quot;</span><span class="p">);</span>
+<span class="kr">case</span> <span class="n">Platform</span> <span class="kr">is</span>
+    <span class="kr">when</span> <span class="s">&quot;windows&quot;</span> <span class="p">=&gt;</span> <span class="n">Trendy_Terminal_Sources</span> <span class="p">:=</span> <span class="n">Trendy_Terminal_Sources</span> <span class="o">&amp;</span> <span class="s">&quot;src/windows&quot;</span><span class="p">;</span>
+    <span class="kr">when</span> <span class="s">&quot;linux&quot;</span>   <span class="p">=&gt;</span> <span class="n">Trendy_Terminal_Sources</span> <span class="p">:=</span> <span class="n">Trendy_Terminal_Sources</span> <span class="o">&amp;</span> <span class="s">&quot;src/linux&quot;</span><span class="p">;</span>
+    <span class="kr">when</span> <span class="s">&quot;macos&quot;</span>   <span class="p">=&gt;</span> <span class="n">Trendy_Terminal_Sources</span> <span class="p">:=</span> <span class="n">Trendy_Terminal_Sources</span> <span class="o">&amp;</span> <span class="s">&quot;src/mac&quot;</span><span class="p">;</span>
+<span class="kr">end</span> <span class="kr">case</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Right now, Ada is a playground for library and tool writers.  It’s a mature language with
+excellent C compatibility in need of a lot of basic libraries.  In addition, it provides
+the means to create, distribute and use formally verified libraries.  This isn’t some
+hypothetical pipe dream anymore.  This means formally verified programs are here for
+the main stream.  adaCore does have the highest level selvers bheind a paywall of paid support,
+but “silver” level programs and libraries are here.</p>
+<p>Ada suffers from a lack of familiarity for many programmers due to being a Pascal family language and also its peculiar, but very specific vocabulary.
+It’s not as obscure to learn as you think it would be.
+The usage of keywords over punctuation helps ease many problems of dealign with an unfamiliar language.
+While this helps with googling, a lot of uncommon terms are specific to, or have Ada-specific terms.</p>
+<p># UNUSED, DO NOT SUBMIT</p>
+<p>Ada is a honey badger that just doesn’t care.</p>
+<p>Ada focuses on intent, usually describing the goal, rather than focusing on the method.</p>
+<p>The language writes like free-function focused C++, or a strongly typed C.
+Packages act as namespaces and though functions can be considered “primitive operations” of a type, types are not namespaces for functions or other types.
+These also act as namespaces for functions instead of types themselves, so no distinction exists between between how “free functions”, “class functions”, and “member functions” are declared, they’re all just functions within a package.
+This seems bizarre but it plays into the extensive use of function overloading in the language.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+    <a href="https://github.com/pyjarrett/programming-with-ada">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+    </a>
+
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="ray-tracing-in-one-weekend.html" class="btn btn-neutral float-left" title="Ray Tracing in One Weekend… in Ada" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -182,7 +182,7 @@ Together, these attributes and iteration capability allow writing of generic cod
 
     type Filter_Action is (Keep, Exclude);    
 
-    -- Specify internal values for the enumeration.
+    -- Specify internal values for the enumeration (optional).
     for Filter_Action use (
         Keep => 2,
         Exclude => 3
@@ -242,7 +242,7 @@ Since arrays operate using a discrete type as an index, enumerations can be used
 Pre- and Post-Conditions
 ========================
 
-Ada adds built-in support for pre and post conditions, through the use of language aspects.
+Ada adds built-in support for pre and post conditions, through the use of "aspects."
 This is a "killer feature" of Ada 2012, on top of all of the other type checking and safety checking, pre and post conditions get provided as part of the specification of the function.
 Clients can see it as part of the interface and the compiler inserts runtime checks if enabled.
 A lot of languages have an assertion mechanism which often effectively gets used for these checks, but a built-in way of doing this which shows up in the interface is a major game changer.
@@ -265,6 +265,8 @@ Types which expose no private state can also have type invariants which are chec
        Style          : Spinner_Style;
    end record with
        Type_Invariant => Ticks < Ticks_Per_Move;
+
+The pre-conditions and post-conditions can be used in SPARK analyses.
 
 Discriminants
 =============
@@ -298,16 +300,35 @@ Generic packages or functions must be explicitly instantiated for use.
 This eliminates the debate of angled brackes (<>) versus square brackets for generics ([]), but leads to additional names being created.
 The benefit of this is making their usage, and hence their cost, explicit, at the expense of verboseness.
 
-******************
-Low Level Controls
-******************
+*****************
+Low Level Control
+*****************
 
 Accessing C functions and compiler intrinsics is straightforward.
 You create a declaration of the subprogram and then describe where it comes from using aspects or the ``Import`` pragma.
+
+.. code-block :: Ada
+
+    with Interfaces.C;
+
+    type FD is new Interfaces.C.int;
+    function isatty (File_Descriptor : FD) return BOOL with
+        Import     => True,
+        Convention => C;
+
+    -- Bring in the stdout file pointer from C
+    type FILE_Ptr is new System.Address;
+    stdout : aliased FILE_Ptr;
+    pragma Import (C, stdout, "stdout");
+
 Using representation clauses makes it trivial to match C struct layout or binary formats such as for files.
 Since the usage is the same as with an Ada function, imported functions can be replaced easily if needed.
 Inline assembler is also available, but due to the lack of a preprocessor, the build system (gpr) is leveraged to choose the appropriate definition (body) file to compile.
 
+.. code-block :: Ada
+
+    function File_Line return Natural;
+    pragma Import (Intrinsic, File_Line, "__builtin_LINE");
 
 *******************
 Hurdles to Adoption
@@ -348,12 +369,40 @@ and keeps you moving if you're waiting that day for approval.
 
 Overall, Alire makes it incredibly easy to split up your project into multiple libraries.
 
+Cross-Platform Behavior
+=======================
+
+Alire hooks into GPRbuild's external variable system for cross-platform behavior.
+
+.. code-block :: TOML
+
+    # alire.toml
+    # Platform selection by Alire on download.
+    [gpr-set-externals.'case(os)']
+    windows = { Trendy_Terminal_Platform = "windows" }
+    linux = { Trendy_Terminal_Platform = "linux" }
+    macos = { Trendy_Terminal_Platform = "macos" }
+
+
+.. code-block :: Ada
+
+    -- my_project.gpr
+    type Platform_Type is ("windows", "linux", "macos");
+    Platform : Platform_Type := external ("Trendy_Terminal_Platform");
+    case Platform is
+        when "windows" => Trendy_Terminal_Sources := Trendy_Terminal_Sources & "src/windows";
+        when "linux"   => Trendy_Terminal_Sources := Trendy_Terminal_Sources & "src/linux";
+        when "macos"   => Trendy_Terminal_Sources := Trendy_Terminal_Sources & "src/mac";
+    end case;
+
 Right now, Ada is a playground for library and tool writers.  It's a mature language with
 excellent C compatibility in need of a lot of basic libraries.  In addition, it provides
 the means to create, distribute and use formally verified libraries.  This isn't some
 hypothetical pipe dream anymore.  This means formally verified programs are here for
 the main stream.  adaCore does have the highest level selvers bheind a paywall of paid support,
 but "silver" level programs and libraries are here.
+
+
 
 
 Ada suffers from a lack of familiarity for many programmers due to being a Pascal family language and also its peculiar, but very specific vocabulary.
