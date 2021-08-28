@@ -18,7 +18,7 @@ Programming with Ada
    comparison
    about
    ray-tracing-in-one-weekend
-   four-months-with-ada
+   four-months-summary
 
 Indices and tables
 ==================
