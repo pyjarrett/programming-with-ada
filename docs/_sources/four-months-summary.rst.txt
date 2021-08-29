@@ -30,7 +30,7 @@ Resources
 
 These are listed in order of what I used:
 
-* `learn.adacore.com <learn.adacore.com/>`_
+* `learn.adacore.com <https://learn.adacore.com/>`_
 
     * A good tutorial site.  It's enough to get you started.
 
