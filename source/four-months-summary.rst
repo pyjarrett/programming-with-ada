@@ -350,7 +350,6 @@ It's a language for formal verification which you can intermingle with Ada code.
 Think of it as sort of like ``extern C`` in C++, or ``unsafe`` in Rust, except it marks code as undergoing verification.
 Since it's a subset of Ada, in addition to verification, you get all the rest of the Ada tooling here, like Alire.
 Yes, there are SPARK formally verified crates in Alire, such as a `formally verified implementation of NaCl <https://alire.ada.dev/crates/sparknacl>`_.
-Unfortunately, the top tiers of analyses are `paid only <https://www.adacore.com/sparkpro>`_, but you can get data/information flow analyses, as well as guarantee of no runtime errors for free.
 
 ***************
 Focus on Intent
