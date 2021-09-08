@@ -1,7 +1,7 @@
 Being More Terse
 ==============================================================================
 
-Ada is known for being more long-winded than over languages because it prefers
+Ada is known for being more long-winded than other languages because it prefers
 keywords over symbology.  These techniques will help you compact your Ada text.
 
 Expression Functions
