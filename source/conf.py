@@ -14,13 +14,11 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-
 # -- Project information -----------------------------------------------------
 
 project = 'Programming with Ada'
 copyright = '2021'
 author = 'pyjarrett'
-
 
 # -- General configuration ---------------------------------------------------
 
@@ -31,7 +29,10 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
+    'sphinx.ext.extlinks',
 ]
+
+extlinks = {'crate': ('https://crates.io/crates/%s', '%s')}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
