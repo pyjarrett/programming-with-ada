@@ -15,6 +15,7 @@ Programming with Ada
    five-structural-elements
    packages
    advanced-techniques
+   being-terse
    comparison
    about
    ray-tracing-in-one-weekend
