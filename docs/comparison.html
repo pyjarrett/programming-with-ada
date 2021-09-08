@@ -279,7 +279,7 @@ units.</p></td>
 <tr class="row-odd"><td><p>Identifiers</p></td>
 <td><p>Can’t start with number or
 underscore, <strong>case insensitive</strong></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">[a-zA-Z0-9_][a-zA-Z0-9_]*</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[a-zA-Z_][a-zA-Z0-9_]*</span></code></p></td>
 <td><p>a non-empty unicode identifier</p></td>
 <td></td>
 </tr>
@@ -335,8 +335,8 @@ Other possible extensions exist (<code class="docutils literal notranslate"><spa
 <tr class="row-even"><td><p>Inline docs</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">--</span></code> before or after element</p></td>
 <td><p><cite>/** */</cite> or <cite>///</cite> (doxygen)</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">/**</span> <span class="pre">*/</span></code>, <cite>//!</cite></p></td>
-<td></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">//!</span></code>, <cite>///</cite></p></td>
+<td><p>Rust: Includes doc tests.</p></td>
 </tr>
 <tr class="row-odd"><td colspan="5"><p><strong>Program Structure</strong></p></td>
 </tr>
