@@ -318,7 +318,7 @@ for them.  Names inside package bodies won’t be visible.</p>
 <p>Some packages provide well-recognizable subprograms and hence cannot be confused
 easily.  When used often, using the package at the file scope can cut down
 significantly on verboseness.</p>
-<div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="kn">with</span> <span class="nn">Ada.Text_IO</span><span class="p">;</span>
+<div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="kn">with</span> <span class="nn">Ada.Text_IO</span><span class="p">;</span>  <span class="kn">use</span> <span class="nn">Ada.Text_IO</span><span class="p">;</span>
 <span class="kd">package</span> <span class="kd">body</span> <span class="nc">Hello_World</span> <span class="kr">is</span>
     <span class="kd">procedure</span> <span class="nf">Greet</span> <span class="kr">is</span>
     <span class="kr">begin</span>

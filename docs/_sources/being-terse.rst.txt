@@ -161,7 +161,7 @@ significantly on verboseness.
 
 .. code-block :: ada
 
-   with Ada.Text_IO;
+   with Ada.Text_IO;  use Ada.Text_IO;
    package body Hello_World is
        procedure Greet is
        begin
