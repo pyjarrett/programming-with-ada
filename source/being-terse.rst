@@ -1,8 +1,9 @@
 Being More Terse
 ==============================================================================
 
-Ada is known for being more long-winded than other languages because it prefers
-keywords over symbology.  These techniques will help you compact your Ada text.
+Ada is known for being more verbose than other languages because it prefers
+keywords over symbology.  These techniques can help you compact your Ada text
+where you need it.
 
 Expression Functions
 --------------------
@@ -66,7 +67,8 @@ Abbreviate conversions functions
    Toggles.Append(Ada.Strings.Unbounded.To_Unbounded_String("--verbose"));      
    Toggles.Append(Ada.Strings.Unbounded.To_Unbounded_String("--skip-errors"));                                                                                
                                                                                 
-The usage of ``"+"`` as a function to convert from ``String`` to ``Ada.Strings.Unbounded.Unbounded_String`` is common:
+The usage of ``"+"`` as a function to convert from ``String`` to
+``Ada.Strings.Unbounded.Unbounded_String`` is common:
 
 .. code-block:: ada                                                                         
                                                                                             
@@ -138,8 +140,8 @@ for them.  Names inside package bodies won't be visible.
    end Hello_World;
 
 
-Use a package at file scope, sparingly
---------------------------------------
+Use a package at file scope
+---------------------------
 
 .. code-block :: ada
 
@@ -156,8 +158,9 @@ Use a package at file scope, sparingly
    end Hello_World;
 
 Some packages provide well-recognizable subprograms and hence cannot be confused
-easily.  When used often, using the package at the file scope can cut down
-significantly on verboseness.
+easily.  When these symbols are used often, using the package at the file scope
+can cut down significantly on verboseness.  You're polluting the namespace
+heavily so this should be used judiciously.
 
 .. code-block :: ada
 

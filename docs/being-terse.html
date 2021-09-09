@@ -103,7 +103,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#abbreviate-conversions-functions">Abbreviate conversions functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#locally-define-helper-functions">Locally define helper functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#use-package-renames-within-package-body">Use package renames within <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">body</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#use-a-package-at-file-scope-sparingly">Use a package at file scope, sparingly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#use-a-package-at-file-scope">Use a package at file scope</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#provide-abstraction-without-introducing-more-code">Provide abstraction without introducing more code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rename-complicated-expressions">Rename complicated expressions</a></li>
 </ul>
@@ -183,8 +183,9 @@
             
   <div class="section" id="being-more-terse">
 <h1>Being More Terse<a class="headerlink" href="#being-more-terse" title="Permalink to this headline">¶</a></h1>
-<p>Ada is known for being more long-winded than other languages because it prefers
-keywords over symbology.  These techniques will help you compact your Ada text.</p>
+<p>Ada is known for being more verbose than other languages because it prefers
+keywords over symbology.  These techniques can help you compact your Ada text
+where you need it.</p>
 <div class="section" id="expression-functions">
 <h2>Expression Functions<a class="headerlink" href="#expression-functions" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">&quot;-&quot;</span><span class="p">(</span><span class="nv">V</span> <span class="p">: </span><span class="nv">Vec3</span><span class="p">)</span> <span class="kr">return</span> <span class="n">Vec3</span> <span class="kr">is</span>
@@ -236,7 +237,8 @@ section.  Just wrap your expression in parentheses.</p>
 <span class="n">Toggles</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="n">Ada</span><span class="p">.</span><span class="n">Strings</span><span class="p">.</span><span class="n">Unbounded</span><span class="p">.</span><span class="n">To_Unbounded_String</span><span class="p">(</span><span class="s">&quot;--skip-errors&quot;</span><span class="p">));</span>
 </pre></div>
 </div>
-<p>The usage of <code class="docutils literal notranslate"><span class="pre">&quot;+&quot;</span></code> as a function to convert from <code class="docutils literal notranslate"><span class="pre">String</span></code> to <code class="docutils literal notranslate"><span class="pre">Ada.Strings.Unbounded.Unbounded_String</span></code> is common:</p>
+<p>The usage of <code class="docutils literal notranslate"><span class="pre">&quot;+&quot;</span></code> as a function to convert from <code class="docutils literal notranslate"><span class="pre">String</span></code> to
+<code class="docutils literal notranslate"><span class="pre">Ada.Strings.Unbounded.Unbounded_String</span></code> is common:</p>
 <div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">&quot;+&quot;</span><span class="p">(</span><span class="nv">S</span> <span class="p">: </span><span class="nv">String</span><span class="p">)</span> <span class="kr">return</span> <span class="kt">String</span> <span class="kr">renames</span> <span class="n">Ada</span><span class="p">.</span><span class="n">Strings</span><span class="p">.</span><span class="n">Unbounded</span><span class="p">.</span><span class="n">To_Unbounded_String</span><span class="p">;</span>
 <span class="n">Toggles</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="o">+</span><span class="s">&quot;--verbose&quot;</span><span class="p">);</span>
 <span class="n">Toggles</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="o">+</span><span class="s">&quot;--skip-errors&quot;</span><span class="p">);</span>
@@ -300,8 +302,8 @@ for them.  Names inside package bodies won’t be visible.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="use-a-package-at-file-scope-sparingly">
-<h2>Use a package at file scope, sparingly<a class="headerlink" href="#use-a-package-at-file-scope-sparingly" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="use-a-package-at-file-scope">
+<h2>Use a package at file scope<a class="headerlink" href="#use-a-package-at-file-scope" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="kn">with</span> <span class="nn">Ada.Text_IO</span><span class="p">;</span>
 <span class="kd">package</span> <span class="kd">body</span> <span class="nc">Hello_World</span> <span class="kr">is</span>
     <span class="kd">package</span> <span class="nc">AIO</span> <span class="kr">renames</span> <span class="nc">Ada.Text_IO</span><span class="p">;</span>
@@ -316,8 +318,9 @@ for them.  Names inside package bodies won’t be visible.</p>
 </pre></div>
 </div>
 <p>Some packages provide well-recognizable subprograms and hence cannot be confused
-easily.  When used often, using the package at the file scope can cut down
-significantly on verboseness.</p>
+easily.  When these symbols are used often, using the package at the file scope
+can cut down significantly on verboseness.  You’re polluting the namespace
+heavily so this should be used judiciously.</p>
 <div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="kn">with</span> <span class="nn">Ada.Text_IO</span><span class="p">;</span>  <span class="kn">use</span> <span class="nn">Ada.Text_IO</span><span class="p">;</span>
 <span class="kd">package</span> <span class="kd">body</span> <span class="nc">Hello_World</span> <span class="kr">is</span>
     <span class="kd">procedure</span> <span class="nf">Greet</span> <span class="kr">is</span>
