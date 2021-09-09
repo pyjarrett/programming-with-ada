@@ -27,7 +27,7 @@ Don't repeat parameter types
 
 .. code-block:: ada                                
                                                    
-   function Add (Left : Integer, Right : Integer)  
+   function Add (Left : Integer; Right : Integer)
        return Integer;                             
 
 If parameter types repeat, you can group them.
