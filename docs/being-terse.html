@@ -101,6 +101,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#don-t-repeat-parameter-types">Don’t repeat parameter types</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#locally-use-packages">Locally use packages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#abbreviate-conversions-functions">Abbreviate conversions functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#use-default-parameters">Use default parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rename-functions-with-default-parameters">Rename functions with default parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#locally-define-helper-functions">Locally define helper functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#use-package-renames-within-package-body">Use package renames within <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">body</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#use-a-package-at-file-scope">Use a package at file scope</a></li>
@@ -202,7 +204,7 @@ section.  Just wrap your expression in parentheses.</p>
 </div>
 <div class="section" id="don-t-repeat-parameter-types">
 <h2>Don’t repeat parameter types<a class="headerlink" href="#don-t-repeat-parameter-types" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">Add</span> <span class="p">(</span><span class="nv">Left</span> <span class="p">: </span><span class="nv">Integer</span><span class="p">,</span> <span class="nv">Right</span> <span class="p">: </span><span class="nv">Integer</span><span class="p">)</span>
+<div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">Add</span> <span class="p">(</span><span class="nv">Left</span> <span class="p">: </span><span class="nv">Integer</span><span class="p">;</span> <span class="nv">Right</span> <span class="p">: </span><span class="nv">Integer</span><span class="p">)</span>
     <span class="kr">return</span> <span class="kt">Integer</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -242,6 +244,31 @@ section.  Just wrap your expression in parentheses.</p>
 <div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">&quot;+&quot;</span><span class="p">(</span><span class="nv">S</span> <span class="p">: </span><span class="nv">String</span><span class="p">)</span> <span class="kr">return</span> <span class="kt">String</span> <span class="kr">renames</span> <span class="n">Ada</span><span class="p">.</span><span class="n">Strings</span><span class="p">.</span><span class="n">Unbounded</span><span class="p">.</span><span class="n">To_Unbounded_String</span><span class="p">;</span>
 <span class="n">Toggles</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="o">+</span><span class="s">&quot;--verbose&quot;</span><span class="p">);</span>
 <span class="n">Toggles</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="o">+</span><span class="s">&quot;--skip-errors&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="use-default-parameters">
+<h2>Use default parameters<a class="headerlink" href="#use-default-parameters" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="n">S</span> <span class="p">:</span> <span class="n">Spinner</span> <span class="p">:=</span> <span class="n">Make</span> <span class="p">(</span><span class="n">In_Place</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Default parameters allow you to apply common parameter values.</p>
+<blockquote>
+<div><p>– When this function signature is used…
+function Make (Style : Spinner_Style := In_Place; Ticks_Per_Move : Positive := 1) return Spinner;</p>
+<p>S : Spinner := Make;</p>
+</div></blockquote>
+</div>
+<div class="section" id="rename-functions-with-default-parameters">
+<h2>Rename functions with default parameters<a class="headerlink" href="#rename-functions-with-default-parameters" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="n">S</span> <span class="p">:</span> <span class="kt">String</span> <span class="p">:=</span> <span class="n">Ada</span><span class="p">.</span><span class="n">Strings</span><span class="p">.</span><span class="n">Fixed</span><span class="p">.</span><span class="n">Trim</span> <span class="p">(</span><span class="s">&quot;  this is a string   &quot;</span><span class="p">,</span> <span class="n">Ada</span><span class="p">.</span><span class="n">Strings</span><span class="p">.</span><span class="n">Both</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>You can <code class="docutils literal notranslate"><span class="pre">rename</span></code> a function with bound default parameters.</p>
+<div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">Strip</span><span class="p">(</span><span class="nv">Input</span> <span class="p">: </span><span class="nv">String</span><span class="p">;</span> <span class="nv">Sides</span> <span class="p">: </span><span class="nv">Ada</span><span class="p">.</span><span class="nv">Strings</span><span class="p">.</span><span class="nv">Trim_End</span><span class="p">:=</span> <span class="nv">Ada</span><span class="p">.</span><span class="nv">Strings</span><span class="p">.</span><span class="nv">Both</span><span class="p">)</span>
+    <span class="kr">renames</span> <span class="n">Ada</span><span class="p">.</span><span class="n">Strings</span><span class="p">.</span><span class="n">Fixed</span><span class="p">.</span><span class="n">Trim</span><span class="p">;</span>
+
+<span class="n">S</span> <span class="p">:</span> <span class="kt">String</span> <span class="p">:=</span> <span class="n">Strip</span> <span class="p">(</span><span class="s">&quot;  this is a string   &quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -306,8 +333,6 @@ for them.  Names inside package bodies won’t be visible.</p>
 <h2>Use a package at file scope<a class="headerlink" href="#use-a-package-at-file-scope" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="kn">with</span> <span class="nn">Ada.Text_IO</span><span class="p">;</span>
 <span class="kd">package</span> <span class="kd">body</span> <span class="nc">Hello_World</span> <span class="kr">is</span>
-    <span class="kd">package</span> <span class="nc">AIO</span> <span class="kr">renames</span> <span class="nc">Ada.Text_IO</span><span class="p">;</span>
-
     <span class="kd">procedure</span> <span class="nf">Greet</span> <span class="kr">is</span>
     <span class="kr">begin</span>
         <span class="n">Ada</span><span class="p">.</span><span class="n">Text_IO</span><span class="p">.</span><span class="n">New_Line</span><span class="p">;</span>

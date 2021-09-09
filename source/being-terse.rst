@@ -74,7 +74,38 @@ The usage of ``"+"`` as a function to convert from ``String`` to
                                                                                             
    function "+"(S : String) return String renames Ada.Strings.Unbounded.To_Unbounded_String;
    Toggles.Append(+"--verbose");                                                            
-   Toggles.Append(+"--skip-errors");                                                        
+   Toggles.Append(+"--skip-errors");
+
+Use default parameters
+----------------------
+
+.. code-block :: ada
+
+   S : Spinner := Make (In_Place, 1);
+
+Default parameters allow you to apply common parameter values.
+
+    -- When this function signature is used...
+    function Make (Style : Spinner_Style := In_Place; Ticks_Per_Move : Positive := 1) return Spinner;
+
+    S : Spinner := Make;
+
+
+Rename functions with default parameters
+----------------------------------------
+
+.. code-block :: ada
+
+    S : String := Ada.Strings.Fixed.Trim ("  this is a string   ", Ada.Strings.Both);
+
+You can ``rename`` a function with bound default parameters.
+
+.. code-block :: ada
+
+   function Strip(Input : String; Sides : Ada.Strings.Trim_End:= Ada.Strings.Both)
+       renames Ada.Strings.Fixed.Trim;
+
+   S : String := Strip ("  this is a string   ");
 
 Locally define helper functions
 -------------------------------
@@ -147,8 +178,6 @@ Use a package at file scope
 
    with Ada.Text_IO;
    package body Hello_World is
-       package AIO renames Ada.Text_IO;
-
        procedure Greet is
        begin
            Ada.Text_IO.New_Line;
