@@ -10,7 +10,7 @@ these docs without corrupting your python installation.
 2_build_docs.py
 ```
 
-The main doc is `doc/index.html`
+The main doc is `docs/index.html`
 
 ## Contributing
 
