@@ -12,7 +12,7 @@ I'm writing these in the truthful form, rather than stating the myth.
    purpose of providing legal advice. You should consult with a qualified
    and licensed legal professional prior to making any legal decisions.
 
-You can use Ada for free
+Ada can be used for free
 ------------------------
 
 Ada has a free front-end for GCC called `GNAT <https://gcc.gnu.org/wiki/GNAT>`_.
