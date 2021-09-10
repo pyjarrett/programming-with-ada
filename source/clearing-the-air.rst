@@ -8,7 +8,7 @@ I'm writing these in the truthful form, rather than stating the myth.
 
 .. note ::
 
-   The information here is for informational purposes only and not for the
+   The information here is for educational purposes only and not for the
    purpose of providing legal advice. You should consult with a qualified
    and licensed legal professional prior to making any legal decisions.
 
