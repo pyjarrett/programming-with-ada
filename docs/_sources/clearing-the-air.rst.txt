@@ -1,8 +1,7 @@
 Clearing the Air
 ================
 
-I keep seeing the same myths about Ada appear.  I'm writing this once so I
-don't need to repeat myself over and over again.
+I keep seeing the same myths about Ada appear.
 
 I'm writing these in the truthful form, rather than stating the myth.
 
@@ -11,6 +10,18 @@ I'm writing these in the truthful form, rather than stating the myth.
    The information here is for educational purposes only and not for the
    purpose of providing legal advice. You should consult with a qualified
    and licensed legal professional prior to making any legal decisions.
+
+Ada is not a dead language
+--------------------------
+
+Ada versions appeared as Ada 83, Ada 95, Ada 2005 and Ada 2012.  A new version
+referred to as "Ada 202x" is in development.
+
+Ada now has a build and dependency management tool called 
+`Alire <https://alire.ada.dev>`_.  This simplifies building and running your code,
+while also providing access to a `growing set of libraries and programs <https://alire.ada.dev/crates.html>`_.
+`Alire 1.1 <https://github.com/alire-project/alire/releases/tag/v1.1.0-rc2>`_
+(in release candidate) also supports installing of toolchains.
 
 Ada can be used for free
 ------------------------
@@ -29,6 +40,9 @@ FSF GNAT is licensed with the GCC Runtime exception:
 
 - `Runtime Library Exception <http://www.gnu.org/licenses/gpl-faq.html#LibGCCException>`_
 - `FAQ About GCC Runtime Exception <http://www.gnu.org/licenses/gcc-exception-3.1-faq.html>`_
+
+Alire 1.1 (in release candidate) supports downloading and installing
+the FSF GNAT toolchain for you.
 
 .. warning ::
 
@@ -53,13 +67,3 @@ intrinsics, running assembly code, and controlling memory allocation.
 You can also do the things you'd expect in a systems programming language, in
 addition to having higher level constructs such as built-in containers,
 a module system (packages), polymorphism, and concurrency features.
-
-Ada is not a dead language
---------------------------
-
-Ada versions appeared as Ada 83, Ada 95, Ada 2005 and Ada 2012.  A new version
-referred to as "Ada 202x" is in development.
-
-Ada now has a build and dependency management tool called 
-`Alire <https://alire.ada.dev>`_.  This simplifies building and running your code,
-while also providing access to a `growing set of libraries and programs <https://alire.ada.dev/crates.html>`_.

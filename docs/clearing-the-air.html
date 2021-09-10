@@ -100,11 +100,11 @@
 <li class="toctree-l1"><a class="reference internal" href="comparison.html">Comparing Ada to Other Languages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="comparison.html#terminology">Terminology</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Clearing the Air</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ada-is-not-a-dead-language">Ada is not a dead language</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ada-can-be-used-for-free">Ada can be used for free</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ada-code-does-not-have-to-be-gpl">Ada code does not have to be GPL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#adacore-does-not-own-ada">AdaCore does not “own” Ada</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ada-runs-on-more-than-embedded-systems">Ada runs on more than embedded systems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ada-is-not-a-dead-language">Ada is not a dead language</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
@@ -180,14 +180,23 @@
             
   <div class="section" id="clearing-the-air">
 <h1>Clearing the Air<a class="headerlink" href="#clearing-the-air" title="Permalink to this headline">¶</a></h1>
-<p>I keep seeing the same myths about Ada appear.  I’m writing this once so I
-don’t need to repeat myself over and over again.</p>
+<p>I keep seeing the same myths about Ada appear.</p>
 <p>I’m writing these in the truthful form, rather than stating the myth.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The information here is for educational purposes only and not for the
 purpose of providing legal advice. You should consult with a qualified
 and licensed legal professional prior to making any legal decisions.</p>
+</div>
+<div class="section" id="ada-is-not-a-dead-language">
+<h2>Ada is not a dead language<a class="headerlink" href="#ada-is-not-a-dead-language" title="Permalink to this headline">¶</a></h2>
+<p>Ada versions appeared as Ada 83, Ada 95, Ada 2005 and Ada 2012.  A new version
+referred to as “Ada 202x” is in development.</p>
+<p>Ada now has a build and dependency management tool called
+<a class="reference external" href="https://alire.ada.dev">Alire</a>.  This simplifies building and running your code,
+while also providing access to a <a class="reference external" href="https://alire.ada.dev/crates.html">growing set of libraries and programs</a>.
+<a class="reference external" href="https://github.com/alire-project/alire/releases/tag/v1.1.0-rc2">Alire 1.1</a>
+(in release candidate) also supports installing of toolchains.</p>
 </div>
 <div class="section" id="ada-can-be-used-for-free">
 <h2>Ada can be used for free<a class="headerlink" href="#ada-can-be-used-for-free" title="Permalink to this headline">¶</a></h2>
@@ -204,6 +213,8 @@ and often referred to as “FSF GNAT”.</p>
 <li><p><a class="reference external" href="http://www.gnu.org/licenses/gpl-faq.html#LibGCCException">Runtime Library Exception</a></p></li>
 <li><p><a class="reference external" href="http://www.gnu.org/licenses/gcc-exception-3.1-faq.html">FAQ About GCC Runtime Exception</a></p></li>
 </ul>
+<p>Alire 1.1 (in release candidate) supports downloading and installing
+the FSF GNAT toolchain for you.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>However, there’s a version of GNAT released by AdaCore called “GNAT Community
@@ -225,14 +236,6 @@ intrinsics, running assembly code, and controlling memory allocation.</p>
 <p>You can also do the things you’d expect in a systems programming language, in
 addition to having higher level constructs such as built-in containers,
 a module system (packages), polymorphism, and concurrency features.</p>
-</div>
-<div class="section" id="ada-is-not-a-dead-language">
-<h2>Ada is not a dead language<a class="headerlink" href="#ada-is-not-a-dead-language" title="Permalink to this headline">¶</a></h2>
-<p>Ada versions appeared as Ada 83, Ada 95, Ada 2005 and Ada 2012.  A new version
-referred to as “Ada 202x” is in development.</p>
-<p>Ada now has a build and dependency management tool called
-<a class="reference external" href="https://alire.ada.dev">Alire</a>.  This simplifies building and running your code,
-while also providing access to a <a class="reference external" href="https://alire.ada.dev/crates.html">growing set of libraries and programs</a>.</p>
 </div>
 </div>
 
