@@ -31,7 +31,7 @@ Just like using GCC to compile C or C++ code, it's free as in freedom (open-sour
 and as in beer (free to use).  This version comes from the Free Software Foundation (FSF)
 and often referred to as "FSF GNAT".
 
-Yes, there are are also commercial compilers which are not free to use.
+Yes, there are also commercial compilers which are not free to use.
 
 Ada code does not have to be GPL
 --------------------------------
