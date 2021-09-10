@@ -17,6 +17,7 @@ Programming with Ada
    advanced-techniques
    being-terse
    comparison
+   clearing-the-air
    about
    ray-tracing-in-one-weekend
    four-months-summary

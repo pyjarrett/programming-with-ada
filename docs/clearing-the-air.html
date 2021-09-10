@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Feature Overview &mdash; Programming with Ada  documentation</title>
+  <title>Clearing the Air &mdash; Programming with Ada  documentation</title>
   
 
   
@@ -42,8 +42,8 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="The Big Five Structural Elements" href="five-structural-elements.html" />
-    <link rel="prev" title="Overview" href="overview.html" /> 
+    <link rel="next" title="About" href="about.html" />
+    <link rel="prev" title="Comparing Ada to Other Languages" href="comparison.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,7 +91,7 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Feature Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Feature Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="five-structural-elements.html">The Big Five Structural Elements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="packages.html">Note on Terminology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="packages.html#packages-the-building-blocks-of-ada">Packages, the Building Blocks of Ada</a></li>
@@ -99,7 +99,14 @@
 <li class="toctree-l1"><a class="reference internal" href="being-terse.html">Being More Terse</a></li>
 <li class="toctree-l1"><a class="reference internal" href="comparison.html">Comparing Ada to Other Languages</a></li>
 <li class="toctree-l1"><a class="reference internal" href="comparison.html#terminology">Terminology</a></li>
-<li class="toctree-l1"><a class="reference internal" href="clearing-the-air.html">Clearing the Air</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Clearing the Air</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#you-can-use-ada-for-free">You can use Ada for free</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ada-code-does-not-have-to-be-gpl">Ada code does not have to be GPL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adacore-does-not-own-ada">AdaCore does not “own” Ada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ada-runs-on-more-than-embedded-systems">Ada runs on more than embedded systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ada-is-not-a-dead-language">Ada is not a dead language</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ray-tracing-in-one-weekend.html">Ray Tracing in One Weekend… in Ada</a></li>
 <li class="toctree-l1"><a class="reference internal" href="four-months-summary.html">Summary after Four Months with Ada</a></li>
@@ -151,13 +158,13 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Feature Overview</li>
+      <li>Clearing the Air</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/features.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/clearing-the-air.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -171,53 +178,62 @@
 
            <div itemprop="articleBody">
             
-  <div class="section" id="feature-overview">
-<h1>Feature Overview<a class="headerlink" href="#feature-overview" title="Permalink to this headline">¶</a></h1>
-<blockquote>
-<div><p>Based on its feature set, I’d describe Ada as a mirror of C++ in the Pascal family,
-with many features of Rust.</p>
-</div></blockquote>
-<p>Covering every Ada feature would be dilute the conceptual overview of Ada, so
-related Ada-specific terminology is quoted in parentheses for those wanting to
-do their own targeted research.</p>
-<p>Ada supports:</p>
+  <div class="section" id="clearing-the-air">
+<h1>Clearing the Air<a class="headerlink" href="#clearing-the-air" title="Permalink to this headline">¶</a></h1>
+<p>I keep seeing the same myths about Ada appear.  I’m writing this once so I
+don’t need to repeat myself over and over again.</p>
+<p>I’m writing these in the truthful form, rather than stating the myth.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The information here is for informational purposes only and not for the
+purpose of providing legal advice. You should consult with a qualified
+and licensed legal professional prior to making any legal decisions.</p>
+</div>
+<div class="section" id="you-can-use-ada-for-free">
+<h2>You can use Ada for free<a class="headerlink" href="#you-can-use-ada-for-free" title="Permalink to this headline">¶</a></h2>
+<p>Ada has a free front-end for GCC called <a class="reference external" href="https://gcc.gnu.org/wiki/GNAT">GNAT</a>.
+Just like using GCC to compile C or C++ code, it’s free as in freedom (open-source)
+and as in beer (free to use).  This version comes from the Free Software Foundation (FSF)
+and often referred to as “FSF GNAT”.</p>
+<p>Yes, there are are also commercial compilers which are not free to use.</p>
+</div>
+<div class="section" id="ada-code-does-not-have-to-be-gpl">
+<h2>Ada code does not have to be GPL<a class="headerlink" href="#ada-code-does-not-have-to-be-gpl" title="Permalink to this headline">¶</a></h2>
+<p>FSF GNAT is licensed with the GCC Runtime exception:</p>
 <ul class="simple">
-<li><p>Forced namespacing (“packages”).</p></li>
-<li><p>Function overloading.</p></li>
-<li><p>Sum types (“variants”, “discriminants”).</p></li>
-<li><p>Static polymorphism (monomorphism, “generics”);</p></li>
-<li><p>Dynamic polymorphism (dynamic dispatch, virtual functions).</p></li>
-<li><p>Compiler and runtime checked constaints on ranges of numerical types (“ranges”, “constraints”).</p></li>
-<li><p>User-specified runtime type invariant checking on assignment and usage as parameters (“Type_Invariant”, “Static_Predicate”, “Dynamic_Predicate”).</p></li>
-<li><p>Semantic types, saying two things are the same backing type, but not the same
-type of “thing”, think of “Miles” vs “Kilometers” both stored as floats, which
-cannot be assigned to each other without a cast (“derived types”).</p></li>
-<li><p>Deterministic construction and destruction of objects (RAII, a term from C++, “controlled types”)</p></li>
-<li><p>Design-by-contract (“precondition” and “postcondition” “aspects”).</p></li>
-<li><p>Lifetime checks (“accessibility” of “access types”, very similar to, but not as extensive as Rust).</p></li>
-<li><p>Task definition with defined synchronization and queueing strategies.
-(“rendevzous”, “entry”, “select”, “accept”, “abort”, “Ravenscar”)</p></li>
-<li><p>Concurrency types (“protected”, which provides mutual exclusion, and “task”).</p></li>
-<li><p>Exceptions.</p></li>
-<li><p>Deterministic and configurable static initialization order (“preelaborate”,
-“elaborate”, “elaborate_body”, “elaborate_all”)</p></li>
-<li><p>ML-style signatures (“packages”, “generics”)</p></li>
-<li><p>Formal verification, by enabling <cite>Spark_Mode</cite> for parts of the program and
-writing in SPARK, a language which is an Ada subset.  Think of this along the
-lines of using <cite>extern “C”</cite>, except for “provable” parts of your code base.</p></li>
+<li><p><a class="reference external" href="http://www.gnu.org/licenses/gpl-faq.html#LibGCCException">Runtime Library Exception</a></p></li>
+<li><p><a class="reference external" href="http://www.gnu.org/licenses/gcc-exception-3.1-faq.html">FAQ About GCC Runtime Exception</a></p></li>
 </ul>
-<p>Ada is missing:</p>
-<ul class="simple">
-<li><p>A preprocessor (GNAT has one, but it’s not standard).</p></li>
-<li><p>A sanitary macro system.</p></li>
-<li><p>Reflection.</p></li>
-<li><p>A concept of “move”.</p></li>
-<li><p>Variadic functions.</p></li>
-<li><p>Variadic templates.</p></li>
-<li><p>Async/Await (it has tasks instead)</p></li>
-<li><p>Mixed-mode arithmetic and the related implicit numerical casts.</p></li>
-<li><p>An equivalent of template parameter pack</p></li>
-</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>However, there’s a version of GNAT released by AdaCore called “GNAT Community
+Edition” which is similar to FSF GNAT but <strong>does not provide the runtime exception.</strong></p>
+</div>
+</div>
+<div class="section" id="adacore-does-not-own-ada">
+<h2>AdaCore does not “own” Ada<a class="headerlink" href="#adacore-does-not-own-ada" title="Permalink to this headline">¶</a></h2>
+<p>The Ada language is just an ISO-standard.  Though they initially helped develop
+GNAT and continue to contribute back to FSF GNAT, AdaCore does not own the Ada
+language.</p>
+</div>
+<div class="section" id="ada-runs-on-more-than-embedded-systems">
+<h2>Ada runs on more than embedded systems<a class="headerlink" href="#ada-runs-on-more-than-embedded-systems" title="Permalink to this headline">¶</a></h2>
+<p>Ada provides low-level control and interfacing to C to develop programs which
+can run on embedded or on consumer computers.  This includes specifying binary
+alignment and layout of types (representation clauses), calling compiling
+intrinsics, running assembly code, and controlling memory allocation.</p>
+<p>You can also do the things you’d expect in a systems programming language, in
+addition to having higher level constructs such as built-in containers,
+a module system (packages), polymorphism, and concurrency features.</p>
+</div>
+<div class="section" id="ada-is-not-a-dead-language">
+<h2>Ada is not a dead language<a class="headerlink" href="#ada-is-not-a-dead-language" title="Permalink to this headline">¶</a></h2>
+<p>Ada versions appeared as Ada 83, Ada 95, Ada 2005 and Ada 2012.  A new version
+referred to as “Ada 202x” is in development.</p>
+<p>Ada now has a build and dependency management tool called
+<a class="reference external" href="https://alire.ada.dev">Alire</a>.  This simplifies building and running your code,
+while also providing access to a <a class="reference external" href="https://alire.ada.dev/crates.html">growing set of libraries and programs</a>.</p>
+</div>
 </div>
 
 
@@ -230,8 +246,8 @@ lines of using <cite>extern “C”</cite>, except for “provable” parts of y
 
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="five-structural-elements.html" class="btn btn-neutral float-right" title="The Big Five Structural Elements" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="overview.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="about.html" class="btn btn-neutral float-right" title="About" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="comparison.html" class="btn btn-neutral float-left" title="Comparing Ada to Other Languages" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
