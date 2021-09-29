@@ -20,8 +20,8 @@ referred to as "Ada 202x" is in development.
 Ada now has a build and dependency management tool called 
 `Alire <https://alire.ada.dev>`_.  This simplifies building and running your code,
 while also providing access to a `growing set of libraries and programs <https://alire.ada.dev/crates.html>`_.
-`Alire 1.1 <https://github.com/alire-project/alire/releases/tag/v1.1.0-rc2>`_
-(in release candidate) also supports installing of toolchains.
+`Alire 1.1 <https://github.com/alire-project/alire/releases/tag/v1.1.0>`_
+also supports installing of toolchains.
 
 Ada can be used for free
 ------------------------
@@ -41,7 +41,7 @@ FSF GNAT is licensed with the GCC Runtime exception:
 - `Runtime Library Exception <http://www.gnu.org/licenses/gpl-faq.html#LibGCCException>`_
 - `FAQ About GCC Runtime Exception <http://www.gnu.org/licenses/gcc-exception-3.1-faq.html>`_
 
-Alire 1.1 (in release candidate) supports downloading and installing
+Alire 1.1 supports downloading and installing
 the FSF GNAT toolchain for you.
 
 .. warning ::
