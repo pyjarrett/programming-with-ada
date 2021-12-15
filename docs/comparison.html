@@ -1726,27 +1726,114 @@ user-defined types.</p></td>
 </dd>
 <dt id="term-ABE">ABE<a class="headerlink" href="#term-ABE" title="Permalink to this term">¶</a></dt><dd><p>“Access before elaboration”</p>
 </dd>
+<dt id="term-allocator">allocator<a class="headerlink" href="#term-allocator" title="Permalink to this term">¶</a></dt><dd><p>“new” construct that allocates storage and returns a pointer.
+Failure to allocate results in an exception being raised.</p>
+</dd>
 <dt id="term-access-type">access type<a class="headerlink" href="#term-access-type" title="Permalink to this term">¶</a></dt><dd><p>Similar to a pointer, a type which refers to the placement of another
 object in memory.</p>
 </dd>
+<dt id="term-access-to-object-type">access-to-object type<a class="headerlink" href="#term-access-to-object-type" title="Permalink to this term">¶</a></dt><dd><p>Pointer type that points to an object in memory. It can be divided
+further into access-to-constant vs access-to-variable, named access
+vs anonymous access, pool-specific access (that can only point to
+the heap) vs general access (that can point to both heap and stack).</p>
+</dd>
+<dt id="term-access-to-subprogram-type">access-to-subprogram type<a class="headerlink" href="#term-access-to-subprogram-type" title="Permalink to this term">¶</a></dt><dd><p>Pointer type that points to a subprogram (function or procedure).</p>
+</dd>
+<dt id="term-aggregate">aggregate<a class="headerlink" href="#term-aggregate" title="Permalink to this term">¶</a></dt><dd><p>The literal value for a composite object (array, record or container).
+A comma-separated list of values enclosed in parentheses or
+square-brackets (for homogeneous collections only, and only since
+Ada 2022).</p>
+</dd>
+<dt id="term-aliased">aliased<a class="headerlink" href="#term-aliased" title="Permalink to this term">¶</a></dt><dd><p>Objects (both variables and components) can be declared explicitly
+as <code class="docutils literal notranslate"><span class="pre">aliased</span></code>, so that it is valid to use attribute <code class="docutils literal notranslate"><span class="pre">Access</span></code> to
+point to the object.</p>
+</dd>
+<dt id="term-aspect">aspect<a class="headerlink" href="#term-aspect" title="Permalink to this term">¶</a></dt><dd><p>Additional specification attached to a declaration, either related
+to its behavior (like preconditions and postcondition for
+subprograms) or its representation (like size or alignment for
+objects).</p>
+</dd>
+<dt id="term-attribute">attribute<a class="headerlink" href="#term-attribute" title="Permalink to this term">¶</a></dt><dd><p>Value or function attached to a type or object, which can be
+retrieved using the syntax <code class="docutils literal notranslate"><span class="pre">Type'Attribute</span></code> or <code class="docutils literal notranslate"><span class="pre">Object'Attribute</span></code>.
+For example, attributes <code class="docutils literal notranslate"><span class="pre">First</span></code> and <code class="docutils literal notranslate"><span class="pre">Last</span></code> denote the first
+and last indexes of a (constrained) array type, or of any array
+object.</p>
+</dd>
 <dt id="term-ATC">ATC<a class="headerlink" href="#term-ATC" title="Permalink to this term">¶</a></dt><dd><p>“Asynchronous transfer of control”</p>
+</dd>
+<dt id="term-bounded-error">bounded error<a class="headerlink" href="#term-bounded-error" title="Permalink to this term">¶</a></dt><dd><p>The result of a violation of Ada program semantics, when the
+consequences of the error are precisely bounded by the language.
+E.g. reading an uninitialized variable may lead to any value of
+the corresponding base type being read.</p>
+</dd>
+<dt id="term-completion">completion<a class="headerlink" href="#term-completion" title="Permalink to this term">¶</a></dt><dd><p>An initial declaration for a type, constant, subprogram or package
+may be completed by a second declaration, called the completion of
+the initial declaration.</p>
+</dd>
+<dt id="term-component">component<a class="headerlink" href="#term-component" title="Permalink to this term">¶</a></dt><dd><p>A record field or array element.</p>
+</dd>
+<dt id="term-configuration-pragma">configuration pragma<a class="headerlink" href="#term-configuration-pragma" title="Permalink to this term">¶</a></dt><dd><p>A pragma at the very start of a file, or even provided in a separate
+file depending on the compiler, that applies to the compilation
+unit as a whole.</p>
+</dd>
+<dt id="term-controlled-type">controlled type<a class="headerlink" href="#term-controlled-type" title="Permalink to this term">¶</a></dt><dd><p>Type that supports RAII (Resource Acquisition Is Initialization)
+through the insertion by the compiler of calls to specific
+procedures at object creation, assignment and end-of-life.</p>
 </dd>
 <dt id="term-definite-type">definite type<a class="headerlink" href="#term-definite-type" title="Permalink to this term">¶</a></dt><dd><p>A type for which which requires no explicit constraint or initial
 value when declared.</p>
+</dd>
+<dt id="term-discriminant">discriminant<a class="headerlink" href="#term-discriminant" title="Permalink to this term">¶</a></dt><dd><p>Special field in record types, which may be used to control the
+structure of the type itself, either through a variant-clause
+(so the presence of other fields depends on the value of the
+discriminant) or through the constraint on the array subtype
+for the last field (so the size of this field depends on the value
+of the discriminant).</p>
+</dd>
+<dt id="term-entry">entry<a class="headerlink" href="#term-entry" title="Permalink to this term">¶</a></dt><dd><p>The other kind of callable entities, in addition to subprograms.
+It is used for queued operations called concurrently, as part of
+a task or protected object API.</p>
+</dd>
+<dt id="term-erroneous-behavior">erroneous behavior<a class="headerlink" href="#term-erroneous-behavior" title="Permalink to this term">¶</a></dt><dd><p>The result of a violation of Ada program semantics, when the
+consequences of the error are not bounded by the language.
+E.g. deactivating runtime checks and violating the corresponding
+conditions may lead to arbitrary code execution.</p>
 </dd>
 <dt id="term-indefinite-type">indefinite type<a class="headerlink" href="#term-indefinite-type" title="Permalink to this term">¶</a></dt><dd><p>A type for which you cannot declare an object without supply bounds a
 constraint or an initial value.</p>
 </dd>
 <dt id="term-limited-type">limited type<a class="headerlink" href="#term-limited-type" title="Permalink to this term">¶</a></dt><dd><p>An uncopyable type.</p>
 </dd>
+<dt id="term-parent">parent<a class="headerlink" href="#term-parent" title="Permalink to this term">¶</a></dt><dd><p>Non-abstract tagged type being extended.</p>
+</dd>
+<dt id="term-pragma">pragma<a class="headerlink" href="#term-pragma" title="Permalink to this term">¶</a></dt><dd><p>A directive to the compiler. There are many different pragmas defined
+in Ada, and even more are compiler-specific.</p>
+</dd>
 <dt id="term-progenitor">progenitor<a class="headerlink" href="#term-progenitor" title="Permalink to this term">¶</a></dt><dd><p>Additional interfaces inherited.</p>
 </dd>
-<dt id="term-parent">parent<a class="headerlink" href="#term-parent" title="Permalink to this term">¶</a></dt><dd><p>Non-abstract tagged type being extended.</p>
+<dt id="term-qualification">qualification<a class="headerlink" href="#term-qualification" title="Permalink to this term">¶</a></dt><dd><p>Expression used to verify that an object respects the constraint
+of a subtype, using the syntax <code class="docutils literal notranslate"><span class="pre">Subtype'Object</span></code>. This is different
+from type conversion, as the object and its qualification share
+the same type.</p>
+</dd>
+<dt id="term-subprogram">subprogram<a class="headerlink" href="#term-subprogram" title="Permalink to this term">¶</a></dt><dd><p>A function (returning a result) or procedure (with no result). This
+does not include entries of tasks or protected objects, which are
+used for queued operations called concurrently.</p>
+</dd>
+<dt id="term-subtype">subtype<a class="headerlink" href="#term-subtype" title="Permalink to this term">¶</a></dt><dd><p>A type together with additional constraints, like a range of values
+for a scalar type. An object can be freely converted to a different
+subtype of the same type, but the corresponding constraint will be
+checked at runtime if necessary.</p>
 </dd>
 <dt id="term-tagged-type">tagged type<a class="headerlink" href="#term-tagged-type" title="Permalink to this term">¶</a></dt><dd><p>A type with an associated “tag”, which specifies its type and allows
 for dynamic dispatch.</p>
 </dd>
-<dt id="term-subprogram">subprogram<a class="headerlink" href="#term-subprogram" title="Permalink to this term">¶</a></dt><dd><p>Any function or procedure.</p>
+<dt id="term-type-conversion">type conversion<a class="headerlink" href="#term-type-conversion" title="Permalink to this term">¶</a></dt><dd><p>Expression to change the type of its argument, typically between
+different scalar types. There are no implicit type conversions in Ada.</p>
+</dd>
+<dt id="term-unchecked-type-conversion">unchecked type conversion<a class="headerlink" href="#term-unchecked-type-conversion" title="Permalink to this term">¶</a></dt><dd><p>Blind conversion of a bit pattern from one type to another, using
+the predefined generic function <code class="docutils literal notranslate"><span class="pre">Ada.Unchecked_Conversion</span></code> which
+must be instantiated with the types of source and target.</p>
 </dd>
 </dl>
 <table class="docutils align-default">
