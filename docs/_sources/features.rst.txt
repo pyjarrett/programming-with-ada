@@ -24,7 +24,7 @@ Ada supports:
 - Design-by-contract ("precondition" and "postcondition" "aspects").
 - Lifetime checks ("accessibility" of "access types", very similar to, but not as extensive as Rust).
 - Task definition with defined synchronization and queueing strategies.
-  ("rendevzous", "entry", "select", "accept", "abort", "Ravenscar")
+  ("rendezvous", "entry", "select", "accept", "abort", "Ravenscar")
 - Concurrency types ("protected", which provides mutual exclusion, and "task").
 - Exceptions.
 - Deterministic and configurable static initialization order ("preelaborate",
@@ -40,8 +40,9 @@ Ada is missing:
 - A sanitary macro system.
 - Reflection.
 - A concept of "move".
-- Variadic functions.
+- Variadic functions. (coming in Ada 202x)
 - Variadic templates.
 - Async/Await (it has tasks instead)
 - Mixed-mode arithmetic and the related implicit numerical casts.
 - An equivalent of template parameter pack
+- Default generic arguments (coming in Ada 202x)
