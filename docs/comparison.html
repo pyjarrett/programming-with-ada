@@ -478,83 +478,78 @@ one.</p></td>
 </tr>
 <tr class="row-even"><td colspan="5"><p><strong>Memory</strong></p></td>
 </tr>
-<tr class="row-odd"><td><p>Pointer to storage pool</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">Ptr</span> <span class="pre">:</span> <span class="pre">access</span> <span class="pre">T;</span></code></p></td>
-<td><p><cite>N/A</cite></p></td>
-<td></td>
-<td><p>Ada: Accesses elements within storage pools, may not
-point to arbitrary locations</p></td>
-</tr>
-<tr class="row-even"><td><p>Pointer to storage pool</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">Ptr</span> <span class="pre">:</span> <span class="pre">access</span> <span class="pre">T;</span></code></p></td>
-<td><p><cite>N/A</cite></p></td>
-<td></td>
-<td><p>Ada: Accesses elements within storage pool, may not point to
-arbitrary locations.</p></td>
-</tr>
 <tr class="row-odd"><td><p>Pointer</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">Ptr</span> <span class="pre">:</span> <span class="pre">access</span> <span class="pre">all</span> <span class="pre">T;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">T*</span> <span class="pre">ptr;</span></code></p></td>
 <td></td>
 <td><p>Ada: May access storage pool or any <cite>aliased</cite> variable.</p></td>
 </tr>
-<tr class="row-even"><td><p>Pointer deference</p></td>
+<tr class="row-even"><td><p>Pointer to allocation
+from a specific pool</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Ptr</span> <span class="pre">:</span> <span class="pre">access</span> <span class="pre">T;</span></code></p></td>
+<td><p><cite>N/A</cite></p></td>
+<td></td>
+<td><p>Ada: Accesses elements within storage pools, may not
+point to arbitrary locations.  These accesses can only
+point to members from their pool.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pointer deference</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">Ptr.all</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">*ptr</span></code></p></td>
 <td></td>
 <td><p>Ada: Runtime null check might be done.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Reference</p></td>
+<tr class="row-even"><td><p>Reference</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">Ptr</span> <span class="pre">:</span> <span class="pre">not</span> <span class="pre">null</span> <span class="pre">access</span> <span class="pre">T;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">T&amp;</span> <span class="pre">ptr;</span></code></p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>Variable used by Pointer</p></td>
+<tr class="row-odd"><td><p>Variable used by Pointer</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">A:</span> <span class="pre">aliased</span> <span class="pre">T;</span></code></p></td>
 <td><p><cite>N/A</cite></p></td>
 <td></td>
 <td><p>Ada: Required to get an “access” to this value.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Address</p></td>
+<tr class="row-even"><td><p>Address</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">Ptr</span> <span class="pre">:</span> <span class="pre">access</span> <span class="pre">T</span> <span class="pre">:=</span> <span class="pre">T'Access(A)</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">T*</span> <span class="pre">ptr</span> <span class="pre">=</span> <span class="pre">&amp;A;</span></code></p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>Address</p></td>
+<tr class="row-odd"><td><p>Address</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">Ptr</span> <span class="pre">:</span> <span class="pre">access</span> <span class="pre">all</span> <span class="pre">T</span> <span class="pre">:=</span> <span class="pre">T'Unchecked_Access(A)</span></code></p></td>
 <td><p><cite>N/A</cite></p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Constant pointer</p></td>
+<tr class="row-even"><td><p>Constant pointer</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">Ptr</span> <span class="pre">:</span> <span class="pre">constant</span> <span class="pre">access</span> <span class="pre">T;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">T*</span> <span class="pre">const</span> <span class="pre">ptr;</span></code></p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>Pointer to constant</p></td>
+<tr class="row-odd"><td><p>Pointer to constant</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">Ptr</span> <span class="pre">:</span> <span class="pre">access</span> <span class="pre">constant</span> <span class="pre">T;</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">T*</span> <span class="pre">ptr;</span></code></p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Constant pointer to
+<tr class="row-even"><td><p>Constant pointer to
 constant</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">Ptr</span> <span class="pre">:</span> <span class="pre">constant</span> <span class="pre">access</span> <span class="pre">constant</span> <span class="pre">T</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">const</span> <span class="pre">T*</span> <span class="pre">const</span> <span class="pre">ptr;</span></code></p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td></td>
+<tr class="row-odd"><td></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">pragma</span> <span class="pre">Restrictions(No_Implicit_Heap_Allocation)</span></code></p></td>
 <td></td>
 <td><p>Ada: Prevents even implicit heap allocations made
 by the compiler.</p></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Prevents allocations to
+<tr class="row-even"><td><p>Prevents allocations to
 anonymous access types.</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">pragma</span> <span class="pre">Restrictions(No_Anonymous_Allocators)</span></code></p></td>
 <td></td>
@@ -562,7 +557,7 @@ anonymous access types.</p></td>
 <td><p>Ada: This prevents allocating for anonymous access types
 which results in un-freeable memory.</p></td>
 </tr>
-<tr class="row-even"><td><p>Dynamic allocation</p></td>
+<tr class="row-odd"><td><p>Dynamic allocation</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="p">:</span> <span class="kr">access</span> <span class="n">T</span> <span class="p">:=</span> <span class="kr">new</span> <span class="n">T</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -575,7 +570,7 @@ which results in un-freeable memory.</p></td>
 <td><p>C++: Most newer C++ code prefers the usage of
 <code class="docutils literal notranslate"><span class="pre">std::unique_ptr</span></code> or <code class="docutils literal notranslate"><span class="pre">std::shared_ptr</span></code>.</p></td>
 </tr>
-<tr class="row-odd"><td></td>
+<tr class="row-even"><td></td>
 <td></td>
 <td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="o">*</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
 </pre></div>
@@ -584,7 +579,7 @@ which results in un-freeable memory.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td></td>
+<tr class="row-odd"><td></td>
 <td></td>
 <td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">();</span>
 </pre></div>
@@ -593,7 +588,7 @@ which results in un-freeable memory.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td></td>
+<tr class="row-even"><td></td>
 <td></td>
 <td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">();</span>
 </pre></div>
@@ -602,9 +597,9 @@ which results in un-freeable memory.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td colspan="5"><p><strong>Control Flow</strong></p></td>
+<tr class="row-odd"><td colspan="5"><p><strong>Control Flow</strong></p></td>
 </tr>
-<tr class="row-odd"><td><p>if</p></td>
+<tr class="row-even"><td><p>if</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kr">if</span> <span class="n">A</span> <span class="kr">then</span>
     <span class="n">statements</span><span class="p">;</span>
 <span class="kr">elsif</span> <span class="n">B</span> <span class="kr">then</span>
@@ -642,13 +637,13 @@ which results in un-freeable memory.</p></td>
 <td><p>Ada: Must be <cite>null;</cite> statement if empty.  C++: Braces
 optional.</p></td>
 </tr>
-<tr class="row-even"><td></td>
+<tr class="row-odd"><td></td>
 <td></td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>while</p></td>
+<tr class="row-even"><td><p>while</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kr">while</span> <span class="n">A</span> <span class="kr">loop</span>
     <span class="n">statements</span><span class="p">;</span>
 <span class="kr">end</span> <span class="kr">loop</span><span class="p">;</span>
@@ -664,7 +659,7 @@ optional.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>do-while</p></td>
+<tr class="row-odd"><td><p>do-while</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kr">loop</span>
     <span class="c1">-- statements</span>
     <span class="kr">exit</span> <span class="kr">when</span> <span class="n">A</span><span class="p">;</span>
@@ -681,7 +676,7 @@ optional.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>value-based loop</p></td>
+<tr class="row-even"><td><p>value-based loop</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kr">for</span> <span class="n">Value</span> <span class="ow">in</span> <span class="mi">0</span> <span class="p">..</span> <span class="mi">99</span> <span class="kr">loop</span>
     <span class="n">statements</span><span class="p">;</span>
 <span class="kr">end</span> <span class="kr">loop</span><span class="p">;</span>
@@ -697,7 +692,7 @@ optional.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>iterator-based loop</p></td>
+<tr class="row-odd"><td><p>iterator-based loop</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kr">for</span> <span class="n">Elem</span> <span class="kr">of</span> <span class="n">Container</span> <span class="kr">loop</span>
     <span class="n">statements</span><span class="p">;</span>
 <span class="kr">end</span> <span class="kr">loop</span><span class="p">;</span>
@@ -713,7 +708,7 @@ optional.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Multiple choice</p></td>
+<tr class="row-even"><td><p>Multiple choice</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kr">case</span> <span class="n">Value</span> <span class="kr">is</span>
     <span class="kr">when</span> <span class="mi">0</span> <span class="p">=&gt;</span> <span class="n">Handle_Zero</span><span class="p">;</span>
     <span class="kr">when</span> <span class="mi">1</span> <span class="p">=&gt;</span> <span class="n">Handle_One</span><span class="p">;</span>
@@ -743,7 +738,7 @@ optional.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>Iterate over enum</p></td>
+<tr class="row-odd"><td><p>Iterate over enum</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kr">for</span> <span class="n">Elem</span> <span class="ow">in</span> <span class="n">EnumName</span> <span class="kr">loop</span>
     <span class="n">statements</span><span class="p">;</span>
 <span class="kr">end</span> <span class="kr">loop</span><span class="p">;</span>
@@ -754,19 +749,19 @@ optional.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>start next iteration</p></td>
+<tr class="row-even"><td><p>start next iteration</p></td>
 <td><p><cite>N/A</cite></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">continue</span></code></p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>Stop iterating</p></td>
+<tr class="row-odd"><td><p>Stop iterating</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">exit</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">break</span></code></p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Start exception handling</p></td>
+<tr class="row-even"><td><p>Start exception handling</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kr">declare</span>
     <span class="n">statements</span><span class="p">;</span>
 <span class="kr">exception</span>
@@ -795,7 +790,7 @@ optional.</p></td>
 executable statements, such as in <code class="docutils literal notranslate"><span class="pre">package</span> <span class="pre">body</span></code> or
 <code class="docutils literal notranslate"><span class="pre">declare</span></code> or the end of a subprogram.</p></td>
 </tr>
-<tr class="row-even"><td><p>Empty statement</p></td>
+<tr class="row-odd"><td><p>Empty statement</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kc">null</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -807,7 +802,7 @@ executable statements, such as in <code class="docutils literal notranslate"><sp
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td></td>
+<tr class="row-even"><td></td>
 <td></td>
 <td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">do</span> <span class="p">{</span> <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 </pre></div>
@@ -816,7 +811,7 @@ executable statements, such as in <code class="docutils literal notranslate"><sp
 <td></td>
 <td><p>C++ used to preserve behavior of macros with no behavior.</p></td>
 </tr>
-<tr class="row-even"><td><p>Label</p></td>
+<tr class="row-odd"><td><p>Label</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="nl">&lt;&lt;LABEL_NAME&gt;&gt;</span>
 </pre></div>
 </div>
@@ -828,7 +823,7 @@ executable statements, such as in <code class="docutils literal notranslate"><sp
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>goto</p></td>
+<tr class="row-even"><td><p>goto</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kr">goto</span> <span class="n">LABEL_NAME</span>
 </pre></div>
 </div>
@@ -840,9 +835,9 @@ executable statements, such as in <code class="docutils literal notranslate"><sp
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td colspan="5"><p><strong>Expressions</strong></p></td>
+<tr class="row-odd"><td colspan="5"><p><strong>Expressions</strong></p></td>
 </tr>
-<tr class="row-odd"><td><p>qualified expression</p></td>
+<tr class="row-even"><td><p>qualified expression</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kr">for</span> <span class="kr">all</span> <span class="n">A</span> <span class="kr">of</span> <span class="n">B</span> <span class="p">=&gt;</span> <span class="n">expr</span>
 </pre></div>
 </div>
@@ -851,7 +846,7 @@ executable statements, such as in <code class="docutils literal notranslate"><sp
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td></td>
+<tr class="row-odd"><td></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kr">for</span> <span class="kr">some</span> <span class="n">A</span> <span class="kr">of</span> <span class="n">B</span> <span class="p">=&gt;</span> <span class="n">expr</span>
 </pre></div>
 </div>
@@ -860,7 +855,7 @@ executable statements, such as in <code class="docutils literal notranslate"><sp
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>if expression</p></td>
+<tr class="row-even"><td><p>if expression</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="p">:</span> <span class="kt">Boolean</span> <span class="p">:=</span> <span class="p">(</span><span class="kr">if</span> <span class="n">A</span> <span class="kr">then</span> <span class="n">B</span> <span class="kr">else</span> <span class="n">C</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -872,7 +867,7 @@ executable statements, such as in <code class="docutils literal notranslate"><sp
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>Case expression</p></td>
+<tr class="row-odd"><td><p>Case expression</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="p">:</span> <span class="kt">Integer</span> <span class="o">=</span> <span class="p">(</span><span class="kr">case</span> <span class="n">Value</span> <span class="kr">is</span>
                  <span class="kr">when</span> <span class="mi">0</span> <span class="p">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
                  <span class="kr">when</span> <span class="mi">1</span> <span class="p">=&gt;</span> <span class="mi">1</span><span class="p">,</span>
@@ -889,9 +884,9 @@ executable statements, such as in <code class="docutils literal notranslate"><sp
 <td></td>
 <td><p>Ada: Parentheses are required around case expressions.</p></td>
 </tr>
-<tr class="row-odd"><td colspan="5"><p><strong>Mathematics</strong></p></td>
+<tr class="row-even"><td colspan="5"><p><strong>Mathematics</strong></p></td>
 </tr>
-<tr class="row-even"><td><p>In-place</p></td>
+<tr class="row-odd"><td><p>In-place</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="p">:=</span> <span class="n">A</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -903,7 +898,7 @@ executable statements, such as in <code class="docutils literal notranslate"><sp
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Pre-increment</p></td>
+<tr class="row-even"><td><p>Pre-increment</p></td>
 <td><p><cite>N/A</cite></p></td>
 <td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="o">++</span><span class="n">a</span><span class="p">;</span>
 </pre></div>
@@ -912,7 +907,7 @@ executable statements, such as in <code class="docutils literal notranslate"><sp
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>Post-increment</p></td>
+<tr class="row-odd"><td><p>Post-increment</p></td>
 <td><p><cite>N/A</cite></p></td>
 <td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">++</span><span class="p">;</span>
 </pre></div>
@@ -921,19 +916,19 @@ executable statements, such as in <code class="docutils literal notranslate"><sp
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Modulus</p></td>
+<tr class="row-even"><td><p>Modulus</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">mod</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>Remainder</p></td>
+<tr class="row-odd"><td><p>Remainder</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">rem</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">std::div</span></code></p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Exponentiation</p></td>
+<tr class="row-even"><td><p>Exponentiation</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">**</span> <span class="n">B</span>
 </pre></div>
 </div>
@@ -942,7 +937,7 @@ executable statements, such as in <code class="docutils literal notranslate"><sp
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>Bit shifting</p></td>
+<tr class="row-odd"><td><p>Bit shifting</p></td>
 <td><p>In standard library</p></td>
 <td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">&lt;&lt;=</span> <span class="n">B</span><span class="p">;</span>
 <span class="n">A</span> <span class="o">&gt;&gt;=</span> <span class="n">B</span><span class="p">;</span>
@@ -954,9 +949,9 @@ executable statements, such as in <code class="docutils literal notranslate"><sp
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td colspan="5"><p><strong>Boolean</strong></p></td>
+<tr class="row-even"><td colspan="5"><p><strong>Boolean</strong></p></td>
 </tr>
-<tr class="row-even"><td><p>Equality</p></td>
+<tr class="row-odd"><td><p>Equality</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">B</span>
 </pre></div>
 </div>
@@ -968,7 +963,7 @@ executable statements, such as in <code class="docutils literal notranslate"><sp
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>In-Equality</p></td>
+<tr class="row-even"><td><p>In-Equality</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">/=</span> <span class="n">B</span>
 </pre></div>
 </div>
@@ -982,13 +977,19 @@ executable statements, such as in <code class="docutils literal notranslate"><sp
 opposite of equality if <cite>=</cite> is overriden to return a
 <code class="docutils literal notranslate"><span class="pre">Boolean</span></code>.</p></td>
 </tr>
-<tr class="row-even"><td><p>Not</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">not</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">!</span></code></p></td>
+<tr class="row-odd"><td><p>Not</p></td>
+<td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="ow">not</span> <span class="n">A</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="o">!</span> <span class="n">A</span>
+</pre></div>
+</div>
+</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Boolean operators</p></td>
+<tr class="row-even"><td><p>Boolean operators</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="kr">or</span> <span class="n">B</span>
 <span class="n">A</span> <span class="ow">and</span> <span class="n">B</span>
 </pre></div>
@@ -1003,7 +1004,7 @@ opposite of equality if <cite>=</cite> is overriden to return a
 <td><p>C++: Used rarely for optimizations to reduce branching since
 they make assumptions as to how boolean values are stored.</p></td>
 </tr>
-<tr class="row-even"><td><p>Short circuiting
+<tr class="row-odd"><td><p>Short circuiting
 boolean operators</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="ow">or else</span> <span class="n">B</span>
 <span class="n">A</span> <span class="ow">and then</span> <span class="n">B</span>
@@ -1018,13 +1019,19 @@ boolean operators</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Exclusive-Or (XOR)</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">xor</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">xor</span></code></p></td>
+<tr class="row-even"><td><p>Exclusive-Or (XOR)</p></td>
+<td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="kr">xor</span> <span class="n">B</span>
+</pre></div>
+</div>
+</td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="n">xor</span> <span class="n">B</span>
+</pre></div>
+</div>
+</td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>Implies
+<tr class="row-odd"><td><p>Implies
 (not A or B)</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="kr">if</span> <span class="n">A</span> <span class="kr">then</span> <span class="n">B</span><span class="p">)</span>
 </pre></div>
@@ -1034,9 +1041,9 @@ boolean operators</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td colspan="5"><p><strong>Functions and Procedures</strong></p></td>
+<tr class="row-even"><td colspan="5"><p><strong>Functions and Procedures</strong></p></td>
 </tr>
-<tr class="row-even"><td><p>Procedure</p></td>
+<tr class="row-odd"><td><p>Procedure</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">procedure</span> <span class="nf">Foo</span><span class="p">(</span><span class="nv">X</span><span class="p">: </span><span class="nv">in</span> <span class="nv">T</span><span class="p">;</span> <span class="nv">Y</span><span class="p">: </span><span class="nv">in</span> <span class="nv">V</span><span class="p">)</span> <span class="kr">is</span>
 <span class="kr">begin</span>
     <span class="n">statements</span><span class="p">;</span>
@@ -1053,7 +1060,7 @@ boolean operators</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Function</p></td>
+<tr class="row-even"><td><p>Function</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">Fibonacci</span><span class="p">(</span><span class="nv">X</span><span class="p">: </span><span class="nv">Natural</span><span class="p">)</span> <span class="kr">return</span> <span class="kt">Natural</span> <span class="kr">is</span>
     <span class="kr">if</span> <span class="n">X</span> <span class="o">=</span> <span class="mi">0</span> <span class="kr">or</span> <span class="n">X</span> <span class="o">=</span> <span class="mi">1</span> <span class="kr">then</span>
         <span class="kr">return</span> <span class="n">X</span><span class="p">;</span>
@@ -1078,7 +1085,7 @@ boolean operators</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>Subprogram call
+<tr class="row-odd"><td><p>Subprogram call
 (no parameters)</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">;</span>
 </pre></div>
@@ -1094,7 +1101,7 @@ boolean operators</p></td>
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Named Parameters</p></td>
+<tr class="row-even"><td><p>Named Parameters</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">Foo</span><span class="p">(</span><span class="n">Bar1</span> <span class="p">=&gt;</span> <span class="n">Value</span><span class="p">,</span> <span class="n">Baz</span> <span class="p">=&gt;</span> <span class="n">Value2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1103,7 +1110,7 @@ boolean operators</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>Override specifier</p></td>
+<tr class="row-odd"><td><p>Override specifier</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kr">overriding</span> <span class="kd">procedure</span> <span class="nf">Foo</span>
 </pre></div>
 </div>
@@ -1115,7 +1122,7 @@ boolean operators</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Ensure that a subprogram
+<tr class="row-even"><td><p>Ensure that a subprogram
 definition does not
 override an existing one</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="ow">not</span> <span class="kr">overriding</span>
@@ -1130,7 +1137,7 @@ override an existing one</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>Pass by pointer</p></td>
+<tr class="row-odd"><td><p>Pass by pointer</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">procedure</span> <span class="nf">Foo</span> <span class="p">(</span><span class="nv">B</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">access</span> <span class="nv">Bar</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1142,7 +1149,7 @@ override an existing one</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Pass by reference</p></td>
+<tr class="row-even"><td><p>Pass by reference</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">procedure</span> <span class="nf">Foo</span><span class="p">(</span><span class="nv">B</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">Bar</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1155,9 +1162,9 @@ override an existing one</p></td>
 <td><p>Ada: limited and tagged types are always passed by
 reference.</p></td>
 </tr>
-<tr class="row-even"><td colspan="5"><p><strong>Functions and Procedures</strong></p></td>
+<tr class="row-odd"><td colspan="5"><p><strong>Functions and Procedures</strong></p></td>
 </tr>
-<tr class="row-odd"><td><p>Inline</p></td>
+<tr class="row-even"><td><p>Inline</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">procedure</span> <span class="nf">Foo</span>
     <span class="nf">with</span> <span class="nf">Inline</span>
 </pre></div>
@@ -1174,21 +1181,19 @@ reference.</p></td>
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>where clause</p></td>
+<tr class="row-odd"><td><p>Expression renaming</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">L2</span> <span class="p">:</span> <span class="kt">Float</span> <span class="kr">renames</span> <span class="n">V</span><span class="p">.</span><span class="n">Length</span> <span class="o">*</span> <span class="n">V</span><span class="p">.</span><span class="n">Length</span>
 </pre></div>
 </div>
 </td>
-<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-</td>
+<td></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Using functions for a
+<tr class="row-even"><td><p>Using functions for a
 type unqualified.</p></td>
-<td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kn">use</span> <span class="nn">type</span> <span class="n">P</span><span class="p">.</span><span class="n">Foo</span><span class="p">;</span>
+<td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kn">use</span> <span class="nn">type</span> <span class="n">P</span><span class="p">.</span><span class="n">Foo</span><span class="p">;</span>      <span class="c1">-- Make primitive ops visible</span>
+<span class="kn">use</span> <span class="nn">all</span> <span class="kd">type</span> <span class="kt">P</span><span class="p">.</span><span class="n">Foo</span><span class="p">;</span>  <span class="c1">-- Make all ops visible for type</span>
 </pre></div>
 </div>
 </td>
@@ -1197,7 +1202,7 @@ type unqualified.</p></td>
 <td><p>Ada: Allows functions which use or return a type to be used
 without the package prefix.</p></td>
 </tr>
-<tr class="row-even"><td><p>Modifiable parameters</p></td>
+<tr class="row-odd"><td><p>Modifiable parameters</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">procedure</span> <span class="nf">Foo</span><span class="p">(</span><span class="nv">B</span> <span class="p">: </span><span class="nv">in</span> <span class="nv">out</span> <span class="nv">Bar</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1212,19 +1217,20 @@ without the package prefix.</p></td>
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Expression function</p></td>
+<tr class="row-even"><td><p>Expression function
+(Ada)</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">Foo</span> <span class="nf">return</span> <span class="nf">T</span> <span class="kr">is</span> <span class="p">(</span><span class="n">expr</span><span class="p">)</span>
 </pre></div>
 </div>
 </td>
-<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">expr</span><span class="p">;</span> <span class="p">}</span>
 </pre></div>
 </div>
 </td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>Empty procedure</p></td>
+<tr class="row-odd"><td><p>Empty procedure</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">procedure</span> <span class="nf">Foo</span> <span class="kr">is</span> <span class="kc">null</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -1236,9 +1242,9 @@ without the package prefix.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td colspan="5"><p><strong>Types</strong></p></td>
+<tr class="row-even"><td colspan="5"><p><strong>Types</strong></p></td>
 </tr>
-<tr class="row-even"><td><p>Statically sized array</p></td>
+<tr class="row-odd"><td><p>Statically sized array</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="kt">Buffer</span> <span class="kr">is</span> <span class="kr">array</span><span class="p">(</span><span class="mi">1</span> <span class="p">..</span> <span class="mi">128</span><span class="p">)</span> <span class="kr">of</span> <span class="kt">Integer</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -1251,7 +1257,7 @@ without the package prefix.</p></td>
 <td><p>Ada: Convention seems to be indexes starting from 1,
 though arrays can be arbitrarily indexed.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Array Access</p></td>
+<tr class="row-even"><td><p>Array Access</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1263,7 +1269,7 @@ though arrays can be arbitrarily indexed.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>Multi-dimensional Array</p></td>
+<tr class="row-odd"><td><p>Multi-dimensional Array</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">Mat4</span> <span class="p">:</span> <span class="kr">array</span> <span class="p">(</span><span class="mi">1</span> <span class="p">..</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span> <span class="p">..</span> <span class="mi">4</span><span class="p">)</span> <span class="kr">of</span> <span class="kt">Float</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -1275,7 +1281,7 @@ though arrays can be arbitrarily indexed.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Built-In Variable length
+<tr class="row-even"><td><p>Built-In Variable length
 array</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="kt">Buffer</span> <span class="kr">is</span> <span class="kr">array</span><span class="p">(</span><span class="mi">1</span> <span class="p">..</span> <span class="n">N</span><span class="p">)</span> <span class="kr">of</span> <span class="kt">Integer</span><span class="p">;</span>
 </pre></div>
@@ -1291,7 +1297,7 @@ have their bounds determined at runtime, even when stored
 within types.  This behavior is still checked for size
 constraints.</p></td>
 </tr>
-<tr class="row-even"><td><p>Semantic type</p></td>
+<tr class="row-odd"><td><p>Semantic type</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="kt">Microseconds</span> <span class="kr">is</span> <span class="kr">new</span> <span class="kt">Integer</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -1303,8 +1309,8 @@ constraints.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Range checks on type</p></td>
-<td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="kt">My_Positive</span> <span class="kr">is</span> <span class="kr">range</span> <span class="mi">1</span> <span class="p">..</span> <span class="mi">10</span> <span class="kt">Integer</span>
+<tr class="row-even"><td><p>Range checks on type</p></td>
+<td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="kt">My_Positive</span> <span class="kr">is</span> <span class="kr">range</span> <span class="mi">1</span> <span class="p">..</span> <span class="mi">10</span><span class="p">;</span>
 </pre></div>
 </div>
 </td>
@@ -1312,7 +1318,7 @@ constraints.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>Size</p></td>
+<tr class="row-odd"><td><p>Size</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="p">&#39;</span><span class="na">Size</span>
 </pre></div>
 </div>
@@ -1324,7 +1330,7 @@ constraints.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Alignment</p></td>
+<tr class="row-even"><td><p>Alignment</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">T</span><span class="p">&#39;</span><span class="na">Alignment</span>
 </pre></div>
 </div>
@@ -1336,7 +1342,7 @@ constraints.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>Type Aliasing</p></td>
+<tr class="row-odd"><td><p>Type Aliasing</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">subtype</span> <span class="kt">T</span> <span class="kr">is</span> <span class="n">W</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -1351,7 +1357,7 @@ constraints.</p></td>
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td></td>
+<tr class="row-even"><td></td>
 <td></td>
 <td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="n">W</span> <span class="n">T</span>
 </pre></div>
@@ -1360,7 +1366,7 @@ constraints.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>Inferred typing</p></td>
+<tr class="row-odd"><td><p>Inferred typing</p></td>
 <td><p><cite>N/A</cite></p></td>
 <td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">auto</span>        <span class="n">a</span> <span class="o">=</span> <span class="n">b</span>
 <span class="k">const</span> <span class="k">auto</span>  <span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
@@ -1375,7 +1381,7 @@ constraints.</p></td>
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Type parameterized by
+<tr class="row-even"><td><p>Type parameterized by
 value (compile-time)</p></td>
 <td></td>
 <td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="kt">int</span> <span class="n">T</span> <span class="o">=</span> <span class="mi">5</span><span class="o">&gt;</span>
@@ -1385,7 +1391,7 @@ value (compile-time)</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>Type parameterized by
+<tr class="row-odd"><td><p>Type parameterized by
 value (run-time)</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="kt">S</span><span class="p">(</span><span class="nv">T</span><span class="p">: </span><span class="nv">t</span><span class="p">)</span> <span class="kr">is</span> <span class="kr">record</span> <span class="c1">-- ...</span>
 </pre></div>
@@ -1395,7 +1401,7 @@ value (run-time)</p></td>
 <td></td>
 <td><p>Modification of a record at runtime.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Enum range</p></td>
+<tr class="row-even"><td><p>Enum range</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">&#39;</span><span class="na">Range</span>
 </pre></div>
 </div>
@@ -1405,7 +1411,7 @@ value (run-time)</p></td>
 <td><p>Ada: Treated like a range, similar to <cite>1 .. 3</cite>, e.g. can be
 used like <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">A</span> <span class="pre">in</span> <span class="pre">A'Range</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>Membership test</p></td>
+<tr class="row-odd"><td><p>Membership test</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="ow">in</span> <span class="n">E</span>
 <span class="n">A</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">E</span>
 </pre></div>
@@ -1416,7 +1422,7 @@ used like <code class="docutils literal notranslate"><span class="pre">for</span
 <td><p>Ada: Works to see if types meet subtype contraints, also
 use to determine instance-of relationship.</p></td>
 </tr>
-<tr class="row-odd"><td><p>Type invariant checks</p></td>
+<tr class="row-even"><td><p>Type invariant checks</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="kt">T</span> <span class="kr">is</span> <span class="kr">new</span> <span class="n">V</span> <span class="kr">with</span> <span class="n">Type_Invariant</span> <span class="p">=&gt;</span> <span class="n">Expr</span><span class="p">(</span><span class="nv">T</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1427,7 +1433,7 @@ use to determine instance-of relationship.</p></td>
 used as a parameter, after subprograms using T in the same
 package.  The type must also be private.</p></td>
 </tr>
-<tr class="row-even"><td><p>Sum Types</p></td>
+<tr class="row-odd"><td><p>Sum Types</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="kt">S</span> <span class="kr">is</span> <span class="p">(</span><span class="nv">T</span><span class="p">,</span> <span class="nv">V</span><span class="p">,</span> <span class="nv">W</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -1442,7 +1448,7 @@ package.  The type must also be private.</p></td>
 </td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Coersion (casting)</p></td>
+<tr class="row-even"><td><p>Coersion (casting)</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="p">:=</span> <span class="n">B</span><span class="p">(</span><span class="n">C</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -1454,9 +1460,9 @@ package.  The type must also be private.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-even"><td colspan="5"><p><strong>Object-Oriented Programming</strong></p></td>
+<tr class="row-odd"><td colspan="5"><p><strong>Object-Oriented Programming</strong></p></td>
 </tr>
-<tr class="row-odd"><td><p>Class-like</p></td>
+<tr class="row-even"><td><p>Class-like</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="kt">T</span> <span class="kr">is</span> <span class="kd">private</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -1477,7 +1483,7 @@ package.  The type must also be private.</p></td>
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td><p>Abstract Class</p></td>
+<tr class="row-odd"><td><p>Abstract Class</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="kt">T</span> <span class="kr">is</span> <span class="kr">interface</span><span class="p">;</span>
 <span class="kd">function</span> <span class="nf">Foo</span><span class="p">(</span><span class="nv">A</span> <span class="p">: </span><span class="nv">T</span><span class="p">)</span> <span class="kr">return</span> <span class="n">V</span> <span class="kr">is</span> <span class="kr">abstract</span><span class="p">;</span>
 <span class="kd">procedure</span> <span class="nf">Bar</span><span class="p">(</span><span class="nv">A</span><span class="p">: </span><span class="nv">in</span> <span class="nv">out</span> <span class="nv">T</span><span class="p">)</span> <span class="kr">is</span> <span class="kr">abstract</span><span class="p">;</span>
@@ -1495,7 +1501,7 @@ package.  The type must also be private.</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Subprogram call of
+<tr class="row-even"><td><p>Subprogram call of
 object-like type</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">.</span><span class="n">B</span><span class="p">;</span>
 </pre></div>
@@ -1511,8 +1517,13 @@ object-like type</p></td>
 </td>
 <td></td>
 </tr>
-<tr class="row-even"><td></td>
-<td></td>
+<tr class="row-odd"><td><p>Member access from
+pointer</p></td>
+<td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">.</span><span class="kr">all</span><span class="p">.</span><span class="n">B</span><span class="p">;</span>  <span class="c1">-- Explicit</span>
+<span class="n">A</span><span class="p">.</span><span class="n">B</span><span class="p">;</span>      <span class="c1">-- Implicit</span>
+</pre></div>
+</div>
+</td>
 <td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">-&gt;</span><span class="n">b</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -1520,7 +1531,7 @@ object-like type</p></td>
 <td></td>
 <td></td>
 </tr>
-<tr class="row-odd"><td><p>Preventing copying</p></td>
+<tr class="row-even"><td><p>Preventing copying</p></td>
 <td><div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="kt">X</span> <span class="kr">is</span> <span class="kr">limited</span> <span class="kr">type</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -1528,6 +1539,18 @@ object-like type</p></td>
 <td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
     <span class="n">Foo</span><span class="p">(</span><span class="n">Foo</span><span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
     <span class="n">Foo</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">Foo</span><span class="o">&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Preventing moving</p></td>
+<td><p><cite>N/A</cite></p></td>
+<td><div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+    <span class="n">Foo</span><span class="p">(</span><span class="n">Foo</span><span class="o">&amp;&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
+    <span class="n">Foo</span><span class="o">&amp;&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">Foo</span><span class="o">&amp;&amp;</span><span class="p">)</span> <span class="o">=</span> <span class="k">delete</span><span class="p">;</span>
 <span class="p">};</span>
 </pre></div>
 </div>
