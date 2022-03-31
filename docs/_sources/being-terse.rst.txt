@@ -85,8 +85,12 @@ Use default parameters
 
 Default parameters allow you to apply common parameter values.
 
+.. code-block :: ada
+
     -- When this function signature is used...
-    function Make (Style : Spinner_Style := In_Place; Ticks_Per_Move : Positive := 1) return Spinner;
+    function Make (
+       Style          : Spinner_Style := In_Place;
+       Ticks_Per_Move : Positive := 1) return Spinner;
 
     S : Spinner := Make;
 

@@ -254,11 +254,14 @@ section.  Just wrap your expression in parentheses.</p>
 </pre></div>
 </div>
 <p>Default parameters allow you to apply common parameter values.</p>
-<blockquote>
-<div><p>– When this function signature is used…
-function Make (Style : Spinner_Style := In_Place; Ticks_Per_Move : Positive := 1) return Spinner;</p>
-<p>S : Spinner := Make;</p>
-</div></blockquote>
+<div class="highlight-ada notranslate"><div class="highlight"><pre><span></span><span class="c1">-- When this function signature is used...</span>
+<span class="kd">function</span> <span class="nf">Make</span> <span class="p">(</span>
+   <span class="nv">Style</span>          <span class="p">: </span><span class="nv">Spinner_Style</span> <span class="p">:=</span> <span class="nv">In_Place</span><span class="p">;</span>
+   <span class="nv">Ticks_Per_Move</span> <span class="p">: </span><span class="nv">Positive</span> <span class="p">:=</span> <span class="nv">1</span><span class="p">)</span> <span class="kr">return</span> <span class="n">Spinner</span><span class="p">;</span>
+
+<span class="n">S</span> <span class="p">:</span> <span class="n">Spinner</span> <span class="p">:=</span> <span class="n">Make</span><span class="p">;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="rename-functions-with-default-parameters">
 <h2>Rename functions with default parameters<a class="headerlink" href="#rename-functions-with-default-parameters" title="Permalink to this headline">¶</a></h2>
