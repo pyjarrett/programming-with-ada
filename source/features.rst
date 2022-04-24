@@ -15,7 +15,7 @@ Ada supports:
 - Sum types ("variants", "discriminants").
 - Static polymorphism (monomorphism, "generics");
 - Dynamic polymorphism (dynamic dispatch, virtual functions).
-- Compiler and runtime checked constaints on ranges of numerical types ("ranges", "constraints").
+- Compiler and runtime checked constraints on ranges of numerical types ("ranges", "constraints").
 - User-specified runtime type invariant checking on assignment and usage as parameters ("Type_Invariant", "Static_Predicate", "Dynamic_Predicate").
 - Semantic types, saying two things are the same backing type, but not the same
   type of "thing", think of "Miles" vs "Kilometers" both stored as floats, which
