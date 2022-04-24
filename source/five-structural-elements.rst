@@ -3,7 +3,7 @@ The Big Five Structural Elements
 
 Ada provides five major elements for program organization.
 
-Unline many languages, general types are not used as namespaces for writing
+Unlike many languages, general types are not used as namespaces for writing
 functions or procedures.  While type are important in Ada, they play a
 different role, and are not used as a way to structure program text.  Instead
 related types and their operations go into a package. 
