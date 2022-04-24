@@ -39,7 +39,7 @@ Packages and protected objects are passive, whereas tasks and subprograms are
 active program behavior.
 
 Packages provide separation into compilation units and act as
-container for all entitites.  Subprograms, whether procedures functions provide
+container for all entities.  Subprograms, whether procedures functions provide
 reusable algorithms and behaviors.
 
 It is sometimes useful to write a package around unknown types and subprograms
