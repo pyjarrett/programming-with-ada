@@ -56,7 +56,7 @@ These are listed in order of what I used:
     
 * `Building High Integrity Applications with SPARK <https://www.amazon.com/Building-High-Integrity-Applications-SPARK/dp/1107656842/ref=sr_1_2?dchild=1&keywords=Building+High+Integrity+Applications+with+SPARK&qid=1630108759&s=books&sr=1-2>`_
 
-    * It's ok, the first third of the book is an Ada crash couse before it gets into SPARK.
+    * It's ok, the first third of the book is an Ada crash course before it gets into SPARK.
 
 ********
 Projects
