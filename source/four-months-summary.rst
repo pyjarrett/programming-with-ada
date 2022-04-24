@@ -37,7 +37,7 @@ These are listed in order of what I used:
 * `John Barnes "Programming in Ada 2012" <https://www.amazon.com/Programming-Ada-2012-John-Barnes/dp/110742481X>`_
 
     * Barnes works on several major Ada references, and this book walks through the language.
-      At over 700 pages, it took me abotu a month to get through.
+      At over 700 pages, it took me about a month to get through.
 
     * This seems to be a common way Ada programmers get onboarded, and Ada programmers
       stay updated.
