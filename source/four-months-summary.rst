@@ -605,7 +605,7 @@ Generics
 
 Ada generics are similar to ML signatures, and may contain types, functions and even other packages as parameters.
 Generic packages or functions must be explicitly instantiated for use.
-This eliminates the debate of angled brackes (<>) versus square brackets for generics ([]), but leads to additional names being created.
+This eliminates the debate of angled brackets (<>) versus square brackets for generics ([]), but leads to additional names being created.
 This makes their usage and their cost explicit, at the expense of verboseness.
 
 .. code-block :: Ada
