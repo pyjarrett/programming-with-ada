@@ -88,7 +88,7 @@ Top-level package specifications, appear in `*.ads` (Ada specification) files,
 with their implementations ("bodies") in `*.adb` (Ada body) files, and only
 one top-level package specification or package body per file.
 
-Ada packages can also be nested and support visiblity rules for sharing details
+Ada packages can also be nested and support visibility rules for sharing details
 with child packages.  Child packages are given by dotted names; `A.B`
 is a child of package `A`.
 
