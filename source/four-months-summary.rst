@@ -678,7 +678,7 @@ Vocabulary
 Ada suffers from a lack of familiarity for many programmers due to being a Pascal family language and also its peculiar, but very specific vocabulary.
 However, the usage of keywords over punctuation helps ease many problems of dealing with an unfamiliar language.
 While this helps with googling and a lot of terms appear in code, many are specific to, or have Ada-specific definitions.
-Examples are "accesses" (sort of like pointers), "accesibility" (similar to a scope for borrowing), 
+Examples are "accesses" (sort of like pointers), "accessibility" (similar to a scope for borrowing), 
 "tagged types" (classes), "derived types" (unrelated to OOP), and "subprogram".
 
 
