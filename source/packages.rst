@@ -98,7 +98,7 @@ dependencies in package start up order. This solves a specific C++ issue in
 which static initialization order is not known, while also offering the ability
 to avoid deferred first-time usage costs, such as with singletons.
 
-Ada uses "aspects" to denote additional properites of packages,  subprograms, and
+Ada uses "aspects" to denote additional properties of packages,  subprograms, and
 types.  Along with aspects, compiler pragmas allows description of initialization
 dependencies, as well as providing high level checks, such as `pragma Preelaborate`
 to ensure a package has no initialization, or the `with Pure` aspect to ensure
