@@ -17,7 +17,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Programming with Ada'
-copyright = '2021'
+copyright = '2022'
 author = 'pyjarrett'
 
 # -- General configuration ---------------------------------------------------
@@ -54,6 +54,10 @@ html_theme = 'sphinx_rtd_theme' #'alabaster'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
-
+html_logo = 'ada_saw_coin.svg'
+html_theme_options = {
+    'logo_only': False,
+    'display_version': False
+}
 
 html_style = 'css/my_theme.css' 

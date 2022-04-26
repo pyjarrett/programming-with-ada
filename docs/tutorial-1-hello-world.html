@@ -1,0 +1,367 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Tutorial 1: Hello world with Alire &mdash; Programming with Ada  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Programming with Ada
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="features.html">Feature Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="five-structural-elements.html">The Big Five Structural Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="packages.html">Note on Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="packages.html#packages-the-building-blocks-of-ada">Packages, the Building Blocks of Ada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced-techniques.html">Advanced Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="being-terse.html">Being More Terse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comparison.html">Comparing Ada to Other Languages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="comparison.html#terminology">Terminology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="clearing-the-air.html">Clearing the Air</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ray-tracing-in-one-weekend.html">Ray Tracing in One Weekend… in Ada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="four-months-summary.html">Summary after Four Months with Ada</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Programming with Ada</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Tutorial 1: Hello world with Alire</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/tutorial-1-hello-world.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tutorial-1-hello-world-with-alire">
+<h1>Tutorial 1: Hello world with Alire<a class="headerlink" href="#tutorial-1-hello-world-with-alire" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>All tutorials are considered “Work in Progress”.</p>
+</div></blockquote>
+<p>Most Ada tutorials don’t go over environment setup.  This one will.  I’ll be
+using the Free Software Foundation’s GNAT.</p>
+<p>For things to install, you should grab:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://code.visualstudio.com/Download">Visual Studio Code</a> , a text editor</p></li>
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=AdaCore.ada">Ada Visual Studio Code Extension</a>,
+to make Visual Studio Code recognize Ada.</p></li>
+<li><p><a class="reference external" href="https://alire.ada.dev/">Alire</a>, an Ada helper tool and package manager.
+This is how we’ll be installing our toolchain.</p></li>
+</ul>
+<p>Once everything is installed you need to ensure that your OS can find these things in <code class="docutils literal notranslate"><span class="pre">$PATH.</span></code>
+On Windows it might look like:
+- <code class="docutils literal notranslate"><span class="pre">C:\GNAT\2021\bin</span></code>
+- <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\Alire\bin\</span></code></p>
+<p>Alire (pronounced “a lyre”, like the instrument), is a freshly available tool for
+managing dependencies in Ada and building and running your programs.</p>
+<p>We want to start a new project, which we’re going to call <code class="docutils literal notranslate"><span class="pre">hello_world</span></code>.  It’s
+going to be a program we can run, so it needs to be a “binary.”</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">alr</span> <span class="n">init</span> <span class="p">-</span><span class="n">-bin</span> <span class="n">hello_world</span>
+</pre></div>
+</div>
+<p>This creates a new folder <code class="docutils literal notranslate"><span class="pre">hello_world/</span></code> with your project in it.  It’s
+structure looks something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>hello_world/             -- what we named the project
+│   .gitignore           -- a gitignore to skip Ada files
+│   alire.lock           -- stores dependency info
+│   alire.toml           -- the &quot;manifest file&quot;, info about dependencies
+│   hello_world.gpr      -- project file with build configuration
+│
+├───alire                -- ignore this, it&#39;s alire-specific
+├───bin                  -- where programs get put when built
+├───obj                  -- ignore this, it&#39;s a compiler scratch pad
+└───src                  -- source code, more files go here
+     hello_world.adb     -- source file containing our program start
+</pre></div>
+</div>
+<p>This setup is the convention used by Alire, and often by other projects, but
+isn’t required.  A full discussion of GPR files are outside the scope of this
+article, if you open up <code class="docutils literal notranslate"><span class="pre">hello_world.gpr</span></code>, you can see how these directories
+are configured:</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kr">for</span> <span class="n">Source_Dirs</span> <span class="kn">use</span> <span class="p">(</span><span class="s">&quot;src&quot;</span><span class="p">);</span>
+<span class="kr">for</span> <span class="n">Object_Dir</span> <span class="kn">use</span> <span class="s">&quot;obj&quot;</span><span class="p">;</span>
+<span class="kr">for</span> <span class="n">Exec_Dir</span> <span class="kn">use</span> <span class="s">&quot;bin&quot;</span><span class="p">;</span>
+<span class="kr">for</span> <span class="n">Main</span> <span class="kn">use</span> <span class="p">(</span><span class="s">&quot;hello_world.adb&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This is more for your edification, you don’t really need to bother with GPR
+files for a long while.</p>
+<p>It should look something like this in <code class="docutils literal notranslate"><span class="pre">hello_world.adb</span></code>:</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">procedure</span> <span class="nf">Hello_World</span> <span class="kr">is</span>
+<span class="kr">begin</span>
+   <span class="kc">null</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nf">Hello_World</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Ada is a little strange from other languages in that the program doesn’t have to
+start from a point named “main”, and you can name that entry point however you
+like.  In our case, it’s just called <code class="docutils literal notranslate"><span class="pre">Hello_World</span></code>.</p>
+<p>You’ll see this <code class="docutils literal notranslate"><span class="pre">begin</span></code> .. <code class="docutils literal notranslate"><span class="pre">end</span></code> pattern repeated a lot since it’s used to
+describe “these are steps the program should do.”  A list of statements cannot
+be empty, so <code class="docutils literal notranslate"><span class="pre">null;</span></code> indicates there’s no work to be done.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">procedure</span> <span class="nf">Hello_World</span> <span class="kr">is</span>  <span class="c1">-- tell what the structure is</span>
+<span class="kr">begin</span>                     <span class="c1">-- start executing</span>
+   <span class="kc">null</span><span class="p">;</span>
+<span class="kr">end</span> <span class="nf">Hello_World</span><span class="p">;</span>          <span class="c1">-- we&#39;re done executing</span>
+</pre></div>
+</div>
+<p>This program doesn’t do anything and that <code class="docutils literal notranslate"><span class="pre">null</span></code> looks a bit weird.</p>
+<p>Let’s break this down:</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kn">with</span> <span class="nn">Ada.Text_IO</span><span class="p">;</span>
+
+<span class="kd">procedure</span> <span class="nf">Hello_World</span> <span class="kr">is</span>
+<span class="kr">begin</span>
+  <span class="n">Ada</span><span class="p">.</span><span class="n">Text_IO</span><span class="p">.</span><span class="n">Put_Line</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span>
+<span class="kr">end</span> <span class="nf">Hello_World</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">PS </span><span class="n">D</span><span class="p">:\</span><span class="n">dev</span><span class="p">\</span><span class="n">ada</span><span class="p">\</span><span class="n">hello_world</span><span class="p">&gt;</span> <span class="n">alr</span> <span class="n">build</span>
+<span class="n">Setup</span>
+   <span class="no">[mkdir]</span>        <span class="n">object</span> <span class="n">directory</span> <span class="k">for</span> <span class="n">project</span> <span class="n">Hello_World</span>
+   <span class="no">[mkdir]</span>        <span class="n">exec</span> <span class="n">directory</span> <span class="k">for</span> <span class="n">project</span> <span class="n">Hello_World</span>
+<span class="n">Compile</span>
+   <span class="no">[Ada]</span>          <span class="n">hello_world</span><span class="p">.</span><span class="n">adb</span>
+<span class="n">Bind</span>
+   <span class="no">[gprbind]</span>      <span class="n">hello_world</span><span class="p">.</span><span class="n">bexch</span>
+   <span class="no">[Ada]</span>          <span class="n">hello_world</span><span class="p">.</span><span class="n">ali</span>
+<span class="n">Link</span>
+   <span class="no">[link]</span>         <span class="n">hello_world</span><span class="p">.</span><span class="n">adb</span>
+</pre></div>
+</div>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">alr</span> <span class="n">run</span>
+</pre></div>
+</div>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kr">for</span> <span class="n">Main</span> <span class="kn">use</span> <span class="p">(</span><span class="s">&quot;hello_world.adb&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">Compile</span>
+   <span class="no">[Ada]</span>          <span class="n">hello_world</span><span class="p">.</span><span class="n">adb</span>
+<span class="n">hello_world</span><span class="p">.</span><span class="n">adb</span><span class="p">:</span><span class="n">5</span><span class="p">:</span><span class="n">03</span><span class="p">:</span> <span class="p">(</span><span class="n">style</span><span class="p">)</span> <span class="n">bad</span> <span class="n">indentation</span>
+
+   <span class="n">compilation</span> <span class="n">of</span> <span class="n">hello_world</span><span class="p">.</span><span class="n">adb</span> <span class="n">failed</span>
+</pre></div>
+</div>
+<p>You can actually just run <cite>alr run</cite>, you don’t actually need to run <cite>alr build</cite>
+separately.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">PS </span><span class="n">D</span><span class="p">:\</span><span class="n">dev</span><span class="p">\</span><span class="n">ada</span><span class="p">\</span><span class="n">hello_world</span><span class="p">&gt;</span> <span class="n">alr</span> <span class="n">run</span>
+<span class="n">Compile</span>
+   <span class="no">[Ada]</span>          <span class="n">hello_world</span><span class="p">.</span><span class="n">adb</span>
+<span class="n">Bind</span>
+   <span class="no">[gprbind]</span>      <span class="n">hello_world</span><span class="p">.</span><span class="n">bexch</span>
+   <span class="no">[Ada]</span>          <span class="n">hello_world</span><span class="p">.</span><span class="n">ali</span>
+<span class="n">Link</span>
+   <span class="no">[link]</span>         <span class="n">hello_world</span><span class="p">.</span><span class="n">adb</span>
+<span class="n">Hello</span><span class="p">,</span> <span class="n">world</span><span class="p">!</span>
+</pre></div>
+</div>
+<p>When your program doesn’t need to build, the output will be somewhat different.</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="nb">PS </span><span class="n">D</span><span class="p">:\</span><span class="n">dev</span><span class="p">\</span><span class="n">ada</span><span class="p">\</span><span class="n">hello_world</span><span class="p">&gt;</span> <span class="n">alr</span> <span class="n">run</span>
+<span class="n">gprbuild</span><span class="p">:</span> <span class="s2">&quot;hello_world.exe&quot;</span> <span class="n">up</span> <span class="n">to</span> <span class="n">date</span>
+<span class="n">Hello</span><span class="p">,</span> <span class="n">world</span><span class="p">!</span>
+</pre></div>
+</div>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kn">with</span> <span class="nn">Ada.Text_IO</span><span class="p">;</span>  <span class="kn">use</span> <span class="nn">Ada.Text_IO</span><span class="p">;</span>
+
+<span class="kd">procedure</span> <span class="nf">Hello_World</span> <span class="kr">is</span>
+<span class="kr">begin</span>
+  <span class="n">Put_Line</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span>
+<span class="kr">end</span> <span class="nf">Hello_World</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>You can also shorten names as well.</p>
+<div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kn">with</span> <span class="nn">Ada.Text_IO</span><span class="p">;</span>  <span class="kn">use</span> <span class="nn">Ada.Text_IO</span><span class="p">;</span>
+
+<span class="kd">procedure</span> <span class="nf">Hello_World</span> <span class="kr">is</span>
+  <span class="kd">package</span> <span class="nc">AIO</span> <span class="kr">renames</span> <span class="nc">Ada.Text_IO</span><span class="p">;</span>
+<span class="kr">begin</span>
+  <span class="n">AIO</span><span class="p">.</span><span class="n">Put_Line</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span>
+<span class="kr">end</span> <span class="nf">Hello_World</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+    <a href="https://github.com/pyjarrett/programming-with-ada">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+    </a>
+
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
