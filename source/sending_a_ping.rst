@@ -1,0 +1,580 @@
+Tutorial: Sending a Ping
+========================
+
+This tutorial shows how to make a primitive imitation of the popular `ping`
+program.  We'll be using no external Ada libraries, and just be binding to 
+C libraries.
+
+You will learn:
+
+- Using Alire for project creation and development
+- How to write bindings to call C code
+- Cross-platform development techniques 
+
+I'm doing a lot of this manually when you wouldn't otherwise need or want to
+just to demonstrate what I'm looking at, and how I'm understanding the problem.
+
+Overview
+--------
+
+What we're going to be doing is sending a packet of data to another computer
+identified by a user-friendly address, like "google.com".  The usual way of
+doing this is using Internet Control Message Program (ICMP), described by a
+few different RFCS.  You don't need to read these right now, they're here for
+your reference:
+
+- [RFC 791: Internet Protocol](https://datatracker.ietf.org/doc/html/rfc791)
+- [RFC 792: Internet Control Message Protocol](https://datatracker.ietf.org/doc/html/rfc792)
+- [RFC 777: Internet Control Message Protocol](https://datatracker.ietf.org/doc/html/rfc777)
+- [RFC 1788: ICMP Domain Name Messages](https://datatracker.ietf.org/doc/html/rfc1788)
+- [RFC 1071: Computing the Internet Checksum](https://datatracker.ietf.org/doc/html/rfc1071)
+- [RFC 1141: Incremental Updating of the Internet Checksum](https://datatracker.ietf.org/doc/html/rfc1141)
+
+Project Setup
+-------------
+
+I'm using Alire to manage this project, do the build, etc.  Alire is a tool
+to wrap dependency and build management.  It's built on top of the older GPR system,
+but the way it works means than you seldom need to deal with manually creating or
+modifying your build.  Setting up a fresh build was a confusing burden up to this
+tool was created, and it allows you to build and run easily regardless of your IDE.
+
+We're making a binary (bin) application, so we create one with Alire.
+
+.. code-block:: bash
+
+    alr init --bin ping_demo
+    cd ping_demo
+
+You can build and run that program, but it will do nothing.
+
+.. code-block:: bash
+
+    alr build
+
+
+    Setup                                            
+       [mkdir]        object directory for project Ping_Demo
+       [mkdir]        exec directory for project Ping_Demo
+    Compile
+       [Ada]          ping_demo.adb
+    Bind
+       [gprbind]      ping_demo.bexch
+       [Ada]          ping_demo.ali
+    Link
+       [link]         ping_demo.adb
+   
+
+.. code-block:: bash
+
+    alr run
+
+    
+        gprbuild: "ping_demo" up to date         
+    
+    
+The structure of the tree now looks like this:
+    
+    .. code-block:: text
+        
+        .
+        ├── alire
+        │   └── alire.lock
+        ├── alire.toml
+        ├── bin
+        │   └── ping_demo
+        ├── config
+        │   └── ping_demo_config.gpr
+        ├── obj
+        │   ├── b__ping_demo.adb
+        │   ├── b__ping_demo.ads
+        │   ├── b__ping_demo.ali
+        │   ├── b__ping_demo.o
+        │   ├── ping_demo.adb.stderr
+        │   ├── ping_demo.adb.stdout
+        │   ├── ping_demo.ali
+        │   ├── ping_demo.bexch
+        │   └── ping_demo.o
+        ├── ping_demo.gpr
+        └── src
+            └── ping_demo.adb
+        
+        5 directories, 15 files
+
+`ping_demo.adb` is going to be our main program file.  Let's have a look:
+
+.. code-block:: Ada
+
+    procedure Ping_Demo is
+    begin
+        null;
+    end Ping_Demo;
+
+Ada is a little different from other languages, because the main function
+doesn't need to be called "main".  To see how it knows where to start,
+let's peek at `ping_demo.gpr`
+
+There's a lot in there, but the line we're looking for is this one:
+
+.. code-block:: Ada
+
+   for Main use ("ping_demo.adb");
+
+Getting Command Line Parameters
+-------------------------------
+
+To get command line parameters, we're going to use the built-in `Ada.Command_Line`
+package.  We're also going to be printing text to the user, so we're going to also
+bring in `Ada.Text_IO` while we're at it.
+
+Ada doesn't have a preprocessor like C or C++, instead the first part of each
+file is called the context clause.  The main built-in packages are `Interfaces`,
+`Ada`, and `System`, and dots are used to indicate a package is inside another
+package.
+
+.. code-block:: Ada
+
+    with Ada.Command_Line;
+    with Ada.Text_IO;
+
+We're just going to print the arguments for now to show that this works.
+
+.. code-block:: Ada
+    
+    with Ada.Command_Line;
+    with Ada.Text_IO;
+
+    procedure Ping_Demo is
+    begin
+        for Index in 1 .. Ada.Command_Line.Argument_Count loop
+            Ada.Text_IO.Put_Line(Ada.Command_Line.Argument(Index));
+        end loop;
+    end Ping_Demo;
+
+Let's run with some arguments to see that it works:
+
+.. code-block:: bash
+
+    alr run --args="hello world"
+    
+    Compile                                          
+       [Ada]          ping_demo.adb
+    Bind
+       [gprbind]      ping_demo.bexch
+       [Ada]          ping_demo.ali
+    Link
+       [link]         ping_demo.adb
+
+    hello
+    world
+
+If you're doing something more complicated with parameters, you can also just
+do an `alr build` and the run from `bin/` directly.
+
+Those are so pretty long names to type.  To cut down on the verbosity, we can
+make `Ada.Command_Line` and `Ada.Text_IO` names visible within the program by
+adding a `use` statement in the context clause.
+
+.. code-block:: Ada
+    
+    with Ada.Command_Line;  use Ada.Command_Line;
+    with Ada.Text_IO;       use Ada.Text_IO;
+
+    procedure Ping_Demo is
+    begin
+        for Index in 1 .. Argument_Count loop
+            Put_Line(Argument(Index));
+        end loop;
+    end Ping_Demo;
+
+This shortens things up, but makes all the names in those packages visible
+everywhere in this file!  We can limit their visibility to just the `Ping_Demo`
+function by putting them in the declaration block, which is between `is`
+and `begin`.
+
+.. code-block:: Ada
+    
+    with Ada.Command_Line;
+    with Ada.Text_IO;
+
+    procedure Ping_Demo is
+        use Ada.Command_Line;
+        use Ada.Text_IO;
+    begin
+        for Index in 1 .. Argument_Count loop
+            Put_Line(Argument(Index));
+        end loop;
+    end Ping_Demo;
+
+This can still get tricky to remember what does what, so another option is to
+provide substitute names.
+
+.. code-block:: Ada
+    
+    with Ada.Command_Line;
+    with Ada.Text_IO;
+
+    procedure Ping_Demo is
+        package ACL renames Ada.Command_Line;
+        package AIO renames Ada.Text_IO;
+    begin
+        for Index in 1 .. ACL.Argument_Count loop
+            AIO.Put_Line(ACL.Argument(Index));
+        end loop;
+    end Ping_Demo;
+
+It depends a bit on your preference, but I'm just giving you options up from.
+
+Making a package for behavior
+-----------------------------
+
+To group behavior in Ada, we use packages.  They function both as a compilation
+unit, as well as a way to split things into namespaces.
+
+We're going to need a few things, like sockets, address names, and a definition
+of what an ICMP packet used for the ping, so let's make `Networking.Sockets`,
+`Networking.ICMP`, and `Networking`.
+
+We can't have a non-existent package, so we need to define `Networking`.  Let's
+put these in `src/` with the file names given at the top in a comment.
+
+Package names in GNAT match the packages, except they use a dash (`-`) instead
+of a `.` in the names:
+
+.. code-block:: Ada
+
+   -- src/networking.ads
+   package Networking is end Networking;
+
+.. code-block:: Ada
+
+   -- src/networking-icmp.ads
+   package Networking.ICMP is end Networking.ICMP;
+
+   -- src/networking-sockets.ads
+   package Networking.Sockets is end Networking.Sockets;
+
+I could auto-generate all of these bindings, but I'm just going to do it
+manually to show how it's done.
+
+We're going to need to get the possible addresses to send to.  The rough
+C++ we're trying to mimic is this:
+
+.. code-block: C++
+
+    [[nodiscard]] addrinfo makeHintICMPv4()
+    {
+        addrinfo hints = {};
+        memset(&hints, 0, sizeof(hints));
+        hints.ai_family = AF_UNSPEC;
+        hints.ai_socktype = SOCK_RAW;
+        hints.ai_protocol = IPPROTO_ICMP;
+        return hints;
+    }
+
+Looks like we need an ``addrinfo`` type, so let's make one in `Networking.Sockets`.
+Let's look at the C one to know what we're going to bind:
+
+.. code-block:: C
+
+    /* (mac) */
+    /* /usr/include/netdb.h */
+    struct addrinfo {
+        int	ai_flags;	/* AI_PASSIVE, AI_CANONNAME, AI_NUMERICHOST */
+        int	ai_family;	/* PF_xxx */
+        int	ai_socktype;	/* SOCK_xxx */
+        int	ai_protocol;	/* 0 or IPPROTO_xxx for IPv4 and IPv6 */
+        socklen_t ai_addrlen;	/* length of ai_addr */
+        char	*ai_canonname;	/* canonical name for hostname */
+        struct	sockaddr *ai_addr;	/* binary address */
+        struct	addrinfo *ai_next;	/* next structure in linked list */
+    };
+
+We're going to fill in what we can and then come back and make the types work.
+
+.. code-block:: Ada
+
+    -- src/networking-sockets.ads
+    -- (mac)
+
+    type AddrInfo is record
+        AI_Flags     : Interfaces.C.Int;
+        AI_Family    : Interfaces.C.Int;
+        AI_SockType  : Interfaces.C.Int;
+        AI_Protocol  : Interfaces.C.Int;
+        AI_AddrLen   : socklen_t;
+        AI_CanonName : Interfaces.C.Char_Array;
+        AI_Addr      : sockaddr_ptr;  -- binary address
+        AI_Next      : addrinfo_ptr;  -- next structure in linked list
+    end record
+        with Convention => C;
+
+That weird trailing ``with Convention => C`` tells Ada that we want this
+struct laid out as if it were a C struct.
+
+Poking around the C headers we find:
+
+.. code-block:: C
+
+    typedef __darwin_socklen_t      socklen_t;
+
+and then 
+
+.. code-block:: C
+
+    typedef __uint32_t              __darwin_socklen_t;     /* socklen_t (duh) */
+
+We add some subtypes to an address we can use for the pointers
+and define a type for socket length.
+
+.. code-block:: Ada
+
+    subtype sockaddr_ptr is System.Address;
+    subtype addrinfo_ptr is System.Address;
+    type socklen_t is new Interfaces.Unsigned_32;
+
+I don't want to have to bother with zeroing out this record, so let's set some
+default values:
+
+.. code-block::Ada
+
+    type AddrInfo is record
+        AI_Flags     : Interfaces.C.Int := 0;
+        AI_Family    : Interfaces.C.Int := 0;
+        AI_SockType  : Interfaces.C.Int := 0;
+        AI_Protocol  : Interfaces.C.Int := 0;
+        AI_AddrLen   : socklen_t := 0;
+        AI_CanonName : Interfaces.C.Strings.chars_ptr := Interfaces.C.Strings.Null_Ptr;
+        AI_Addr      : sockaddr_ptr := 0;  -- binary address
+        AI_Next      : addrinfo_ptr := 0;  -- next structure in linked list
+    end record
+        with Convention => C;
+
+I'm going to wank to assign some special values.  These are defined as macros
+in C, but I can easily make enums with known values.  I can omit the ones I don't
+care about in the binding and add them in later.
+
+.. code-block:: C
+
+    hints.ai_family = AF_UNSPEC;
+    hints.ai_socktype = SOCK_RAW;
+    hints.ai_protocol = IPPROTO_ICMP;
+
+.. code-block:: Ada
+
+    type Address_Family is (
+        AF_UNSPEC
+        AF_INET,
+    );
+
+    for Address_Family use (
+        AF_UNSPEC := 0,
+        AF_INET := 2
+    )
+
+Let's do the same for the socket type.
+
+.. code-block:: C
+        
+    #define SOCK_STREAM     1               /* stream socket */
+    #define SOCK_DGRAM      2               /* datagram socket */
+    #define SOCK_RAW        3               /* raw-protocol interface */
+    #if !defined(_POSIX_C_SOURCE) || defined(_DARWIN_C_SOURCE)
+    #define SOCK_RDM        4               /* reliably-delivered message */
+    #endif  /* (!_POSIX_C_SOURCE || _DARWIN_C_SOURCE) */
+    #define SOCK_SEQPACKET  5               /* sequenced packet stream */
+
+.. code-block:: Ada
+
+    type Socket_Type is (
+        SOCK_STREAM,
+        SOCK_DGRAM,
+        SOCK_RAW,
+        SOCK_RDM,
+        SOCK_SEQPACKET)
+    with Size => C.Interfaces.Int;
+
+    for Socket_Type use (
+        SOCK_STREAM    := 1,
+        SOCK_DGRAM     := 2,
+        SOCK_RAW       := 3,
+        SOCK_RDM       := 4,
+        SOCK_SEQPACKET := 5);
+
+
+
+I'm going to want to iterate over address information, so let's make a type
+for that.  I want it to clean up on it's own automatically so I don't forget
+about it, so we're going to use Ada's version of RAII, "Controlled types."
+
+.. code-block:: Ada
+
+    type Address_Alternatives is new Controlled_Type with record
+        Alternatives : AddrInfo_Ptr := 0;
+        Next         : AddrInfo_Ptr := 0;
+    end record;
+
+    overriding procedure Finalize(Self : in out Address_Alternatives) is
+    begin 
+        if Self.Alternatives /= 0then
+            freeaddrinfo(Self.Alternatives);
+            Self.Alternatives := 0;
+        end if;
+    end Finalize;
+
+
+
+/// TODO: Other alternative `addrinfo` should be checked, not just the first one.
+class AddressAlternatives
+{
+public:
+	/// clang-tidy doesn't like when I make this static and pass by reference--it thinks
+	/// `m_alternatives` never gets initialized.
+	[[nodiscard]] bool resolve(const char* target, const addrinfo& hints)
+	{
+		if (!target) {
+			return false;
+		}
+
+		// Figure out where the ping should go.  This might return multiple results.
+		const int addrinfoResult = getaddrinfo(target, nullptr, &hints, &m_alternatives);
+		if (addrinfoResult != 0) {
+			logError() << "getaddrinfo failed: " << addrinfoResult << '\n';
+			return false;
+		}
+		m_next = m_alternatives;
+		return true;
+	}
+
+	[[nodiscard]] addrinfo* current() const noexcept { return m_next; }
+
+private:
+	addrinfo* m_alternatives = nullptr;
+	addrinfo* m_next = nullptr;
+};
+
+We bring in ``Ada.Unchecked_Conversion`` so we can do math on addresses.
+Pointer arithmetic is forbidden in Ada, but we can get around that by converting
+addresses to and from integers.
+
+with Ada.Unchecked_Conversion;
+
+
+
+To send a message, we're going to need a socket.
+
+
+A weird pattern you see in Ada programs is that you end up spending a bit of
+time setting up declarations and types, but then after that, things usually
+fall into place quite quickly.
+
+The docs for ``socket`` also include this gem, which means we'll have to run 
+our program with ``sudo`` for it to work properly.  The ping program has some
+special things set up so you don't need to run it with sudo.
+
+    > the type SOCK_RAW, which is available only to the super-user.
+
+
+
+Binding to errno
+----------------
+
+So, what is ``errno``?  It's not a function, it's actually a macro on MacOS.
+
+**TODO: I think this is thread-local in C++, I need to check**
+
+.. code-block:: C
+
+    __BEGIN_DECLS
+    extern int * __error(void);
+    #define errno (*__error())
+    __END_DECLS
+
+.. code-block:: Ada
+
+    function __error return Interfaces.Integer_64
+        with Import, Convention => C; 
+
+This gives an error message:
+
+> networking-icmp.adb:130:14: identifier cannot start with underline
+
+Ada identifiers are different from those in C family languages since they
+can't start with an underline, and they can't contain consecutive underscores
+either.  We can fix this error by renaming the function, and giving a name
+we want to bind to:
+
+.. code-block:: Ada
+
+    function c_error return Interfaces.Integer_64
+        with Import, Convention => C, External_Name => "__error";
+
+
+
+Help, alignment!
+----------------
+
+
+ $ sudo bin/ping_clone www.google.com
+www.google.com
+Address info:  0
+ family:    2
+ socktype:  3
+ protocol:  1
+ addrlen:   16
+ address:  0377409000000000
+ next:     0000000000006000
+ 16
+Null canonical name string
+Created the send socket.
+Unable to connect to socket:-1
+Socket Error: Bad address
+
+This address has all upper bits, which seems really weird.  Alignment issue?
+
+www.google.com
+Address info:  0
+ family:    2
+ socktype:  3
+ protocol:  1
+ addrlen:   16
+ address:  00006000026B80A0
+ next:     0000000000000000
+ 16
+ 0
+ 4
+ 8
+ 12
+ 16
+ 24
+ 32
+ 40
+Null canonical name string
+Created the send socket.
+Pinging: www.google.com
+ 384
+
+
+I shouldn't have used ``Pack``.
+
+        Ada.Text_IO.Put_Line ("Address info: " & Image (Address_Infos.all));
+        Ada.Text_IO.Put_Line (Interfaces.C.int'Image(Address_Infos.all.ai_addrlen));
+
+        TIO.Put_Line (Interfaces.Integer_64(Address_Infos.all.ai_flags'Position)'Image);    
+	    TIO.Put_Line (Interfaces.Integer_64(Address_Infos.all.ai_family'Position)'Image);   
+	 	TIO.Put_Line (Interfaces.Integer_64(Address_Infos.all.ai_socktype'Position)'Image); 
+        TIO.Put_Line (Interfaces.Integer_64(Address_Infos.all.ai_protocol'Position)'Image); 
+        TIO.Put_Line (Interfaces.Integer_64(Address_Infos.all.ai_addrlen'Position)'Image);  
+        TIO.Put_Line (Interfaces.Integer_64(Address_Infos.all.ai_canonname'Position)'Image);
+        TIO.Put_Line (Interfaces.Integer_64(Address_Infos.all.ai_addr'Position)'Image);     
+        TIO.Put_Line (Interfaces.Integer_64(Address_Infos.all.ai_next'Position)'Image);
+
+    logInfo() << offsetof(addrinfo, ai_flags) << '\n';
+    logInfo() << offsetof(addrinfo, ai_family) << '\n';
+    logInfo() << offsetof(addrinfo, ai_socktype) << '\n';
+    logInfo() << offsetof(addrinfo, ai_protocol) << '\n';
+    logInfo() << offsetof(addrinfo, ai_addrlen) << '\n';
+    logInfo() << offsetof(addrinfo, ai_canonname) << '\n';
+    logInfo() << offsetof(addrinfo, ai_addr) << '\n';
+    logInfo() << offsetof(addrinfo, ai_next) << '\n';
+
