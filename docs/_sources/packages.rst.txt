@@ -88,7 +88,7 @@ Top-level package specifications, appear in `*.ads` (Ada specification) files,
 with their implementations ("bodies") in `*.adb` (Ada body) files, and only
 one top-level package specification or package body per file.
 
-Ada packages can also be nested and support visiblity rules for sharing details
+Ada packages can also be nested and support visibility rules for sharing details
 with child packages.  Child packages are given by dotted names; `A.B`
 is a child of package `A`.
 
@@ -98,7 +98,7 @@ dependencies in package start up order. This solves a specific C++ issue in
 which static initialization order is not known, while also offering the ability
 to avoid deferred first-time usage costs, such as with singletons.
 
-Ada uses "aspects" to denote additional properites of packages,  subprograms, and
+Ada uses "aspects" to denote additional properties of packages,  subprograms, and
 types.  Along with aspects, compiler pragmas allows description of initialization
 dependencies, as well as providing high level checks, such as `pragma Preelaborate`
 to ensure a package has no initialization, or the `with Pure` aspect to ensure

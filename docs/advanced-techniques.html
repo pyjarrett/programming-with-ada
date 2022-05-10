@@ -1,44 +1,21 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>Advanced Techniques &mdash; Programming with Ada  documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+    <script src="_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -46,29 +23,14 @@
     <link rel="prev" title="Note on Terminology" href="packages.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> Programming with Ada
-          
-
-          
-            
             <img src="_static/ada_saw_coin.svg" class="logo" alt="Logo"/>
-          
           </a>
-
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -76,19 +38,8 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Feature Overview</a></li>
@@ -108,78 +59,38 @@
 <li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ray-tracing-in-one-weekend.html">Ray Tracing in One Weekend… in Ada</a></li>
 <li class="toctree-l1"><a class="reference internal" href="four-months-summary.html">Summary after Four Months with Ada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sending_a_ping.html">Tutorial: Sending a Ping</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Programming with Ada</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Advanced Techniques</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="_sources/advanced-techniques.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
 
            <div itemprop="articleBody">
-            
-  <div class="section" id="advanced-techniques">
-<h1>Advanced Techniques<a class="headerlink" href="#advanced-techniques" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="raii">
-<h2>RAII<a class="headerlink" href="#raii" title="Permalink to this headline">¶</a></h2>
+             
+  <section id="advanced-techniques">
+<h1>Advanced Techniques<a class="headerlink" href="#advanced-techniques" title="Permalink to this headline"></a></h1>
+<section id="raii">
+<h2>RAII<a class="headerlink" href="#raii" title="Permalink to this headline"></a></h2>
 <p>Ada supports <a class="reference external" href="https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization">RAII</a>
 by extending the <cite>Controlled</cite> type.</p>
 <table class="docutils align-default">
@@ -235,35 +146,35 @@ by extending the <cite>Controlled</cite> type.</p>
 </pre></div>
 </div>
 </td>
-<td><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Capricorn</span> <span class="p">{</span>
-<span class="k">public</span><span class="o">:</span>
+<td><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Capricorn</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span><span class="w"></span>
 <span class="c1">// Similar for all constructors.</span>
-<span class="n">Capricorn</span> <span class="p">()</span> <span class="p">{}</span>
+<span class="n">Capricorn</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 
 <span class="c1">// Copy constructor.</span>
-<span class="n">Capricorn</span><span class="p">(</span><span class="k">const</span> <span class="n">Capricorn</span><span class="o">&amp;</span><span class="p">)</span> <span class="p">{}</span>
+<span class="n">Capricorn</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Capricorn</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 
 <span class="c1">// Move constructor.</span>
-<span class="n">Capricorn</span><span class="p">(</span><span class="n">Capricorn</span><span class="o">&amp;&amp;</span><span class="p">)</span> <span class="p">{}</span>
+<span class="n">Capricorn</span><span class="p">(</span><span class="n">Capricorn</span><span class="o">&amp;&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
 
 <span class="c1">// Copy assignment.</span>
-<span class="n">Capricorn</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">Capricorn</span><span class="o">&amp;</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span> <span class="p">}</span>
+<span class="n">Capricorn</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Capricorn</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 
 <span class="c1">// Move assignment.</span>
-<span class="n">Capricorn</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">Capricorn</span><span class="o">&amp;&amp;</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span> <span class="p">}</span>
+<span class="n">Capricorn</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">Capricorn</span><span class="o">&amp;&amp;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
 
 <span class="c1">// Destructor.</span>
-<span class="o">~</span><span class="n">Capricorn</span> <span class="p">()</span> <span class="p">{}</span>
-<span class="p">};</span>
+<span class="o">~</span><span class="n">Capricorn</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
 </pre></div>
 </div>
 </td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="timing-out-on-a-blocking-operation">
-<h2>Timing out on a Blocking Operation<a class="headerlink" href="#timing-out-on-a-blocking-operation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="timing-out-on-a-blocking-operation">
+<h2>Timing out on a Blocking Operation<a class="headerlink" href="#timing-out-on-a-blocking-operation" title="Permalink to this headline"></a></h2>
 <p>Sometimes you want to continue if an operation blocks, or continue after a timeout</p>
 <table class="docutils align-default">
 <colgroup>
@@ -293,9 +204,9 @@ by extending the <cite>Controlled</cite> type.</p>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="waiting-for-all-tasks-to-complete">
-<h2>Waiting for all Tasks to Complete<a class="headerlink" href="#waiting-for-all-tasks-to-complete" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="waiting-for-all-tasks-to-complete">
+<h2>Waiting for all Tasks to Complete<a class="headerlink" href="#waiting-for-all-tasks-to-complete" title="Permalink to this headline"></a></h2>
 <p>A list of statements doesn’t exit until all tasks are complete, so by using
 <cite>declare … begin … end</cite> you can wait until all your tasks are done.</p>
 <table class="docutils align-default">
@@ -316,59 +227,42 @@ by extending the <cite>Controlled</cite> type.</p>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
-           
           </div>
     <a href="https://github.com/pyjarrett/programming-with-ada">
         <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
     </a>
 
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="being-terse.html" class="btn btn-neutral float-right" title="Being More Terse" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="packages.html" class="btn btn-neutral float-left" title="Note on Terminology" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="being-terse.html" class="btn btn-neutral float-right" title="Being More Terse" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2022.
-
-    </p>
+    <p>&#169; Copyright 2022.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
