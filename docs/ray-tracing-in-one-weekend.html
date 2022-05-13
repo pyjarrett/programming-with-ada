@@ -1,21 +1,44 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
   <title>Ray Tracing in One Weekend… in Ada &mdash; Programming with Ada  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
+  
+
+  
+  <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-    <script src="_static/js/theme.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -23,14 +46,29 @@
     <link rel="prev" title="About" href="about.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+   
   <div class="wy-grid-for-nav">
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
+          
+
+          
             <a href="index.html" class="icon icon-home"> Programming with Ada
+          
+
+          
+            
             <img src="_static/ada_saw_coin.svg" class="logo" alt="Logo"/>
+          
           </a>
+
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -38,8 +76,19 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Feature Overview</a></li>
@@ -62,36 +111,77 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="four-months-summary.html">Summary after Four Months with Ada</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sending_a_ping.html">Tutorial: Sending a Ping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sending-a-ping.html">Tutorial: Sending a Ping</a></li>
 </ul>
 
+            
+          
         </div>
+        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Programming with Ada</a>
+        
       </nav>
 
+
       <div class="wy-nav-content">
+        
         <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
+    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
       <li>Ray Tracing in One Weekend… in Ada</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
+        
+          
             <a href="_sources/ray-tracing-in-one-weekend.rst.txt" rel="nofollow"> View page source</a>
+          
+        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
 
            <div itemprop="articleBody">
-             
-  <section id="ray-tracing-in-one-weekend-in-ada">
-<h1>Ray Tracing in One Weekend… in Ada<a class="headerlink" href="#ray-tracing-in-one-weekend-in-ada" title="Permalink to this headline"></a></h1>
+            
+  <div class="section" id="ray-tracing-in-one-weekend-in-ada">
+<h1>Ray Tracing in One Weekend… in Ada<a class="headerlink" href="#ray-tracing-in-one-weekend-in-ada" title="Permalink to this headline">¶</a></h1>
 <p>I’ve been learning Ada 2012, it started out as an intellectual curiosity some
 time in March, and then I bought
 <a class="reference external" href="https://www.amazon.com/Programming-Ada-2012-John-Barnes/dp/110742481X">John Barne’s “Programming in Ada 2012” book</a>
@@ -105,8 +195,8 @@ satisfy their own curiosity.</p>
 <p>Overall, the port went very smoothly, due to the conceptual similarities
 between C++ and Ada.  There’s a few things to point out, and a few rough spots
 with Ada which were frustrating.</p>
-<section id="project-layout">
-<h2>Project Layout<a class="headerlink" href="#project-layout" title="Permalink to this headline"></a></h2>
+<div class="section" id="project-layout">
+<h2>Project Layout<a class="headerlink" href="#project-layout" title="Permalink to this headline">¶</a></h2>
 <p>This is the directory structure:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>├── COPYING
 ├── README.md
@@ -144,9 +234,9 @@ and GPR files reference the appropriate options used by the related programs.
 This file is an Ada-derived domain-specific language (DSL).</p>
 <p>Projects might create multiple GPR files, and such as one for the main program, another
 for building and running tests, or for example programs in libraries.</p>
-</section>
-<section id="main-adb-main-function">
-<h2><cite>main.adb</cite> : Main Function<a class="headerlink" href="#main-adb-main-function" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="main-adb-main-function">
+<h2><cite>main.adb</cite> : Main Function<a class="headerlink" href="#main-adb-main-function" title="Permalink to this headline">¶</a></h2>
 <p>Files have three parts: a context clause, declarative parts, and executable parts.</p>
 <div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="c1">-- context clause</span>
 <span class="kn">with</span> <span class="nn">GNATCOLL.Terminal</span><span class="p">;</span>
@@ -187,31 +277,31 @@ C or C++ libraries, except the compiler treats these as real entities.</p>
 <p>Packages operate like namespaces, but also modules.  Packages can even include a <code class="docutils literal notranslate"><span class="pre">begin</span></code>
 section of initialization code to run before starting the main function, and describe
 startup dependencies between packages.</p>
-</section>
-<section id="expression-functions-help-knock-down-verboseness">
-<h2>Expression functions help knock down verboseness<a class="headerlink" href="#expression-functions-help-knock-down-verboseness" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="expression-functions-help-knock-down-verboseness">
+<h2>Expression functions help knock down verboseness<a class="headerlink" href="#expression-functions-help-knock-down-verboseness" title="Permalink to this headline">¶</a></h2>
 <p>Ada 2012 adds “expression functions” where instead of a full <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">begin</span> <span class="pre">...</span> <span class="pre">end</span></code>
 you can just wrap the expression describing the value to return in parentheses.
 This made the vector implementation surprisingly terse.</p>
 <div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">Reflect</span> <span class="p">(</span><span class="nv">V</span><span class="p">,</span> <span class="nv">N</span><span class="p">: </span><span class="nv">Vec3</span><span class="p">)</span> <span class="kr">return</span> <span class="n">Vec3</span> <span class="kr">is</span> <span class="p">(</span><span class="n">V</span> <span class="o">-</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">Dot</span> <span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="n">N</span><span class="p">);</span>
 </pre></div>
 </div>
-</section>
-<section id="semantic-for-types-derived-types-in-ada">
-<h2>Semantic for types (“derived types”) in Ada<a class="headerlink" href="#semantic-for-types-derived-types-in-ada" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="semantic-for-types-derived-types-in-ada">
+<h2>Semantic for types (“derived types”) in Ada<a class="headerlink" href="#semantic-for-types-derived-types-in-ada" title="Permalink to this headline">¶</a></h2>
 <p>The reference version uses type aliases for 3D vectors, which improves the look
 of code but doesn’t prevent misuses of types according to their semantics.</p>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">point3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec3</span><span class="p">;</span><span class="w">   </span><span class="c1">// 3D point</span>
-<span class="k">using</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">vec3</span><span class="p">;</span><span class="w">    </span><span class="c1">// RGB color</span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">point3</span> <span class="o">=</span> <span class="n">vec3</span><span class="p">;</span>   <span class="c1">// 3D point</span>
+<span class="k">using</span> <span class="n">color</span> <span class="o">=</span> <span class="n">vec3</span><span class="p">;</span>    <span class="c1">// RGB color</span>
 
-<span class="n">vec3</span><span class="w"> </span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="n">v2</span><span class="p">;</span><span class="w"></span>
-<span class="n">point3</span><span class="w"> </span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">;</span><span class="w"></span>
-<span class="n">color</span><span class="w"> </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">;</span><span class="w"></span>
+<span class="n">vec3</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">;</span>
+<span class="n">point3</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">;</span>
+<span class="n">color</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">;</span>
 
-<span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p1</span><span class="p">;</span><span class="w">       </span><span class="c1">// Allowed, but did you really mean this?</span>
-<span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">c1</span><span class="p">;</span><span class="w">  </span><span class="c1">// Subtract a color from a point?</span>
+<span class="n">c1</span> <span class="o">=</span> <span class="n">p1</span><span class="p">;</span>       <span class="c1">// Allowed, but did you really mean this?</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">p1</span> <span class="o">-</span> <span class="n">c1</span><span class="p">;</span>  <span class="c1">// Subtract a color from a point?</span>
 
-<span class="n">refract</span><span class="w"> </span><span class="p">(</span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">v1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span><span class="w">  </span><span class="c1">// Did you really mean to refract a color?</span>
+<span class="n">refract</span> <span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">);</span>  <span class="c1">// Did you really mean to refract a color?</span>
 </pre></div>
 </div>
 <p>Yes, you can prevent such mistakes in C++ through inheritance or templates with
@@ -270,9 +360,9 @@ included as part of these types, so it can’t be used.</p>
 <div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="n">Refract</span> <span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">);</span>  <span class="o">//</span> <span class="n">Compile</span> <span class="n">error</span><span class="p">.</span> <span class="n">Doesn</span><span class="p">&#39;</span><span class="na">t</span> <span class="n">exist</span><span class="p">...</span>
 </pre></div>
 </div>
-</section>
-<section id="ada-lacks-perfect-forwarding">
-<h2>Ada lacks perfect forwarding<a class="headerlink" href="#ada-lacks-perfect-forwarding" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="ada-lacks-perfect-forwarding">
+<h2>Ada lacks perfect forwarding<a class="headerlink" href="#ada-lacks-perfect-forwarding" title="Permalink to this headline">¶</a></h2>
 <p>One of the best and killer features of modern C++ is <a class="reference external" href="https://cpppatterns.com/patterns/perfect-forwarding.html">perfect forwarding</a>
 combined with <a class="reference external" href="https://en.cppreference.com/w/cpp/language/parameter_pack">parameter pack.</a>.
 The gist of these features is that you can create your own functions which hand
@@ -281,15 +371,15 @@ directly.  This is especially useful in situations where you want to, for exampl
 imitate the interface of a constructor for a type, such as to construct an object
 inside a container or as part of a smart pointer.</p>
 <p>Let’s say you have a type which looks like:</p>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Widget</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="k">public</span><span class="o">:</span><span class="w"></span>
-<span class="w">    </span><span class="n">Widget</span><span class="p">(</span><span class="n">PermanentlyBound</span><span class="o">&amp;</span><span class="w"> </span><span class="n">foo</span><span class="p">,</span><span class="w"> </span><span class="n">ExpensiveType</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">e</span><span class="p">);</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Widget</span> <span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="n">Widget</span><span class="p">(</span><span class="n">PermanentlyBound</span><span class="o">&amp;</span> <span class="n">foo</span><span class="p">,</span> <span class="n">ExpensiveType</span><span class="o">&amp;&amp;</span> <span class="n">e</span><span class="p">);</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <p>You can actually call that constructor directly when making smart pointers in
 C++ (<code class="docutils literal notranslate"><span class="pre">unique_ptr</span></code> or <code class="docutils literal notranslate"><span class="pre">shared_ptr</span></code>):</p>
-<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span><span class="w"> </span><span class="n">widgetPtr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="p">(</span><span class="n">someFoo</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">expensiveThing</span><span class="p">));</span><span class="w"></span>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">Widget</span><span class="o">&gt;</span> <span class="n">widgetPtr</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_unique</span><span class="p">(</span><span class="n">someFoo</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">expensiveThing</span><span class="p">));</span>
 </pre></div>
 </div>
 <p>You see this lack of perfect forwarding and the copy required in <code class="docutils literal notranslate"><span class="pre">RT.Materials</span></code>:</p>
@@ -302,9 +392,9 @@ C++ (<code class="docutils literal notranslate"><span class="pre">unique_ptr</sp
 <span class="kr">end</span> <span class="nf">Make_Material</span><span class="p">;</span>
 </pre></div>
 </div>
-</section>
-<section id="one-line-30-of-runtime-cpu">
-<h2>One line, 30% of runtime CPU<a class="headerlink" href="#one-line-30-of-runtime-cpu" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="one-line-30-of-runtime-cpu">
+<h2>One line, 30% of runtime CPU<a class="headerlink" href="#one-line-30-of-runtime-cpu" title="Permalink to this headline">¶</a></h2>
 <p>The most innocuous and expensive line of code in the program was the <code class="docutils literal notranslate"><span class="pre">F32</span></code>
 definition of the common floating point type used by the raytracer.  The issue
 is the range check is defined to be the attribute range (read as “tick range”).
@@ -316,42 +406,59 @@ much error checking is possible from a single line of code in Ada.</p>
 <div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="kt">F32</span> <span class="kr">is</span> <span class="kr">new</span> <span class="n">Interfaces</span><span class="p">.</span><span class="n">IEEE_Float_32</span> <span class="kr">range</span> <span class="n">Interfaces</span><span class="p">.</span><span class="n">IEEE_Float_32</span><span class="p">&#39;</span><span class="na">Range</span><span class="p">;</span>
 </pre></div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>
+           
           </div>
     <a href="https://github.com/pyjarrett/programming-with-ada">
         <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
     </a>
 
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="about.html" class="btn btn-neutral float-left" title="About" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="four-months-summary.html" class="btn btn-neutral float-right" title="Summary after Four Months with Ada" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="about.html" class="btn btn-neutral float-left" title="About" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022.</p>
-  </div>
+    <p>
+        &#169; Copyright 2022.
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>
       </div>
+
     </section>
+
   </div>
-  <script>
+  
+
+  <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -21,7 +21,7 @@ Programming with Ada
    about
    ray-tracing-in-one-weekend
    four-months-summary
-   sending_a_ping
+   sending-a-ping
 
 Indices and tables
 ==================

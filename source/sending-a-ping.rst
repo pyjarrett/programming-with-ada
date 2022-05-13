@@ -1,7 +1,8 @@
+########################
 Tutorial: Sending a Ping
-========================
+########################
 
-This tutorial shows how to make a primitive imitation of the popular `ping`
+This tutorial shows how to make a primitive imitation of the popular ``ping``
 program.  We'll be using no external Ada libraries, and just be binding to 
 C libraries.
 
@@ -14,44 +15,69 @@ You will learn:
 I'm doing a lot of this manually when you wouldn't otherwise need or want to
 just to demonstrate what I'm looking at, and how I'm understanding the problem.
 
+.. note::
+
+    This is not a networking tutorial.  We're sticking to a very basic IPv4
+    implementation to focus on the Ada-related aspects.  I recommend reading
+    `Beej's Networking tutorial <https://beej.us/guide/bgnet/>`_ for more
+    information.
+
+********
 Overview
---------
+********
 
 What we're going to be doing is sending a packet of data to another computer
-identified by a user-friendly address, like "google.com".  The usual way of
-doing this is using Internet Control Message Program (ICMP), described by a
-few different RFCS.  You don't need to read these right now, they're here for
+identified by a user-friendly address, like "google.com" to see if it will respond.
+
+The usual way of doing this is using Internet Control Message Program (ICMP) echo request,
+described by a few different RFCS.  You don't need to read these right now, they're here for
 your reference:
 
+- `RFC 777: Internet Control Message Protocol <https://datatracker.ietf.org/doc/html/rfc777>`_
 - `RFC 791: Internet Protocol <https://datatracker.ietf.org/doc/html/rfc791>`_
 - `RFC 792: Internet Control Message Protocol <https://datatracker.ietf.org/doc/html/rfc792>`_
-- `RFC 777: Internet Control Message Protocol <https://datatracker.ietf.org/doc/html/rfc777>`_
-- `RFC 1788: ICMP Domain Name Messages <https://datatracker.ietf.org/doc/html/rfc1788>`_
 - `RFC 1071: Computing the Internet Checksum <https://datatracker.ietf.org/doc/html/rfc1071>`_
+- `RFC 1788: ICMP Domain Name Messages <https://datatracker.ietf.org/doc/html/rfc1788>`_
 - `RFC 1141: Incremental Updating of the Internet Checksum <https://datatracker.ietf.org/doc/html/rfc1141>`_
 
-Project Setup
--------------
+The gist of the program is going to be something like this:
 
-I'm using Alire to manage this project, do the build, etc.  Alire is a tool
-to wrap dependency and build management.  It's built on top of the older GPR system,
+.. code-block:: text
+
+    foreach host in command_line
+        - figure out where that address is
+        - create a socket
+        - send data to the address
+        - wait for a response
+            - report if no response was received
+
+*************
+Project Setup
+*************
+
+I'm using `Alire <https://alire.ada.dev/>`_ to manage this project, do the build, etc.  Alire is a tool
+to wrap dependency and build management.  It's built on top of the older `GPR system <https://learn.adacore.com/courses/GNAT_Toolchain_Intro/chapters/gprbuild.html>`_,
 but the way it works means than you seldom need to deal with manually creating or
 modifying your build.  Setting up a fresh build was a confusing burden up to this
 tool was created, and it allows you to build and run easily regardless of your IDE.
 
 We're making a binary (bin) application, so we create one with Alire.
 
+.. note::
+
+    ``$ the_command`` means run 'the_command' in a terminal."  Don't type the "$".
+
 .. code-block:: bash
 
-    alr init --bin ping_demo
+    $ alr init --bin ping_demo
+
     cd ping_demo
 
 You can build and run that program, but it will do nothing.
 
 .. code-block:: bash
 
-    alr build
-
+    $ alr build
 
     Setup                                            
        [mkdir]        object directory for project Ping_Demo
@@ -67,10 +93,9 @@ You can build and run that program, but it will do nothing.
 
 .. code-block:: bash
 
-    alr run
-
+    $ alr run
     
-        gprbuild: "ping_demo" up to date         
+    gprbuild: "ping_demo" up to date         
     
     
 The structure of the tree now looks like this:
@@ -101,7 +126,7 @@ The structure of the tree now looks like this:
         
         5 directories, 15 files
 
-`ping_demo.adb` is going to be our main program file.  Let's have a look:
+``ping_demo.adb`` is going to be our main program file.  Let's have a look:
 
 .. code-block:: Ada
 
@@ -112,25 +137,54 @@ The structure of the tree now looks like this:
 
 Ada is a little different from other languages, because the main function
 doesn't need to be called "main".  To see how it knows where to start,
-let's peek at `ping_demo.gpr`
+let's peek at ``ping_demo.gpr``
 
-There's a lot in there, but the line we're looking for is this one:
+There's a lot in there, but the line we're looking that says which file
+contains the main function is this one:
 
 .. code-block:: Ada
 
    for Main use ("ping_demo.adb");
 
-Getting Command Line Parameters
--------------------------------
+******************
+Built-in Libraries
+******************
 
-To get command line parameters, we're going to use the built-in `Ada.Command_Line`
+This tutorial only uses packages from the three hierarchies of built-in
+packages: ``Ada``, ``System`` and ``Interfaces``.
+
+The ``Ada`` package provides containers, numeric functions and various other
+things you'd expect in a standard library.
+
+``System`` gives us low level access to things like memory address, control to
+explicitly convert addresses to pointer-like types called "accesses",
+arithmetic on memory addresses, and manipulation of storage elements (bytes).
+One of the things that helps make Ada safer than other languages is that most
+"dangerous" things are hidden behind ``System``, so using them is explicit.  If
+you're familiar with Rust, when you see ``System``, think ``unsafe``.
+
+``Interfaces`` provides what you need to talk to other languages, such as sized
+integers, and its child package ``Interfaces.C`` includes C specific definitions
+such as ``size_t``.
+
+These are most of the things we'll be using, there's more to explore in these package
+hierarchies:
+
+.. image:: images/Ada_Libraries.svg
+    :alt: Ada provides the built-in packages Ada, System, and Interfaces.
+
+*******************************
+Getting Command Line Parameters
+*******************************
+
+To get command line parameters, we're going to use the built-in ``Ada.Command_Line``
 package.  We're also going to be printing text to the user, so we're going to also
-bring in `Ada.Text_IO` while we're at it.
+bring in ``Ada.Text_IO`` while we're at it.
 
 Ada doesn't have a preprocessor like C or C++, instead the first part of each
-file is called the context clause.  The main built-in packages are `Interfaces`,
-`Ada`, and `System`, and dots are used to indicate a package is inside another
-package.
+file is called the "context clause".  You can't bring in packages anywhere other than
+this location.  The main built-in packages are ``Interfaces``, ``Ada``, and ``System``,
+and dots are used to indicate a package is inside another package.
 
 .. code-block:: Ada
 
@@ -151,11 +205,12 @@ We're just going to print the arguments for now to show that this works.
         end loop;
     end Ping_Demo;
 
-Let's run with some arguments to see that it works:
+Let's run with some arguments to see that it works.  We need quotes to group
+all of our args for the ``--args`` option:
 
 .. code-block:: bash
 
-    alr run --args="hello world"
+    $ alr run --args="hello world"
     
     Compile                                          
        [Ada]          ping_demo.adb
@@ -169,11 +224,22 @@ Let's run with some arguments to see that it works:
     world
 
 If you're doing something more complicated with parameters, you can also just
-do an `alr build` and the run from `bin/` directly.
+do an ``alr build`` and the run from ``bin/`` directly with a complicated
+command line.
+
+Variations to Reduce Verbosity
+------------------------------
+
+I have an :doc:`entire page <being-terse>` dedicated to techniques to make
+code terser in Ada.  Still, I'm going to show a few variations to reduce
+the verbosity of this this little bit of code.
+
+Use Clause in Context Clause
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Those are so pretty long names to type.  To cut down on the verbosity, we can
-make `Ada.Command_Line` and `Ada.Text_IO` names visible within the program by
-adding a `use` statement in the context clause.
+make ``Ada.Command_Line`` and ``Ada.Text_IO`` names visible within the program by
+adding a ``use`` statement in the context clause.
 
 .. code-block:: Ada
     
@@ -187,10 +253,13 @@ adding a `use` statement in the context clause.
         end loop;
     end Ping_Demo;
 
+Use Clause in Declaration Block for Function
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 This shortens things up, but makes all the names in those packages visible
-everywhere in this file!  We can limit their visibility to just the `Ping_Demo`
-function by putting them in the declaration block, which is between `is`
-and `begin`.
+everywhere in this file!  We can limit their visibility to just the ``Ping_Demo``
+function by putting them in the declaration block, which is between ``is``
+and ``begin``.
 
 .. code-block:: Ada
     
@@ -206,8 +275,12 @@ and `begin`.
         end loop;
     end Ping_Demo;
 
+Aliasing a package name.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 This can still get tricky to remember what does what, so another option is to
-provide substitute names.
+provide substitute names.  This is commonly done inside packages where another
+package is used heavily.
 
 .. code-block:: Ada
     
@@ -223,23 +296,108 @@ provide substitute names.
         end loop;
     end Ping_Demo;
 
-It depends a bit on your preference, but I'm just giving you options up from.
+It depends a bit on your preference, but I'm just giving you options to choose from.
 
+******************************************
+Configuring for Platform-specific behavior
+******************************************
+
+We're going to be creating behavior specific to different platforms.  Ada
+doesn't have a preprocessor, so we're going to be changing what packages we
+compile on the different target platforms.
+
+I usually do this by creating a subdirectory in my source directory for each
+platform.  I also put code shared by all platforms into a ``common/`` directory:
+
+.. code-block:: text
+
+    src/
+        common/
+        windows/
+        mac/
+        linux/
+
+Then I describe this in my build's GPR file.  The syntax for GPR files is close
+to, but not exactly Ada.  It has many similarities, such as ``&`` for string
+concatenation and structures like ``case``.
+
+.. code-block:: Ada
+
+   Ping_Demo_Sources := ("src/", "src/common");
+   
+   type Platform_Type is ("windows", "linux", "macos");
+   Platform : Platform_Type := external ("Ping_Demo_Platform");
+   case Platform is
+      when "windows" => Ping_Demo_Sources := Ping_Demo_Sources & "src/windows";
+      when "linux"   => Ping_Demo_Sources := Ping_Demo_Sources & "src/linux";
+      when "macos"   => Ping_Demo_Sources := Ping_Demo_Sources & "src/macos";
+   end case;
+
+``external`` means that we're pulling in that variable from elsewhere.  Alire allows
+you to define OS specific externals.  Externals will be global across all your
+build files, so prefix with your project name to avoid name collisions.
+
+.. code-block:: toml
+
+    [gpr-set-externals.'case(os)']
+    windows = { Ping_Demo_Platform = "windows" }
+    linux = { Ping_Demo_Platform = "linux" }
+    macos = { Ping_Demo_Platform = "macos" }
+
+
+Platform-specific linking
+-------------------------
+
+On Windows I need to link against Winsock2, so I just add a linker switch to link
+against ``ws2_32``.
+
+.. code-block:: Ada
+
+   Extra_Linker_Switches := ();
+   case Platform is
+      when "linux"   => Extra_Linker_Switches := ();
+      when "macos"   => Extra_Linker_Switches := ();
+      when "windows" => Extra_Linker_Switches := ("-lws2_32");
+   end case;
+
+   package Linker is
+      for Default_Switches ("Ada") use Extra_Linker_Switches;
+   end Linker;
+
+
+*****************************
+General Notes on Binding to C
+*****************************
+
+A huge problem is that binding to C relies on splitting the bindings at file
+boundaries, and sometimes these are just inconvenient.  However, since Ada
+uses both specification files (.ads) and body files (.adb), you can perform
+this split at the implementation level, if you can get away with hiding
+platform-specific details in the body.
+
+.. image:: images/Endianness.svg
+    :alt: Big-Endian means big end first, Little-endian means small end first.
+
+
+
+
+
+*****************************
 Making a package for behavior
------------------------------
+*****************************
 
 To group behavior in Ada, we use packages.  They function both as a compilation
 unit, as well as a way to split things into namespaces.
 
 We're going to need a few things, like sockets, address names, and a definition
-of what an ICMP packet used for the ping, so let's make `Networking.Sockets`,
-`Networking.ICMP`, and `Networking`.
+of what an ICMP packet used for the ping, so let's make ``Networking.Sockets``,
+``Networking.ICMP``, and ``Networking``.
 
-We can't have a non-existent package, so we need to define `Networking`.  Let's
-put these in `src/` with the file names given at the top in a comment.
+We can't have a non-existent package, so we need to define ``Networking``.  Let's
+put these in ``src/`` with the file names given at the top in a comment.
 
-Package names in GNAT match the packages, except they use a dash (`-`) instead
-of a `.` in the names:
+Package names in GNAT match the packages, except they use a dash (``-``) instead
+of a ``.`` in the names:
 
 .. code-block:: Ada
 
@@ -257,10 +415,20 @@ of a `.` in the names:
 I could auto-generate all of these bindings, but I'm just going to do it
 manually to show how it's done.
 
+There's some nuanced thing to thing about in the translation and especially on
+Windows, there's quite a few elements you need to get right.
+
+Structs especially result in bizarre behavior when not set up correctly.  There's
+also not a lot of help for when you get it wrong.
+
+
+
+
+
 We're going to need to get the possible addresses to send to.  The rough
 C++ we're trying to mimic is this:
 
-.. code-block: C++
+.. code-block:: C++
 
     [[nodiscard]] addrinfo makeHintICMPv4()
     {

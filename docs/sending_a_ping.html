@@ -1,35 +1,72 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
   <title>Tutorial: Sending a Ping &mdash; Programming with Ada  documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
+  
+
+  
+  <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-    <script src="_static/js/theme.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Summary after Four Months with Ada" href="four-months-summary.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+   
   <div class="wy-grid-for-nav">
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
+          
+
+          
             <a href="index.html" class="icon icon-home"> Programming with Ada
+          
+
+          
+            
             <img src="_static/ada_saw_coin.svg" class="logo" alt="Logo"/>
+          
           </a>
+
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -37,9 +74,20 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="features.html">Feature Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="five-structural-elements.html">The Big Five Structural Elements</a></li>
@@ -53,44 +101,76 @@
 <li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ray-tracing-in-one-weekend.html">Ray Tracing in One Weekend… in Ada</a></li>
 <li class="toctree-l1"><a class="reference internal" href="four-months-summary.html">Summary after Four Months with Ada</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial: Sending a Ping</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#project-setup">Project Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#getting-command-line-parameters">Getting Command Line Parameters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#making-a-package-for-behavior">Making a package for behavior</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#binding-to-errno">Binding to errno</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#help-alignment">Help, alignment!</a></li>
-</ul>
-</li>
 </ul>
 
+            
+          
         </div>
+        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">Programming with Ada</a>
+        
       </nav>
 
+
       <div class="wy-nav-content">
+        
         <div class="rst-content">
-          <div role="navigation" aria-label="Page navigation">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
+    
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
       <li>Tutorial: Sending a Ping</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
+        
+          
             <a href="_sources/sending_a_ping.rst.txt" rel="nofollow"> View page source</a>
+          
+        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
 
            <div itemprop="articleBody">
-             
-  <section id="tutorial-sending-a-ping">
-<h1>Tutorial: Sending a Ping<a class="headerlink" href="#tutorial-sending-a-ping" title="Permalink to this headline"></a></h1>
+            
+  <div class="section" id="tutorial-sending-a-ping">
+<h1>Tutorial: Sending a Ping<a class="headerlink" href="#tutorial-sending-a-ping" title="Permalink to this headline">¶</a></h1>
 <p>This tutorial shows how to make a primitive imitation of the popular <cite>ping</cite>
 program.  We’ll be using no external Ada libraries, and just be binding to
 C libraries.</p>
@@ -102,24 +182,24 @@ C libraries.</p>
 </ul>
 <p>I’m doing a lot of this manually when you wouldn’t otherwise need or want to
 just to demonstrate what I’m looking at, and how I’m understanding the problem.</p>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>What we’re going to be doing is sending a packet of data to another computer
 identified by a user-friendly address, like “google.com”.  The usual way of
 doing this is using Internet Control Message Program (ICMP), described by a
 few different RFCS.  You don’t need to read these right now, they’re here for
 your reference:</p>
 <ul class="simple">
-<li><p>[RFC 791: Internet Protocol](<a class="reference external" href="https://datatracker.ietf.org/doc/html/rfc791">https://datatracker.ietf.org/doc/html/rfc791</a>)</p></li>
-<li><p>[RFC 792: Internet Control Message Protocol](<a class="reference external" href="https://datatracker.ietf.org/doc/html/rfc792">https://datatracker.ietf.org/doc/html/rfc792</a>)</p></li>
-<li><p>[RFC 777: Internet Control Message Protocol](<a class="reference external" href="https://datatracker.ietf.org/doc/html/rfc777">https://datatracker.ietf.org/doc/html/rfc777</a>)</p></li>
-<li><p>[RFC 1788: ICMP Domain Name Messages](<a class="reference external" href="https://datatracker.ietf.org/doc/html/rfc1788">https://datatracker.ietf.org/doc/html/rfc1788</a>)</p></li>
-<li><p>[RFC 1071: Computing the Internet Checksum](<a class="reference external" href="https://datatracker.ietf.org/doc/html/rfc1071">https://datatracker.ietf.org/doc/html/rfc1071</a>)</p></li>
-<li><p>[RFC 1141: Incremental Updating of the Internet Checksum](<a class="reference external" href="https://datatracker.ietf.org/doc/html/rfc1141">https://datatracker.ietf.org/doc/html/rfc1141</a>)</p></li>
+<li><p><a class="reference external" href="https://datatracker.ietf.org/doc/html/rfc791">RFC 791: Internet Protocol</a></p></li>
+<li><p><a class="reference external" href="https://datatracker.ietf.org/doc/html/rfc792">RFC 792: Internet Control Message Protocol</a></p></li>
+<li><p><a class="reference external" href="https://datatracker.ietf.org/doc/html/rfc777">RFC 777: Internet Control Message Protocol</a></p></li>
+<li><p><a class="reference external" href="https://datatracker.ietf.org/doc/html/rfc1788">RFC 1788: ICMP Domain Name Messages</a></p></li>
+<li><p><a class="reference external" href="https://datatracker.ietf.org/doc/html/rfc1071">RFC 1071: Computing the Internet Checksum</a></p></li>
+<li><p><a class="reference external" href="https://datatracker.ietf.org/doc/html/rfc1141">RFC 1141: Incremental Updating of the Internet Checksum</a></p></li>
 </ul>
-</section>
-<section id="project-setup">
-<h2>Project Setup<a class="headerlink" href="#project-setup" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="project-setup">
+<h2>Project Setup<a class="headerlink" href="#project-setup" title="Permalink to this headline">¶</a></h2>
 <p>I’m using Alire to manage this project, do the build, etc.  Alire is a tool
 to wrap dependency and build management.  It’s built on top of the older GPR system,
 but the way it works means than you seldom need to deal with manually creating or
@@ -194,9 +274,9 @@ let’s peek at <cite>ping_demo.gpr</cite></p>
 <div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kr">for</span> <span class="n">Main</span> <span class="kn">use</span> <span class="p">(</span><span class="s">&quot;ping_demo.adb&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-</section>
-<section id="getting-command-line-parameters">
-<h2>Getting Command Line Parameters<a class="headerlink" href="#getting-command-line-parameters" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="getting-command-line-parameters">
+<h2>Getting Command Line Parameters<a class="headerlink" href="#getting-command-line-parameters" title="Permalink to this headline">¶</a></h2>
 <p>To get command line parameters, we’re going to use the built-in <cite>Ada.Command_Line</cite>
 package.  We’re also going to be printing text to the user, so we’re going to also
 bring in <cite>Ada.Text_IO</cite> while we’re at it.</p>
@@ -284,9 +364,9 @@ provide substitute names.</p>
 </pre></div>
 </div>
 <p>It depends a bit on your preference, but I’m just giving you options up from.</p>
-</section>
-<section id="making-a-package-for-behavior">
-<h2>Making a package for behavior<a class="headerlink" href="#making-a-package-for-behavior" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="making-a-package-for-behavior">
+<h2>Making a package for behavior<a class="headerlink" href="#making-a-package-for-behavior" title="Permalink to this headline">¶</a></h2>
 <p>To group behavior in Ada, we use packages.  They function both as a compilation
 unit, as well as a way to split things into namespaces.</p>
 <p>We’re going to need a few things, like sockets, address names, and a definition
@@ -313,18 +393,18 @@ manually to show how it’s done.</p>
 C++ we’re trying to mimic is this:</p>
 <p>Looks like we need an <code class="docutils literal notranslate"><span class="pre">addrinfo</span></code> type, so let’s make one in <cite>Networking.Sockets</cite>.
 Let’s look at the C one to know what we’re going to bind:</p>
-<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cm">/* (mac) */</span><span class="w"></span>
-<span class="cm">/* /usr/include/netdb.h */</span><span class="w"></span>
-<span class="k">struct</span><span class="w"> </span><span class="nc">addrinfo</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w">     </span><span class="n">ai_flags</span><span class="p">;</span><span class="w">       </span><span class="cm">/* AI_PASSIVE, AI_CANONNAME, AI_NUMERICHOST */</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w">     </span><span class="n">ai_family</span><span class="p">;</span><span class="w">      </span><span class="cm">/* PF_xxx */</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w">     </span><span class="n">ai_socktype</span><span class="p">;</span><span class="w">    </span><span class="cm">/* SOCK_xxx */</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w">     </span><span class="n">ai_protocol</span><span class="p">;</span><span class="w">    </span><span class="cm">/* 0 or IPPROTO_xxx for IPv4 and IPv6 */</span><span class="w"></span>
-<span class="w">    </span><span class="kt">socklen_t</span><span class="w"> </span><span class="n">ai_addrlen</span><span class="p">;</span><span class="w">   </span><span class="cm">/* length of ai_addr */</span><span class="w"></span>
-<span class="w">    </span><span class="kt">char</span><span class="w">    </span><span class="o">*</span><span class="n">ai_canonname</span><span class="p">;</span><span class="w">  </span><span class="cm">/* canonical name for hostname */</span><span class="w"></span>
-<span class="w">    </span><span class="k">struct</span><span class="w">  </span><span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="n">ai_addr</span><span class="p">;</span><span class="w">      </span><span class="cm">/* binary address */</span><span class="w"></span>
-<span class="w">    </span><span class="k">struct</span><span class="w">  </span><span class="nc">addrinfo</span><span class="w"> </span><span class="o">*</span><span class="n">ai_next</span><span class="p">;</span><span class="w">      </span><span class="cm">/* next structure in linked list */</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cm">/* (mac) */</span>
+<span class="cm">/* /usr/include/netdb.h */</span>
+<span class="k">struct</span> <span class="nc">addrinfo</span> <span class="p">{</span>
+    <span class="kt">int</span>     <span class="n">ai_flags</span><span class="p">;</span>       <span class="cm">/* AI_PASSIVE, AI_CANONNAME, AI_NUMERICHOST */</span>
+    <span class="kt">int</span>     <span class="n">ai_family</span><span class="p">;</span>      <span class="cm">/* PF_xxx */</span>
+    <span class="kt">int</span>     <span class="n">ai_socktype</span><span class="p">;</span>    <span class="cm">/* SOCK_xxx */</span>
+    <span class="kt">int</span>     <span class="n">ai_protocol</span><span class="p">;</span>    <span class="cm">/* 0 or IPPROTO_xxx for IPv4 and IPv6 */</span>
+    <span class="kt">socklen_t</span> <span class="n">ai_addrlen</span><span class="p">;</span>   <span class="cm">/* length of ai_addr */</span>
+    <span class="kt">char</span>    <span class="o">*</span><span class="n">ai_canonname</span><span class="p">;</span>  <span class="cm">/* canonical name for hostname */</span>
+    <span class="k">struct</span>  <span class="nc">sockaddr</span> <span class="o">*</span><span class="n">ai_addr</span><span class="p">;</span>      <span class="cm">/* binary address */</span>
+    <span class="k">struct</span>  <span class="nc">addrinfo</span> <span class="o">*</span><span class="n">ai_next</span><span class="p">;</span>      <span class="cm">/* next structure in linked list */</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <p>We’re going to fill in what we can and then come back and make the types work.</p>
@@ -347,11 +427,11 @@ Let’s look at the C one to know what we’re going to bind:</p>
 <p>That weird trailing <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">Convention</span> <span class="pre">=&gt;</span> <span class="pre">C</span></code> tells Ada that we want this
 struct laid out as if it were a C struct.</p>
 <p>Poking around the C headers we find:</p>
-<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">__darwin_socklen_t</span><span class="w">      </span><span class="kt">socklen_t</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="n">__darwin_socklen_t</span>      <span class="kt">socklen_t</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>and then</p>
-<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="n">__uint32_t</span><span class="w">              </span><span class="n">__darwin_socklen_t</span><span class="p">;</span><span class="w">     </span><span class="cm">/* socklen_t (duh) */</span><span class="w"></span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="n">__uint32_t</span>              <span class="n">__darwin_socklen_t</span><span class="p">;</span>     <span class="cm">/* socklen_t (duh) */</span>
 </pre></div>
 </div>
 <p>We add some subtypes to an address we can use for the pointers
@@ -366,9 +446,9 @@ default values:</p>
 <p>I’m going to wank to assign some special values.  These are defined as macros
 in C, but I can easily make enums with known values.  I can omit the ones I don’t
 care about in the binding and add them in later.</p>
-<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">hints</span><span class="p">.</span><span class="n">ai_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AF_UNSPEC</span><span class="p">;</span><span class="w"></span>
-<span class="n">hints</span><span class="p">.</span><span class="n">ai_socktype</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SOCK_RAW</span><span class="p">;</span><span class="w"></span>
-<span class="n">hints</span><span class="p">.</span><span class="n">ai_protocol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IPPROTO_ICMP</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">hints</span><span class="p">.</span><span class="n">ai_family</span> <span class="o">=</span> <span class="n">AF_UNSPEC</span><span class="p">;</span>
+<span class="n">hints</span><span class="p">.</span><span class="n">ai_socktype</span> <span class="o">=</span> <span class="n">SOCK_RAW</span><span class="p">;</span>
+<span class="n">hints</span><span class="p">.</span><span class="n">ai_protocol</span> <span class="o">=</span> <span class="n">IPPROTO_ICMP</span><span class="p">;</span>
 </pre></div>
 </div>
 <div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span> <span class="kt">Address_Family</span> <span class="kr">is</span> <span class="p">(</span>
@@ -425,41 +505,36 @@ about it, so we’re going to use Ada’s version of RAII, “Controlled types.�
 <span class="kr">end</span> <span class="nf">Finalize</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>/// TODO: Other alternative <cite>addrinfo</cite> should be checked, not just the first one.
-class AddressAlternatives
-{
-public:</p>
-<blockquote>
-<div><p>/// clang-tidy doesn’t like when I make this static and pass by reference–it thinks
-/// <cite>m_alternatives</cite> never gets initialized.
-[[nodiscard]] bool resolve(const char* target, const addrinfo&amp; hints)
-{</p>
-<blockquote>
-<div><dl class="simple">
-<dt>if (!target) {</dt><dd><p>return false;</p>
-</dd>
-</dl>
-<p>}</p>
-<p>// Figure out where the ping should go.  This might return multiple results.
-const int addrinfoResult = getaddrinfo(target, nullptr, &amp;hints, &amp;m_alternatives);
-if (addrinfoResult != 0) {</p>
-<blockquote>
-<div><p>logError() &lt;&lt; “getaddrinfo failed: ” &lt;&lt; addrinfoResult &lt;&lt; ‘n’;
-return false;</p>
-</div></blockquote>
-<p>}
-m_next = m_alternatives;
-return true;</p>
-</div></blockquote>
-<p>}</p>
-<p>[[nodiscard]] addrinfo* current() const noexcept { return m_next; }</p>
-</div></blockquote>
-<dl class="simple">
-<dt>private:</dt><dd><p>addrinfo* m_alternatives = nullptr;
-addrinfo* m_next = nullptr;</p>
-</dd>
-</dl>
-<p>};</p>
+<div class="highlight-C++ notranslate"><div class="highlight"><pre><span></span><span class="c1">/// TODO: Other alternative `addrinfo` should be checked, not just the first one.</span>
+<span class="k">class</span> <span class="nc">AddressAlternatives</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="c1">/// clang-tidy doesn&#39;t like when I make this static and pass by reference--it thinks</span>
+    <span class="c1">/// `m_alternatives` never gets initialized.</span>
+    <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="kt">bool</span> <span class="n">resolve</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">target</span><span class="p">,</span> <span class="k">const</span> <span class="n">addrinfo</span><span class="o">&amp;</span> <span class="n">hints</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">target</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Figure out where the ping should go.  This might return multiple results.</span>
+        <span class="k">const</span> <span class="kt">int</span> <span class="n">addrinfoResult</span> <span class="o">=</span> <span class="n">getaddrinfo</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="k">nullptr</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hints</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m_alternatives</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">addrinfoResult</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">logError</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;getaddrinfo failed: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">addrinfoResult</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+            <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">m_next</span> <span class="o">=</span> <span class="n">m_alternatives</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="p">[[</span><span class="n">nodiscard</span><span class="p">]]</span> <span class="n">addrinfo</span><span class="o">*</span> <span class="n">current</span><span class="p">()</span> <span class="k">const</span> <span class="k">noexcept</span> <span class="p">{</span> <span class="k">return</span> <span class="n">m_next</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="k">private</span><span class="o">:</span>
+    <span class="n">addrinfo</span><span class="o">*</span> <span class="n">m_alternatives</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+    <span class="n">addrinfo</span><span class="o">*</span> <span class="n">m_next</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
 <p>We bring in <code class="docutils literal notranslate"><span class="pre">Ada.Unchecked_Conversion</span></code> so we can do math on addresses.
 Pointer arithmetic is forbidden in Ada, but we can get around that by converting
 addresses to and from integers.</p>
@@ -474,15 +549,15 @@ special things set up so you don’t need to run it with sudo.</p>
 <blockquote>
 <div><p>&gt; the type SOCK_RAW, which is available only to the super-user.</p>
 </div></blockquote>
-</section>
-<section id="binding-to-errno">
-<h2>Binding to errno<a class="headerlink" href="#binding-to-errno" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="binding-to-errno">
+<h2>Binding to errno<a class="headerlink" href="#binding-to-errno" title="Permalink to this headline">¶</a></h2>
 <p>So, what is <code class="docutils literal notranslate"><span class="pre">errno</span></code>?  It’s not a function, it’s actually a macro on MacOS.</p>
 <p><strong>TODO: I think this is thread-local in C++, I need to check</strong></p>
-<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">__BEGIN_DECLS</span><span class="w"></span>
-<span class="k">extern</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">__error</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">__BEGIN_DECLS</span>
+<span class="k">extern</span> <span class="kt">int</span> <span class="o">*</span> <span class="n">__error</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
 <span class="cp">#define errno (*__error())</span>
-<span class="n">__END_DECLS</span><span class="w"></span>
+<span class="n">__END_DECLS</span>
 </pre></div>
 </div>
 <div class="highlight-Ada notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nf">__error</span> <span class="nf">return</span> <span class="nf">Interfaces</span><span class="p">.</span><span class="nf">Integer_64</span>
@@ -499,53 +574,49 @@ we want to bind to:</p>
     <span class="nf">with</span> <span class="nf">Import</span><span class="p">,</span> <span class="nf">Convention</span> <span class="p">=&gt;</span> <span class="nf">C</span><span class="p">,</span> <span class="nf">External_Name</span> <span class="p">=&gt;</span> <span class="nf">&quot;__error&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
-</section>
-<section id="help-alignment">
-<h2>Help, alignment!<a class="headerlink" href="#help-alignment" title="Permalink to this headline"></a></h2>
-<blockquote>
-<div><p>$ sudo bin/ping_clone www.google.com</p>
-</div></blockquote>
-<p>www.google.com
-Address info:  0</p>
-<blockquote>
-<div><p>family:    2
-socktype:  3
-protocol:  1
-addrlen:   16
-address:  0377409000000000
-next:     0000000000006000
-16</p>
-</div></blockquote>
-<p>Null canonical name string
+</div>
+<div class="section" id="help-alignment">
+<h2>Help, alignment!<a class="headerlink" href="#help-alignment" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo bin/ping_clone www.google.com
+www.google.com
+Address info:  <span class="m">0</span>
+family:    <span class="m">2</span>
+socktype:  <span class="m">3</span>
+protocol:  <span class="m">1</span>
+addrlen:   <span class="m">16</span>
+address:  <span class="m">0377409000000000</span>
+next:     <span class="m">0000000000006000</span>
+<span class="m">16</span>
+Null canonical name string
 Created the send socket.
 Unable to connect to socket:-1
-Socket Error: Bad address</p>
-<p>This address has all upper bits, which seems really weird.  Alignment issue?</p>
-<p>www.google.com
-Address info:  0</p>
-<blockquote>
-<div><p>family:    2
-socktype:  3
-protocol:  1
-addrlen:   16
+Socket Error: Bad address
+
+This address has all upper bits, which seems really weird.  Alignment issue?
+
+www.google.com
+Address info:  <span class="m">0</span>
+family:    <span class="m">2</span>
+socktype:  <span class="m">3</span>
+protocol:  <span class="m">1</span>
+addrlen:   <span class="m">16</span>
 address:  00006000026B80A0
-next:     0000000000000000
-16
-0
-4
-8
-12
-16
-24
-32
-40</p>
-</div></blockquote>
-<p>Null canonical name string
+next:     <span class="m">0000000000000000</span>
+<span class="m">16</span>
+<span class="m">0</span>
+<span class="m">4</span>
+<span class="m">8</span>
+<span class="m">12</span>
+<span class="m">16</span>
+<span class="m">24</span>
+<span class="m">32</span>
+<span class="m">40</span>
+Null canonical name string
 Created the send socket.
-Pinging: www.google.com</p>
-<blockquote>
-<div><p>384</p>
-</div></blockquote>
+Pinging: www.google.com
+<span class="m">384</span>
+</pre></div>
+</div>
 <p>I shouldn’t have used <code class="docutils literal notranslate"><span class="pre">Pack</span></code>.</p>
 <blockquote>
 <div><blockquote>
@@ -573,41 +644,55 @@ logInfo() &lt;&lt; offsetof(addrinfo, ai_canonname) &lt;&lt; ‘n’;
 logInfo() &lt;&lt; offsetof(addrinfo, ai_addr) &lt;&lt; ‘n’;
 logInfo() &lt;&lt; offsetof(addrinfo, ai_next) &lt;&lt; ‘n’;</p>
 </div></blockquote>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>
+           
           </div>
     <a href="https://github.com/pyjarrett/programming-with-ada">
         <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
     </a>
 
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="four-months-summary.html" class="btn btn-neutral float-left" title="Summary after Four Months with Ada" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-    </div>
+          <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022.</p>
-  </div>
+    <p>
+        &#169; Copyright 2022.
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>
       </div>
+
     </section>
+
   </div>
-  <script>
+  
+
+  <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
